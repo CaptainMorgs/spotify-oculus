@@ -10,13 +10,10 @@ public class PlaylistScript : MonoBehaviour {
 
 	private string playlistName, playlistURI;
 	private GameObject spotifyManager;
-
 	private Spotify script;
     public GameObject  playlistNameObject, recordPlayer;
 	private RecordPlayer recordPlayerScript;
     private UnityEngine.UI.Text playlistNameText;
-   // private float a;
-   // private Color c;
     private MeshRenderer meshRenderer;
     public GameObject spriteGameObject;
     private SpriteRenderer spriteRenderer;
@@ -24,20 +21,18 @@ public class PlaylistScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         meshRenderer = GetComponent<MeshRenderer>();
-    //    a = meshRenderer.material.color.a;
-    //    c = meshRenderer.material.GetColor("_TintColor");
-
         spotifyManager = GameObject.Find ("SpotifyManager");
 		script = spotifyManager.GetComponent<Spotify>();
         playlistNameText = playlistNameObject.GetComponent<UnityEngine.UI.Text>();
         spriteRenderer = spriteGameObject.GetComponent<SpriteRenderer>();
 		recordPlayerScript = recordPlayer.GetComponent<RecordPlayer> ();
+
     }
 	
 	public void setPlaylistURI (string playlistURI) {
 		this.playlistURI = playlistURI;
-        
-	}
+        Debug.Log("playlistURI: " + playlistURI);
+    }
 
 	public void setPlaylistName (string playlistName) {
 		this.playlistName = playlistName;
@@ -59,5 +54,9 @@ public class PlaylistScript : MonoBehaviour {
         else {
             spriteRenderer.enabled = true;
         }
+    }
+
+    void OnMouseDown() {
+        playPlaylist();
     }
 }

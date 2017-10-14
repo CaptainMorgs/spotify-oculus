@@ -19,4 +19,9 @@ public class PausePlayback : MonoBehaviour {
 		script.pausePlayback();
 		recordPlayerScript.recordPlayerActive = false;
 	}
+
+    void OnMouseDown()
+    {
+        PausePlaybackFunction();
+    }
 }

@@ -9,6 +9,7 @@ using SpotifyAPI.Web.Models; //Models for the JSON-responses
 using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
 using System;
+using System.IO;
 
 public class Spotify : MonoBehaviour {
 
@@ -24,11 +25,15 @@ public class Spotify : MonoBehaviour {
 
 	public Image albumImage;
 
-	public GameObject quadObject, uiTextObject, uiTextAlbumNameObject, FeaturedPlaylistTab;
+	public GameObject FeaturedPlaylistTab, CurrentSongGameObject;
 
 	private FeaturedPlaylistTabScript featuredPlaylistTabScript;
 
-	public GameObject prefab;
+    private CurrentSong currentSongScript;
+
+    public GameObject prefab;
+
+   
 
 	// Use this for initialization
 	void Start () {
@@ -38,17 +43,59 @@ public class Spotify : MonoBehaviour {
 
 		featuredPlaylistTabScript = FeaturedPlaylistTab.GetComponent<FeaturedPlaylistTabScript> ();
 
-		StartCoroutine (featuredPlaylistTabScript.loadStuff ());
+        currentSongScript = CurrentSongGameObject.GetComponent<CurrentSong>();
 
-	}
+        StartCoroutine(featuredPlaylistTabScript.loadStuff ());
+
+        RestCallTest();
+
+
+    }
 
 	// Update is called once per frame
 	void Update () {
 	}
 
+    public void RestCallTest()
+    {
+        string endPoint = @"https://api.spotify.com/v1/me/top/artists";
+        var request = (HttpWebRequest)WebRequest.Create(endPoint);
+
+        request.Method = "GET";
+
+        using (var response = (HttpWebResponse)request.GetResponse())
+        {
+            var responseValue = string.Empty;
+
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                var message = String.Format("Request failed. Received HTTP {0}", response.StatusCode);
+                throw new ApplicationException(message);
+            }
+
+            // grab the response
+            using (var responseStream = response.GetResponseStream())
+            {
+                if (responseStream != null)
+                    using (var reader = new StreamReader(responseStream))
+                    {
+                        responseValue = reader.ReadToEnd();
+                    }
+            }
+
+            var json = responseValue;
+            Debug.Log(responseValue);
+        }
+    }
+
     public FeaturedPlaylists GetFeaturedPlaylists() {
         FeaturedPlaylists playlists = _spotify.GetFeaturedPlaylists();
         return playlists;
+    }
+
+    public FullArtist GetFullArtist(string artistID) {
+        FullArtist artist = _spotify.GetArtist(artistID);
+        return artist;
     }
 
 	public void playSong(string songID) {
@@ -67,7 +114,13 @@ public class Spotify : MonoBehaviour {
 		if (error.Error != null) {
 			Debug.LogError (error.Error.Message);
 		}
-	}
+        context = _spotify.GetPlayback();
+        if (context.Item != null) {
+            Debug.Log("Currently playing song: " + context.Item.Name);
+            currentSongScript.updateCurrentlyPlaying(context.Item.Artists[0].Id);
+
+        }
+    }
 
 	public void resumePlayback() {
 		PlaybackContext context = _spotify.GetPlayback ();	
@@ -77,9 +130,16 @@ public class Spotify : MonoBehaviour {
 			Debug.Log (error.Error.Status);
 			Debug.Log (error.Error.Message);
 		}
-	}
+        if (context.Item != null)
+        {
+            Debug.Log("Currently playing song: " + context.Item.Name);
+            Debug.Log("Artist: " + context.Item.Artists[0].Name);
+            currentSongScript.updateCurrentlyPlaying(context.Item.Artists[0].Id);
+        }
 
-	public void pausePlayback() {
+    }
+
+    public void pausePlayback() {
 		PlaybackContext context = _spotify.GetPlayback ();	
 		//	ErrorResponse error = _spotify.PausePlayback(context.Device.Id);
 		ErrorResponse error = _spotify.PausePlayback(context.Device.Id);

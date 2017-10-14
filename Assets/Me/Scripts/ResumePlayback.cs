@@ -18,5 +18,11 @@ public class ResumePlayback : MonoBehaviour {
 	public void ResumePlaybackFunction() {
 		script.resumePlayback();
 		recordPlayerScript.recordPlayerActive = true;
+
 	}
+
+    void OnMouseDown()
+    {
+        ResumePlaybackFunction();
+    }
 }
