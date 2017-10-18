@@ -15,12 +15,16 @@ public class InputDemo : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
-        if (Input.GetKey("up")) {
-            // spotifyScript.playPlaylist("spotify: track:4iV5W9uYEdYUVa79Axb7Rh");
-          //  spotifyScript.playPlaylist("spotify:user:spotify:playlist:37i9dQZF1DXdsy92d7BLpC");
-    }
-
+    void Update()
+    {
+        if (Input.GetKey("up") || OVRInput.Get(OVRInput.Button.One))
+        {
+            spotifyScript.resumePlayback();
+        }
+       else if (OVRInput.Get(OVRInput.Button.Two))
+        {
+            spotifyScript.pausePlayback();
+        }
     }
 
     void OnMouseDown() {

@@ -33,10 +33,13 @@ public class Spotify : MonoBehaviour {
 
     public GameObject prefab;
 
-   
+    public GameObject recordPlayer;
+    private RecordPlayer recordPlayerScript;
 
-	// Use this for initialization
-	void Start () {
+
+
+    // Use this for initialization
+    void Start () {
 		ServicePointManager.ServerCertificateValidationCallback = MyRemoteCertificateValidationCallback;
 
 		ImplicitGrantAuth();
@@ -44,6 +47,8 @@ public class Spotify : MonoBehaviour {
 		featuredPlaylistTabScript = FeaturedPlaylistTab.GetComponent<FeaturedPlaylistTabScript> ();
 
         currentSongScript = CurrentSongGameObject.GetComponent<CurrentSong>();
+
+        recordPlayerScript = recordPlayer.GetComponent<RecordPlayer>();
 
         StartCoroutine(featuredPlaylistTabScript.loadStuff ());
 
@@ -126,7 +131,8 @@ public class Spotify : MonoBehaviour {
 		PlaybackContext context = _spotify.GetPlayback ();	
 		//	ErrorResponse error = _spotify.PausePlayback(context.Device.Id);
 		ErrorResponse error = _spotify.ResumePlayback(context.Device.Id);
-		if (error.Error != null) {
+        recordPlayerScript.recordPlayerActive = true;
+        if (error.Error != null) {
 			Debug.Log (error.Error.Status);
 			Debug.Log (error.Error.Message);
 		}
@@ -143,7 +149,8 @@ public class Spotify : MonoBehaviour {
 		PlaybackContext context = _spotify.GetPlayback ();	
 		//	ErrorResponse error = _spotify.PausePlayback(context.Device.Id);
 		ErrorResponse error = _spotify.PausePlayback(context.Device.Id);
-		if (error.Error != null) {
+        recordPlayerScript.recordPlayerActive = false;
+        if (error.Error != null) {
 			Debug.Log (error.Error.Status);
 			Debug.Log (error.Error.Message);
 		}
