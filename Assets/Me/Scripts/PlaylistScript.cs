@@ -40,11 +40,26 @@ public class PlaylistScript : MonoBehaviour {
 
     }
 
+    private void playSomething() {
+        if (transform.tag == "song")
+        {
+            playSong();
+        }
+        else {
+            playPlaylist();
+        }
+    }
+
 	public void playPlaylist() {
-        Debug.Log(playlistURI);
-		script.playPlaylist (playlistURI);
-		recordPlayerScript.recordPlayerActive = true;
+		script.playURI (playlistURI);
+	//	recordPlayerScript.recordPlayerActive = true;
 	}
+
+    public void playSong()
+    {
+        script.playSongURI(playlistURI);
+   //     recordPlayerScript.recordPlayerActive = true;
+    }
 
     public void TogglePlayButton() {
         if (spriteRenderer.enabled == true)
@@ -57,6 +72,6 @@ public class PlaylistScript : MonoBehaviour {
     }
 
     void OnMouseDown() {
-        playPlaylist();
+        playSomething();
     }
 }

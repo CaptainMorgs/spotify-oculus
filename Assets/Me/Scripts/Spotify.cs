@@ -17,13 +17,10 @@ public class Spotify : MonoBehaviour {
 
 	private static string clientId = "4dd553a707024f8bb4f210bb86d73ee1";
 
+    //TODO Not be hardcoded!
 	private static string clientSecret = "c02f072189ad4f21a7d04f7370574f7b";
 
 	private static string redirectUriLocal = "http://localhost";
-
-	private string rickAstleyAlbum = "6N9PS4QXF1D0OWPk0Sxtb4";
-
-	public Image albumImage;
 
 	public GameObject FeaturedPlaylistTab, CurrentSongGameObject;
 
@@ -31,10 +28,13 @@ public class Spotify : MonoBehaviour {
 
     private CurrentSong currentSongScript;
 
-    public GameObject prefab;
+    public GameObject playlistPrefab;
 
     public GameObject recordPlayer;
+
     private RecordPlayer recordPlayerScript;
+
+    private bool waitingOnRestCall = false;
 
 
 
@@ -50,7 +50,7 @@ public class Spotify : MonoBehaviour {
 
         recordPlayerScript = recordPlayer.GetComponent<RecordPlayer>();
 
-        StartCoroutine(featuredPlaylistTabScript.loadStuff ());
+      //  StartCoroutine(featuredPlaylistTabScript.loadStuff ());
 
         RestCallTest();
 
@@ -98,6 +98,18 @@ public class Spotify : MonoBehaviour {
         return playlists;
     }
 
+    public NewAlbumReleases GetNewAlbumReleases()
+    {
+        NewAlbumReleases newAlbumReleases = _spotify.GetNewAlbumReleases();
+        return newAlbumReleases;
+    }
+    //TODO use editor input var for time range
+    public Paging<FullTrack> GetUsersTopTracks()
+    {
+        Paging<FullTrack> usersTopTracks = _spotify.GetUsersTopTracks(TimeRangeType.ShortTerm, 10, 0);
+        return usersTopTracks;
+    }
+
     public FullArtist GetFullArtist(string artistID) {
         FullArtist artist = _spotify.GetArtist(artistID);
         return artist;
@@ -112,48 +124,97 @@ public class Spotify : MonoBehaviour {
 		}
 	}
 
-	public void playPlaylist(string playlistURI) {
-		PlaybackContext context = _spotify.GetPlayback ();	
-		ErrorResponse error = _spotify.ResumePlayback( context.Device.Id, playlistURI );
-		Debug.Log ("PlaylistURI: " + playlistURI);
-		if (error.Error != null) {
-			Debug.LogError (error.Error.Message);
-		}
-        context = _spotify.GetPlayback();
-        if (context.Item != null) {
-            Debug.Log("Currently playing song: " + context.Item.Name);
-            currentSongScript.updateCurrentlyPlaying(context.Item.Artists[0].Id);
+    public void playURI(string playlistURI)
+    {
+        if (!waitingOnRestCall) { 
+        waitingOnRestCall = true;
+        PlaybackContext context = _spotify.GetPlayback();
+        waitingOnRestCall = false;
 
-        }
-    }
-
-	public void resumePlayback() {
-		PlaybackContext context = _spotify.GetPlayback ();	
-		//	ErrorResponse error = _spotify.PausePlayback(context.Device.Id);
-		ErrorResponse error = _spotify.ResumePlayback(context.Device.Id);
+        float before = Time.realtimeSinceStartup;
+        ErrorResponse error = _spotify.ResumePlayback(context.Device.Id, playlistURI);
+        Debug.Log("Time taken to play URI: " + (Time.realtimeSinceStartup - before));
         recordPlayerScript.recordPlayerActive = true;
-        if (error.Error != null) {
-			Debug.Log (error.Error.Status);
-			Debug.Log (error.Error.Message);
-		}
-        if (context.Item != null)
+
+        if (error.Error != null)
+        {
+            Debug.LogError(error.Error.Message);
+            Debug.LogError(playlistURI);
+        }
+            context = _spotify.GetPlayback();
+            if (context.Item != null)
         {
             Debug.Log("Currently playing song: " + context.Item.Name);
             Debug.Log("Artist: " + context.Item.Artists[0].Name);
             currentSongScript.updateCurrentlyPlaying(context.Item.Artists[0].Id);
-        }
 
+        }
+    }
+    }
+
+    public void playSongURI(string songURI)
+    {
+        if (!waitingOnRestCall)
+        {
+            waitingOnRestCall = true;
+            PlaybackContext context = _spotify.GetPlayback();
+            waitingOnRestCall = false;
+       
+                ErrorResponse error = _spotify.ResumePlayback(context.Device.Id, uris: new List<string> { songURI });
+                recordPlayerScript.recordPlayerActive = true;
+
+                if (error.Error != null)
+                {
+                    Debug.LogError(error.Error.Message);
+                    Debug.LogError(songURI);
+                }
+                 context = _spotify.GetPlayback();
+                if (context.Item != null)
+                {
+                //TODO currently playing song is the previous song that was played
+                    Debug.Log("Currently playing song: " + context.Item.Name);
+                    Debug.Log("Artist: " + context.Item.Artists[0].Name);
+                    currentSongScript.updateCurrentlyPlaying(context.Item.Artists[0].Id);
+
+                }
+            
+        }
+    }
+
+    public void resumePlayback() {
+		PlaybackContext context = _spotify.GetPlayback ();
+
+        if (!context.IsPlaying)
+        {
+            ErrorResponse error = _spotify.ResumePlayback(context.Device.Id);
+            recordPlayerScript.recordPlayerActive = true;
+
+            if (error.Error != null)
+            {
+                Debug.Log(error.Error.Message);
+            }
+            if (context.Item != null)
+            {
+                Debug.Log("Currently playing song: " + context.Item.Name);
+                Debug.Log("Artist: " + context.Item.Artists[0].Name);
+                currentSongScript.updateCurrentlyPlaying(context.Item.Artists[0].Id);
+            }
+        }
     }
 
     public void pausePlayback() {
-		PlaybackContext context = _spotify.GetPlayback ();	
-		//	ErrorResponse error = _spotify.PausePlayback(context.Device.Id);
-		ErrorResponse error = _spotify.PausePlayback(context.Device.Id);
-        recordPlayerScript.recordPlayerActive = false;
-        if (error.Error != null) {
-			Debug.Log (error.Error.Status);
-			Debug.Log (error.Error.Message);
-		}
+		PlaybackContext context = _spotify.GetPlayback ();
+
+        if (context.IsPlaying)
+        {
+            ErrorResponse error = _spotify.PausePlayback(context.Device.Id);
+            recordPlayerScript.recordPlayerActive = false;
+
+            if (error.Error != null)
+            {
+                Debug.Log(error.Error.Message);
+            }
+        }
 	}
 
     public void searchSpotify(string searchQuery) {
@@ -180,7 +241,7 @@ public class Spotify : MonoBehaviour {
 			redirectUriLocal,
 			8080,
 			clientId,
-			Scope.UserModifyPlaybackState,
+			Scope.UserTopRead,
 			TimeSpan.FromSeconds(20)
 		);
 
@@ -235,7 +296,7 @@ public class Spotify : MonoBehaviour {
 
                 SimplePlaylist playlist = searchItem.Playlists.Items[k];
 
-                GameObject gameObject = Instantiate(prefab, new Vector3(4, (j * 1) + 0.75f, ((i * 1) - 3)), Quaternion.AngleAxis(90, Vector3.up));
+                GameObject gameObject = Instantiate(playlistPrefab, new Vector3(4, (j * 1) + 0.75f, ((i * 1) - 3)), Quaternion.AngleAxis(90, Vector3.up));
                 
                 string playlistImageURL = playlist.Images[0].Url;
 
@@ -286,7 +347,7 @@ public class Spotify : MonoBehaviour {
                 
                 SimplePlaylist playlist = playlists.Playlists.Items[k];
 
-                GameObject gameObject = Instantiate(prefab, new Vector3(((i * 1) - 2), (j*1) + 0.75f, 3), Quaternion.identity);
+                GameObject gameObject = Instantiate(playlistPrefab, new Vector3(((i * 1) - 2), (j*1) + 0.75f, 3), Quaternion.identity);
 
                 string playlistImageURL = playlist.Images[0].Url;
 

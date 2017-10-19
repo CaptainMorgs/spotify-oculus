@@ -7,7 +7,7 @@ using SpotifyAPI.Web.Models; //Models for the JSON-responses
 using UnityEngine;
 using UnityEditor;
 
-public class FeaturedPlaylistTabScript : MonoBehaviour
+public class NewAlbumReleasesScript : MonoBehaviour
 {
 
     private GameObject thisGameObject;
@@ -24,23 +24,23 @@ public class FeaturedPlaylistTabScript : MonoBehaviour
         spotifyManager = GameObject.Find("SpotifyManager");
         spotifyManagerScript = spotifyManager.GetComponent<Spotify>();
 
-        StartCoroutine(loadFeaturedPlaylists());
+        StartCoroutine(loadNewAlbumReleases());
     }
 
-        public IEnumerator loadFeaturedPlaylists()
+    public IEnumerator loadNewAlbumReleases()
     {
         //TODO subscribe to spotify manager event of authorization being complete
         yield return new WaitForSeconds(2);
-        FeaturedPlaylists featuredPlaylists = spotifyManagerScript.GetFeaturedPlaylists();
+        NewAlbumReleases newAlbumReleases = spotifyManagerScript.GetNewAlbumReleases();
 
         for (int i = 0; i < meshRenderers.Length; i++)
         {
-            string featuredPlaylistImageURL = featuredPlaylists.Playlists.Items[i].Images[0].Url;
+            string featuredPlaylistImageURL = newAlbumReleases.Albums.Items[i].Images[0].Url;
 
             GameObject meshRendererGameObject = meshRenderers[i].transform.gameObject;
 
             PlaylistScript playlistScript = meshRendererGameObject.GetComponent<PlaylistScript>();
-          //  playlistScript.setPlaylistURI(featuredPlaylists.Playlists.Items[i].Uri);
+            //  playlistScript.setPlaylistURI(featuredPlaylists.Playlists.Items[i].Uri);
 
             WWW imageURLWWW = new WWW(featuredPlaylistImageURL);
 
@@ -48,8 +48,8 @@ public class FeaturedPlaylistTabScript : MonoBehaviour
 
             meshRenderers[i].material.mainTexture = imageURLWWW.texture;
 
-            playlistScript.setPlaylistName(featuredPlaylists.Playlists.Items[i].Name);
-            playlistScript.setPlaylistURI(featuredPlaylists.Playlists.Items[i].Uri);
+            playlistScript.setPlaylistName(newAlbumReleases.Albums.Items[i].Name);
+            playlistScript.setPlaylistURI(newAlbumReleases.Albums.Items[i].Uri);
         }
     }
 

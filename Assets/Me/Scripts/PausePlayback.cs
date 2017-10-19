@@ -24,4 +24,9 @@ public class PausePlayback : MonoBehaviour {
     {
         PausePlaybackFunction();
     }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        PausePlaybackFunction();
+    }
 }

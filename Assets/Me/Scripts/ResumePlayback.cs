@@ -25,4 +25,8 @@ public class ResumePlayback : MonoBehaviour {
     {
         ResumePlaybackFunction();
     }
+
+    void OnTriggerEnter(Collider collider) {
+        ResumePlaybackFunction();
+    }
 }
