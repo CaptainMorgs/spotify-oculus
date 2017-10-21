@@ -110,6 +110,12 @@ public class Spotify : MonoBehaviour {
         return usersTopTracks;
     }
 
+	public Paging<FullTrack> GetUsersTopArtists()
+    {
+        Paging<FullTrack> usersTopArtists = _spotify.GetUsersTopArtists(TimeRangeType.ShortTerm, 10, 0);
+        return usersTopArtists;
+    }
+	
     public FullArtist GetFullArtist(string artistID) {
         FullArtist artist = _spotify.GetArtist(artistID);
         return artist;
