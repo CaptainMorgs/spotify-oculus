@@ -36,6 +36,10 @@ public class Spotify : MonoBehaviour {
 
     private bool waitingOnRestCall = false;
 
+    public GameObject searchResultsTab;
+
+    private SearchResultsScript searchResultsScript;
+
 
 
     // Use this for initialization
@@ -45,6 +49,9 @@ public class Spotify : MonoBehaviour {
 		ImplicitGrantAuth();
 
 		featuredPlaylistTabScript = FeaturedPlaylistTab.GetComponent<FeaturedPlaylistTabScript> ();
+
+        searchResultsScript = searchResultsTab.GetComponent<SearchResultsScript>();
+
 
         currentSongScript = CurrentSongGameObject.GetComponent<CurrentSong>();
 
@@ -110,9 +117,9 @@ public class Spotify : MonoBehaviour {
         return usersTopTracks;
     }
 
-	public Paging<FullTrack> GetUsersTopArtists()
+	public Paging<FullArtist> GetUsersTopArtists()
     {
-        Paging<FullTrack> usersTopArtists = _spotify.GetUsersTopArtists(TimeRangeType.ShortTerm, 10, 0);
+        Paging<FullArtist> usersTopArtists = _spotify.GetUsersTopArtists(TimeRangeType.ShortTerm, 10, 0);
         return usersTopArtists;
     }
 	
@@ -231,7 +238,7 @@ public class Spotify : MonoBehaviour {
         searchItem.Tracks.Items.ForEach(item => Debug.Log("Track: " + item.Name));
         searchItem.Playlists.Items.ForEach(item => Debug.Log("Playlist: " + item.Name));
 
-        StartCoroutine(loadObjectsFromSearch(searchItem));
+             StartCoroutine(searchResultsScript.LoadSearchResults(searchItem));
         }
         else {
             Debug.LogError("Null search query");
@@ -380,3 +387,4 @@ public class Spotify : MonoBehaviour {
         }
     }
 }
+

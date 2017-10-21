@@ -20,6 +20,7 @@ namespace VRKeyboard.Utils {
 
         [Header("Essentials")]
         public Transform characters;
+
         #endregion
 
         #region Private Variables
@@ -31,6 +32,10 @@ namespace VRKeyboard.Utils {
         private Dictionary<GameObject, Text> keysDictionary = new Dictionary<GameObject, Text>();
 
         private bool capslockFlag;
+
+        private GameObject spotifyManager;
+
+        private Spotify spotifyScript;
         #endregion
 
         #region Monobehaviour Callbacks
@@ -48,6 +53,9 @@ namespace VRKeyboard.Utils {
 
             capslockFlag = isUppercase;
             CapsLock();
+
+            spotifyManager = GameObject.Find("SpotifyManager");
+            spotifyScript = spotifyManager.GetComponent<Spotify>();
         }
         #endregion
 
@@ -76,12 +84,17 @@ namespace VRKeyboard.Utils {
             }
             capslockFlag = !capslockFlag;
         }
+
+        public void Search() {
+            spotifyScript.searchSpotify(inputText.text);
+        }
         #endregion
 
         #region Private Methods
         public void GenerateInput(string s) {
             if (Input.Length > maxInputLength) { return; }
             Input += s;
+            Debug.Log("Keyboard being pressed!");
         }
 
         private string ToLowerCase(string s) {

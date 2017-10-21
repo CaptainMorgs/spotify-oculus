@@ -1,14 +1,9 @@
-﻿using System.Collections;
+﻿using SpotifyAPI.Web.Models;
+using System.Collections;
 using System.Collections.Generic;
-using SpotifyAPI.Web; //Base Namespace
-using SpotifyAPI.Web.Auth; //All Authentication-related classes
-using SpotifyAPI.Web.Enums; //Enums
-using SpotifyAPI.Web.Models; //Models for the JSON-responses
 using UnityEngine;
-using UnityEditor;
 
-public class TopArtistsScript : MonoBehaviour
-{
+public class SearchResultsScript : MonoBehaviour {
 
     private GameObject thisGameObject;
     private MeshRenderer[] meshRenderers;
@@ -23,39 +18,29 @@ public class TopArtistsScript : MonoBehaviour
 
         spotifyManager = GameObject.Find("SpotifyManager");
         spotifyManagerScript = spotifyManager.GetComponent<Spotify>();
-
-        StartCoroutine(loadTopArtists());
     }
 
-    public IEnumerator loadTopArtists()
+    public IEnumerator LoadSearchResults(SearchItem searchItem)
     {
-        //TODO subscribe to spotify manager event of authorization being complete
-        yield return new WaitForSeconds(2);
-        Paging<FullArtist> usersTopArtists = spotifyManagerScript.GetUsersTopArtists();
-        if (usersTopArtists == null)
-        {
-            Debug.LogError("usersTopArtists is null");
-
-        }
-        else
+  
         {
             for (int i = 0; i < meshRenderers.Length; i++)
             {
-                string featuredPlaylistImageURL = usersTopArtists.Items[i].Images[0].Url;
+                string searchItemImageURL = searchItem.Albums.Items[i].Images[0].Url;
 
                 GameObject meshRendererGameObject = meshRenderers[i].transform.gameObject;
 
                 PlaylistScript playlistScript = meshRendererGameObject.GetComponent<PlaylistScript>();
                 //  playlistScript.setPlaylistURI(featuredPlaylists.Playlists.Items[i].Uri);
 
-                WWW imageURLWWW = new WWW(featuredPlaylistImageURL);
+                WWW imageURLWWW = new WWW(searchItemImageURL);
 
                 yield return imageURLWWW;
 
                 meshRenderers[i].material.mainTexture = imageURLWWW.texture;
 
-                playlistScript.setPlaylistName(usersTopArtists.Items[i].Name);
-                playlistScript.setPlaylistURI(usersTopArtists.Items[i].Uri);
+                playlistScript.setPlaylistName(searchItem.Albums.Items[i].Name);
+                playlistScript.setPlaylistURI(searchItem.Albums.Items[i].Uri);
             }
         }
     }
