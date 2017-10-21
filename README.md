@@ -1,3 +1,3 @@
 # spotify-oculus
 
-![alt text](https://imgur.com/ICIwae5)
+![alt text](https://i.imgur.com/ICIwae5.jpg)
