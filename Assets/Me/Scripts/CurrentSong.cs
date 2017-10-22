@@ -10,7 +10,8 @@ public class CurrentSong : MonoBehaviour
     private Spotify spotifyScript;
     private string artistID, songID;
     private MeshRenderer meshRenderer;
-    private UnityEngine.UI.Text playlistNameText;
+    private GameObject text, audioAnalysis;
+    private UnityEngine.UI.Text artistNameText, audioAnalysisText;
 
     //TODO display song name and artist name as well as image of artist
 
@@ -20,12 +21,21 @@ public class CurrentSong : MonoBehaviour
         spotifyManager = GameObject.Find("SpotifyManager");
         spotifyScript = spotifyManager.GetComponent<Spotify>();
         meshRenderer = GetComponent<MeshRenderer>();
-     //   playlistNameText = songNameObject.GetComponent<UnityEngine.UI.Text>();
+        text = GameObject.Find("ArtistName");
+        audioAnalysis = GameObject.Find("AudioAnalysis");
+        artistNameText = text.GetComponent<UnityEngine.UI.Text>();
+        audioAnalysisText = audioAnalysis.GetComponent<UnityEngine.UI.Text>();
     }
 
-    public void updateCurrentlyPlaying(string artistID)
+    public void updateCurrentlyPlaying(string artistID, string artistName, AudioAnalysis audioAnalysis)
     {
         this.artistID = artistID;
+        artistNameText.text = artistName;
+      //  audioAnalysis.Beats.ForEach(a => audioAnalysisText.text += ("Start: "+ a.Start) + ("Duration: " + a.Duration) + ("Confidence: " + a.Confidence));
+      //  audioAnalysisText.text += audioAnalysis.Meta.ToString();
+      //  audioAnalysis.Sections.ForEach(s => audioAnalysisText.text += s.ToString());
+        audioAnalysisText.text += (" TimeSignature: " + audioAnalysis.Track.TimeSignature + "\n") + ("Tempo: " + audioAnalysis.Track.Tempo + "\n") + ("Mode: " + audioAnalysis.Track.Mode + "\n") + ("Key: " + audioAnalysis.Track.Key + "\n") + ("Duration: " + audioAnalysis.Track.Duration + "\n");
+        //audioAnalysisText.text = audioAnalysis.Meta.ToString() + "/n" + ;
         StartCoroutine(DisplayArtist());
     }
 

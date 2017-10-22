@@ -40,6 +40,10 @@ public class Spotify : MonoBehaviour {
 
     private SearchResultsScript searchResultsScript;
 
+    public GameObject audioVisualizer;
+
+    private AudioVisualizer audioVisualizerScript;
+
 
 
     // Use this for initialization
@@ -48,7 +52,11 @@ public class Spotify : MonoBehaviour {
 
 		ImplicitGrantAuth();
 
-		featuredPlaylistTabScript = FeaturedPlaylistTab.GetComponent<FeaturedPlaylistTabScript> ();
+        audioVisualizer = GameObject.Find("AudioVisualizer");
+
+        audioVisualizerScript = audioVisualizer.GetComponent<AudioVisualizer>();
+
+        featuredPlaylistTabScript = FeaturedPlaylistTab.GetComponent<FeaturedPlaylistTabScript> ();
 
         searchResultsScript = searchResultsTab.GetComponent<SearchResultsScript>();
 
@@ -159,8 +167,9 @@ public class Spotify : MonoBehaviour {
         {
             Debug.Log("Currently playing song: " + context.Item.Name);
             Debug.Log("Artist: " + context.Item.Artists[0].Name);
-            currentSongScript.updateCurrentlyPlaying(context.Item.Artists[0].Id);
-
+                AudioAnalysis audioAnalysis = _spotify.GetAudioAnalysis(context.Item.Id);
+            currentSongScript.updateCurrentlyPlaying(context.Item.Artists[0].Id, context.Item.Artists[0].Name, audioAnalysis);
+                audioVisualizerScript.SendAnalysis(audioAnalysis);
         }
     }
     }
@@ -187,10 +196,11 @@ public class Spotify : MonoBehaviour {
                 //TODO currently playing song is the previous song that was played
                     Debug.Log("Currently playing song: " + context.Item.Name);
                     Debug.Log("Artist: " + context.Item.Artists[0].Name);
-                    currentSongScript.updateCurrentlyPlaying(context.Item.Artists[0].Id);
+                AudioAnalysis audioAnalysis = _spotify.GetAudioAnalysis(context.Item.Id);
+                currentSongScript.updateCurrentlyPlaying(context.Item.Artists[0].Id, context.Item.Artists[0].Name, audioAnalysis);
+                audioVisualizerScript.SendAnalysis(audioAnalysis);
+            }
 
-                }
-            
         }
     }
 
@@ -210,7 +220,7 @@ public class Spotify : MonoBehaviour {
             {
                 Debug.Log("Currently playing song: " + context.Item.Name);
                 Debug.Log("Artist: " + context.Item.Artists[0].Name);
-                currentSongScript.updateCurrentlyPlaying(context.Item.Artists[0].Id);
+                currentSongScript.updateCurrentlyPlaying(context.Item.Artists[0].Id, context.Item.Artists[0].Name, _spotify.GetAudioAnalysis(context.Item.Id));
             }
         }
     }
