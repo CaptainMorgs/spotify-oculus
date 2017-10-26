@@ -139,8 +139,10 @@ public class Spotify : MonoBehaviour {
 	public void playSong(string songID) {
 		PlaybackContext context = _spotify.GetPlayback ();	
 		ErrorResponse error = _spotify.ResumePlayback(uris: new List<string> {context.Device.Id, "spotify:track:4iV5W9uYEdYUVa79Axb7Rh" });
+        AudioAnalysis audioAnalysis = _spotify.GetAudioAnalysis(context.Item.Id);
+        audioVisualizerScript.SendAnalysis(audioAnalysis);
 
-		if (error.Error != null) {
+        if (error.Error != null) {
 			Debug.LogError (error.Error.Message);
 		}
 	}
@@ -220,7 +222,11 @@ public class Spotify : MonoBehaviour {
             {
                 Debug.Log("Currently playing song: " + context.Item.Name);
                 Debug.Log("Artist: " + context.Item.Artists[0].Name);
+                AudioAnalysis audioAnalysis = _spotify.GetAudioAnalysis(context.Item.Id);
                 currentSongScript.updateCurrentlyPlaying(context.Item.Artists[0].Id, context.Item.Artists[0].Name, _spotify.GetAudioAnalysis(context.Item.Id));
+                audioVisualizerScript.repeat = true;
+                audioVisualizerScript.SendAnalysis(audioAnalysis);
+
             }
         }
     }
@@ -232,7 +238,7 @@ public class Spotify : MonoBehaviour {
         {
             ErrorResponse error = _spotify.PausePlayback(context.Device.Id);
             recordPlayerScript.recordPlayerActive = false;
-
+            audioVisualizerScript.repeat = false;
             if (error.Error != null)
             {
                 Debug.Log(error.Error.Message);

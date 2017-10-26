@@ -25,7 +25,9 @@ public class AudioVisualizer : MonoBehaviour {
     public float overTime = 5.0f;
     public float tempoSmoothing = 100f;
     public float loudnessSmoothing = 10f;
-    public float pitchSmoothing = 0.5f;
+    public float pitchSmoothing = 0.2f;
+
+    public float speed = 1f;
 
 
 
@@ -53,9 +55,10 @@ public class AudioVisualizer : MonoBehaviour {
             AnalyzeTrack();
             if (!isVisualizing)
             {
-           //     StartCoroutine(Visualize((float)tempo/ tempoSmoothing));
-           //     StartCoroutine(Visualize2());
-                StartCoroutine(Visualize3());
+                //     StartCoroutine(Visualize((float)tempo/ tempoSmoothing));
+                //      StartCoroutine(Visualize2());
+                //      StartCoroutine(Visualize3());
+                StartCoroutine(Visualize4());
             }
             else {
           //      StopCoroutine(Visualize((float)tempo/ tempoSmoothing));
@@ -85,6 +88,7 @@ public class AudioVisualizer : MonoBehaviour {
         Vector3 start = new Vector3(1, (float)audioAnalysis.Segments[i].LoudnessStart/ loudnessSmoothing, 1);
         Vector3 max = new Vector3(1, (float)audioAnalysis.Segments[i].LoudnessMax/ loudnessSmoothing, 1);
         Vector3 end = new Vector3(1, (float)audioAnalysis.Segments[i].LoudnessEnd/ loudnessSmoothing, 1);
+
 
         while (Time.time - startTime < (float)audioAnalysis.Segments[i].Duration)
         {
@@ -139,6 +143,60 @@ public class AudioVisualizer : MonoBehaviour {
                 //  cubeLoudness.transform.localScale = Vector3.Lerp((Vector3)vectors[j + 1], (Vector3)vectors[j], (Time.time - startTime) / (float)audioAnalysis.Segments[i].Duration / 2);
                 yield return null;
 
+            }
+        }
+    }
+
+    IEnumerator Visualize4()
+    {
+        ArrayList avgPitchList = new ArrayList();
+        Debug.Log("No. of segments: " + audioAnalysis.Segments.Count);
+        float elapsedTime = 0f;
+        float pitchSum = 0f;
+        double segmentDurationSum = 0;
+
+
+        
+            for (int i = 0; i < audioAnalysis.Segments.Count; i++)
+            {
+                for (int j = 0; j < audioAnalysis.Segments[i].Pitches.Count - 1; j++)
+                {
+                    pitchSum += (float)audioAnalysis.Segments[i].Pitches[j];
+                }
+                float avgPitch = pitchSum / audioAnalysis.Segments[i].Pitches.Count;
+
+                segmentDurationSum += audioAnalysis.Segments[i].Duration;
+
+                Debug.Log("Average pitch for segment " + i + " " + avgPitch);
+                avgPitchList.Add(avgPitch);
+                pitchSum = 0;
+            }
+            Debug.Log("Total duration of segments " + segmentDurationSum + " vs track duration " + trackLength);
+
+            float startTime = Time.time;
+
+        while (repeat)
+        {
+            for (int k = 0; k < audioAnalysis.Segments.Count - 1; k++)
+            {
+                Vector3 startVector = new Vector3(1, (float)avgPitchList[k] / pitchSmoothing, 1);
+                Vector3 endVector = new Vector3(1, (float)avgPitchList[k + 1] / pitchSmoothing, 1);
+
+                //   float journeyLength = Vector3.Distance(startVector, endVector);
+                //   float distCovered = (Time.time - startTime) * speed;
+                //   float fracJourney = distCovered / journeyLength;
+                float t = 0f;
+                float duration = (float)audioAnalysis.Segments[k].Duration;
+                while (t < 1)
+                {
+                    t += Time.deltaTime / duration;
+                    Debug.Log(t);
+
+                    cubeLoudness.transform.localScale = Vector3.Lerp(startVector, endVector, t);
+
+                    yield return null;
+                }
+                Debug.Log("SEGMENT NO " + k);
             }
         }
     }

@@ -19,11 +19,11 @@ public class InputDemo : MonoBehaviour {
     {
         if (Input.GetKey("up") || OVRInput.Get(OVRInput.Button.One))
         {
-            spotifyScript.resumePlayback();
+   //         spotifyScript.resumePlayback();
         }
        else if (OVRInput.Get(OVRInput.Button.Two))
         {
-            spotifyScript.pausePlayback();
+   //         spotifyScript.pausePlayback();
         }
     }
 

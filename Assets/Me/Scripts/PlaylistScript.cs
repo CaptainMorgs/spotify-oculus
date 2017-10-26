@@ -31,7 +31,7 @@ public class PlaylistScript : MonoBehaviour {
 	
 	public void setPlaylistURI (string playlistURI) {
 		this.playlistURI = playlistURI;
-        Debug.Log("playlistURI: " + playlistURI);
+    //    Debug.Log("playlistURI: " + playlistURI);
     }
 
 	public void setPlaylistName (string playlistName) {
