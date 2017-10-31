@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - song
+  - VRGazeInteractable
+  - MovementSpace
   layers:
   - Default
   - TransparentFX

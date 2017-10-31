@@ -9,6 +9,9 @@ public class Raycast : MonoBehaviour {
 
     private LineRenderer lineRenderer;
     public int raycastDistance = 20;
+    private GameObject ovrPlayerController;
+    private bool movementStarted = false;
+    private RaycastHit newPosition;
 
     void Start () {
          lineRenderer = GetComponent<LineRenderer>();
@@ -16,14 +19,34 @@ public class Raycast : MonoBehaviour {
         Material whiteDiffuseMat = new Material(Shader.Find("Unlit/Texture"));
         lineRenderer.material = whiteDiffuseMat;
         //    lineRenderer.SetVertexCount(2);
+
+        ovrPlayerController = GameObject.Find("OVRPlayerController");
     }
 
     // Update is called once per frame
     void Update () {
+        RayCast();
+
         if (OVRInput.Get(OVRInput.Button.One))
         {
-            RayCast2();
+            RayCastInput();
         }
+
+        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger)) {
+         //   Debug.Log("Trigger pressed");
+             newPosition = RayCastMovement();
+        }
+        if (movementStarted && !OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
+        {
+            Debug.Log("Moving!");
+            ovrPlayerController.transform.position = new Vector3(newPosition.transform.position.x, newPosition.transform.position.y + 0.5f, newPosition.transform.position.z);
+            lineRenderer.material.color = Color.white;
+            lineRenderer.SetColors(Color.white, Color.white);
+            movementStarted = false;
+        }
+
+        lineRenderer.material.color = Color.white;
+        lineRenderer.SetColors(Color.white, Color.white);
 
     }
 
@@ -36,17 +59,19 @@ public class Raycast : MonoBehaviour {
 
         
         lineRenderer.SetPosition(0, transform.position);
-        lineRenderer.SetPosition(1, transform.forward * raycastDistance + transform.position);
+       
+            lineRenderer.SetPosition(1, transform.forward * raycastDistance + transform.position);
     }
 
-    void RayCast2()
+    void RayCastInput()
     {
         RaycastHit hit;
         if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, raycastDistance))
         {
-            Debug.Log(hit.transform.name);
+           Debug.Log(hit.transform.name);
             ResumePlayback resumePlayback = hit.transform.GetComponent<ResumePlayback>();
             PausePlayback pausePlayback = hit.transform.GetComponent<PausePlayback>();
+            PlaylistScript playlistScript = hit.transform.GetComponent<PlaylistScript>();
 
             if (resumePlayback != null)
             {
@@ -56,35 +81,49 @@ public class Raycast : MonoBehaviour {
             {             
                 pausePlayback.PausePlaybackFunction();
             }
+            else if (playlistScript != null)
+            {
+                playlistScript.playSomething();
+            }
 
         }
     }
-        void RayCast() {
-        if (OVRInput.Get(OVRInput.Button.One))
+
+    RaycastHit RayCastMovement()
+    {
+        //  Debug.LogError("Moving!");
+        
+          RaycastHit hit;
+        if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, raycastDistance) )
         {
-            Debug.Log("a pressed");
-
-            PointerEventData pointerData = new PointerEventData(EventSystem.current);
-            pointerData.position = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch);
-
-            List<RaycastResult> results = new List<RaycastResult>();
-            EventSystem.current.RaycastAll(pointerData, results);
-
-            if (results.Count > 0)
-            {
-                //WorldUI is my layer name
-                if (results[0].gameObject.layer == LayerMask.NameToLayer("WorldUI"))
-                {
-                    string dbg = "Root Element: {0} \n GrandChild Element: {1}";
-                    Debug.Log(string.Format(dbg, results[results.Count - 1].gameObject.name, results[0].gameObject.name));
-                    //Debug.Log("Root Element: "+results[results.Count-1].gameObject.name);
-                    //Debug.Log("GrandChild Element: "+results[0].gameObject.name);
-                    results.Clear();
-                }
-            }
+            Debug.Log(hit.transform.tag);
+            //   Debug.Log("Y position of hit in range: " + hit.transform.position.y);
+            lineRenderer.material = new Material(Shader.Find("Particles/Additive"));
+            lineRenderer.SetColors(Color.blue, Color.blue);
+            //   lineRenderer.startColor = Color.blue;
+            //   lineRenderer.endColor = Color.blue;
+            lineRenderer.material.color = Color.blue;
+            movementStarted = true;
         }
+        else {
+        //    Debug.Log("Y position of hit out of range: " + hit.transform.position.y);
+            lineRenderer.material.color = Color.white;
+            lineRenderer.SetColors(Color.white, Color.white);
+        }
+        
+        
+        return hit;
+        
+    }
 
+    void RayCast()
+    {
 
+        RaycastHit hit;
+        if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, raycastDistance))
+        {
+            lineRenderer.SetPosition(1, hit.point);
+        }
     }
 
     /// <summary>

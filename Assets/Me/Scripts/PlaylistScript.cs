@@ -40,7 +40,7 @@ public class PlaylistScript : MonoBehaviour {
 
     }
 
-    private void playSomething() {
+    public void playSomething() {
         if (transform.tag == "song")
         {
             playSong();
@@ -50,12 +50,12 @@ public class PlaylistScript : MonoBehaviour {
         }
     }
 
-	public void playPlaylist() {
+	private void playPlaylist() {
 		script.playURI (playlistURI);
 	//	recordPlayerScript.recordPlayerActive = true;
 	}
 
-    public void playSong()
+    private void playSong()
     {
         script.playSongURI(playlistURI);
    //     recordPlayerScript.recordPlayerActive = true;
