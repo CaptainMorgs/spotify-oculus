@@ -222,6 +222,7 @@ public class Spotify : MonoBehaviour {
             {
                 Debug.Log("Currently playing song: " + context.Item.Name);
                 Debug.Log("Artist: " + context.Item.Artists[0].Name);
+
                 AudioAnalysis audioAnalysis = _spotify.GetAudioAnalysis(context.Item.Id);
                 currentSongScript.updateCurrentlyPlaying(context.Item.Artists[0].Id, context.Item.Artists[0].Name, _spotify.GetAudioAnalysis(context.Item.Id));
                 audioVisualizerScript.repeat = true;

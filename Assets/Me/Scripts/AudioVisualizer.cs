@@ -45,7 +45,7 @@ public class AudioVisualizer : MonoBehaviour {
 	void Update () {
 		
 	}
-
+    //TODO  Visualizer is not resuming from where it left off
     public void SendAnalysis(AudioAnalysis audioAnalysis)
     {
         if (audioAnalysis != null)
@@ -55,18 +55,22 @@ public class AudioVisualizer : MonoBehaviour {
             AnalyzeTrack();
             if (!isVisualizing)
             {
-                //     StartCoroutine(Visualize((float)tempo/ tempoSmoothing));
-                //      StartCoroutine(Visualize2());
-                //      StartCoroutine(Visualize3());
-                StartCoroutine(Visualize4());
+               
+                StartCoroutine(VisualizePitch());
             }
             else {
-          //      StopCoroutine(Visualize((float)tempo/ tempoSmoothing));
-          //      StartCoroutine(Visualize((float)tempo/ tempoSmoothing));
+                StopCoroutine(VisualizePitch());
+                StartCoroutine(VisualizePitch());
             }
         }
         else {
             Debug.LogError("AudioAnalysis null");
+        }
+    }
+
+    public void ResumeVisualization() {
+        if (isVisualizing) {
+
         }
     }
 
@@ -147,8 +151,14 @@ public class AudioVisualizer : MonoBehaviour {
         }
     }
 
-    IEnumerator Visualize4()
+    /// <summary>
+    /// Loops through the audio analysis segments of a song and averages there pitches. 
+    /// Loops through the segments and lerps between the average pitches
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator VisualizePitch()
     {
+        isVisualizing = true;
         ArrayList avgPitchList = new ArrayList();
         Debug.Log("No. of segments: " + audioAnalysis.Segments.Count);
         float elapsedTime = 0f;
@@ -175,30 +185,37 @@ public class AudioVisualizer : MonoBehaviour {
 
             float startTime = Time.time;
 
-        while (repeat)
-        {
-            for (int k = 0; k < audioAnalysis.Segments.Count - 1; k++)
+        float totalTime = 0f;
+
+        // while (repeat)
+      //   {
+
+        for (int k = 0; k < audioAnalysis.Segments.Count - 1; k++)
             {
                 Vector3 startVector = new Vector3(1, (float)avgPitchList[k] / pitchSmoothing, 1);
                 Vector3 endVector = new Vector3(1, (float)avgPitchList[k + 1] / pitchSmoothing, 1);
 
-                //   float journeyLength = Vector3.Distance(startVector, endVector);
-                //   float distCovered = (Time.time - startTime) * speed;
-                //   float fracJourney = distCovered / journeyLength;
+            //   float journeyLength = Vector3.Distance(startVector, endVector);
+            //   float distCovered = (Time.time - startTime) * speed;
+            //   float fracJourney = distCovered / journeyLength;
+           
                 float t = 0f;
                 float duration = (float)audioAnalysis.Segments[k].Duration;
-                while (t < 1)
+                while (t < 1 && repeat == true)
                 {
                     t += Time.deltaTime / duration;
-                    Debug.Log(t);
+                 totalTime += t;
+
+                Debug.Log("elapsed time: " + totalTime);
 
                     cubeLoudness.transform.localScale = Vector3.Lerp(startVector, endVector, t);
 
                     yield return null;
                 }
-                Debug.Log("SEGMENT NO " + k);
+                Debug.Log("SEGMENT NO " + k + "of " + audioAnalysis.Segments.Count);
             }
-        }
+      // }
+        isVisualizing = false;
     }
 
 

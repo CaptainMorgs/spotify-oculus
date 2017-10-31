@@ -12,18 +12,22 @@ public class Raycast : MonoBehaviour {
     private GameObject ovrPlayerController;
     private bool movementStarted = false;
     private RaycastHit newPosition;
+    Material material;
 
     void Start () {
+        material = new Material(Shader.Find("Particles/Additive"));
+
          lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.SetColors(Color.white, Color.white);
-        Material whiteDiffuseMat = new Material(Shader.Find("Unlit/Texture"));
-        lineRenderer.material = whiteDiffuseMat;
-        //    lineRenderer.SetVertexCount(2);
+        lineRenderer.material = material;
 
         ovrPlayerController = GameObject.Find("OVRPlayerController");
     }
 
-    // Update is called once per frame
+   /// <summary>
+   /// If trigger is pressed, change line renderer's colour to blue if the raycast hits the floor, 
+   /// if the raycast is pointing to the floor on trigger release, teleport player to location.
+   /// </summary>
     void Update () {
         RayCast();
 
@@ -33,20 +37,29 @@ public class Raycast : MonoBehaviour {
         }
 
         if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger)) {
-         //   Debug.Log("Trigger pressed");
              newPosition = RayCastMovement();
         }
-        if (movementStarted && !OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
-        {
-            Debug.Log("Moving!");
-            ovrPlayerController.transform.position = new Vector3(newPosition.transform.position.x, newPosition.transform.position.y + 0.5f, newPosition.transform.position.z);
-            lineRenderer.material.color = Color.white;
+
+        else  {
             lineRenderer.SetColors(Color.white, Color.white);
-            movementStarted = false;
+            lineRenderer.material.color = Color.white;
+
+            if (movementStarted && !OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
+            {
+                Debug.Log("Moving to " + newPosition.ToString());
+
+                ovrPlayerController.transform.position = new Vector3(newPosition.point.x, newPosition.point.y + 0.5f, newPosition.point.z);
+
+                lineRenderer.material.color = Color.white;
+                lineRenderer.SetColors(Color.white, Color.white);
+
+                movementStarted = false;
+            }
         }
 
-        lineRenderer.material.color = Color.white;
-        lineRenderer.SetColors(Color.white, Color.white);
+       
+        
+       
 
     }
 
@@ -94,24 +107,23 @@ public class Raycast : MonoBehaviour {
         //  Debug.LogError("Moving!");
         
           RaycastHit hit;
-        if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, raycastDistance) )
+
+        if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, raycastDistance) && hit.transform.tag == "Floor")
         {
-            Debug.Log(hit.transform.tag);
-            //   Debug.Log("Y position of hit in range: " + hit.transform.position.y);
-            lineRenderer.material = new Material(Shader.Find("Particles/Additive"));
+       
             lineRenderer.SetColors(Color.blue, Color.blue);
-            //   lineRenderer.startColor = Color.blue;
-            //   lineRenderer.endColor = Color.blue;
             lineRenderer.material.color = Color.blue;
+
             movementStarted = true;
+           
         }
         else {
-        //    Debug.Log("Y position of hit out of range: " + hit.transform.position.y);
             lineRenderer.material.color = Color.white;
             lineRenderer.SetColors(Color.white, Color.white);
+            movementStarted = false;
         }
-        
-        
+
+
         return hit;
         
     }
