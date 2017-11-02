@@ -47,7 +47,7 @@ public class Hand : MonoBehaviour
                     {
                         Object.DestroyImmediate(mTempJoint);
                         mTempJoint = null;
-                        throwObject();
+                  //      throwObject();
                         mHandState = State.EMPTY;
                     }
                     mOldVelocity = OVRInput.GetLocalControllerAngularVelocity(Controller);
@@ -80,6 +80,7 @@ public class Hand : MonoBehaviour
             }
         }
 
+    //TODO Only throw object if controller velocity exceeds some threshold
         private void throwObject()
         {
             mHeldObject.velocity = OVRInput.GetLocalControllerVelocity(Controller);

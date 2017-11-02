@@ -13,8 +13,10 @@ public class Raycast : MonoBehaviour {
     private bool movementStarted = false;
     private RaycastHit newPosition;
     Material material;
+    public GameObject vinyl, rightHandAnchor;
 
     void Start () {
+
         material = new Material(Shader.Find("Particles/Additive"));
 
          lineRenderer = GetComponent<LineRenderer>();
@@ -97,6 +99,8 @@ public class Raycast : MonoBehaviour {
             else if (playlistScript != null)
             {
                 playlistScript.playSomething();
+                Instantiate(vinyl, rightHandAnchor.transform.position, Quaternion.identity);
+
             }
 
         }

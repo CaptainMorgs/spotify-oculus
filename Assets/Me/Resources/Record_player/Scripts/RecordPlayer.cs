@@ -95,7 +95,40 @@ void Update()
     arm.transform.localEulerAngles = new Vector3(0.0f, armAngle, 0.0f);
     disc.transform.localEulerAngles = new Vector3(0.0f, discAngle, 0.0f);
 }
-//--------------------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------
+
+    void OnTriggerEnter(Collider collider) {
+        if (collider.gameObject.tag == "vinyl") {
+            Debug.LogError("Collision between record player and vinyl");
+
+            StartCoroutine(Lerp(collider));
+
+
+        }
+    }
+
+    IEnumerator Lerp(Collider collider) {
+        Debug.LogError("Lerping");
+        float t = 0f;
+        float duration = 2f;
+
+        Vector3 startPostition = collider.transform.position;
+        Vector3 endPostition = disc.transform.position;
+
+        Quaternion startRotation = collider.transform.rotation;
+        Quaternion endRotation = disc.transform.rotation;
+
+
+        while (t < 1)
+        {
+            t += Time.deltaTime / duration;
+
+            collider.transform.position = Vector3.Lerp(startPostition, endPostition, t);
+            collider.transform.rotation = Quaternion.Lerp(startRotation, endRotation, t);
+
+            yield return null;
+        }
+    }
 }
