@@ -14,6 +14,8 @@ public class Raycast : MonoBehaviour {
     private RaycastHit newPosition;
     Material material;
     public GameObject vinyl, rightHandAnchor;
+    public bool playOnClick = false;
+    private GameObject spawnedVinyl;
 
     void Start () {
 
@@ -33,7 +35,7 @@ public class Raycast : MonoBehaviour {
     void Update () {
         RayCast();
 
-        if (OVRInput.Get(OVRInput.Button.One))
+        if (OVRInput.GetUp(OVRInput.Button.One))
         {
             RayCastInput();
         }
@@ -98,9 +100,18 @@ public class Raycast : MonoBehaviour {
             }
             else if (playlistScript != null)
             {
-                playlistScript.playSomething();
-                Instantiate(vinyl, rightHandAnchor.transform.position, Quaternion.identity);
+                if (playOnClick)
+                {
+                    playlistScript.playSomething();
+                }
 
+                if (GameObject.FindWithTag("vinyl") != null) {
+                    Destroy(GameObject.FindWithTag("vinyl"));
+                }
+
+                spawnedVinyl = Instantiate(vinyl, rightHandAnchor.transform.position, Quaternion.identity);
+                spawnedVinyl.GetComponent<VinylScript>().playlistScript = playlistScript;
+                Debug.LogError("Spawning Vinyl");
             }
 
         }

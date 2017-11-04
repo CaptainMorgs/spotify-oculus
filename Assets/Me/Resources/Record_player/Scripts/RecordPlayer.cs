@@ -130,5 +130,9 @@ void Update()
 
             yield return null;
         }
+
+        VinylScript vinylScript = collider.gameObject.GetComponent<VinylScript>();
+        PlaylistScript playlistScript = vinylScript.playlistScript;
+        playlistScript.playSomething();
     }
 }

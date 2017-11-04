@@ -18,6 +18,11 @@ public class Hand : MonoBehaviour
         private Rigidbody mHeldObject;
         private FixedJoint mTempJoint;
         private Vector3 mOldVelocity;
+        public float throwThreshold = 5f;
+        public GameObject playerController;
+        private CharacterController characterController;
+
+    //TODO Rewrite so that can grab something after letting it go and hand still colliding with the object
 
         // Use this for initialization
         void Start()
@@ -26,6 +31,8 @@ public class Hand : MonoBehaviour
             {
                 AttachPoint = GetComponent<Rigidbody>();
             }
+
+        characterController = playerController.GetComponent<CharacterController>();
         }
 
         // Update is called once per frame
@@ -40,18 +47,24 @@ public class Hand : MonoBehaviour
                         mTempJoint = mHeldObject.gameObject.AddComponent<FixedJoint>();
                         mTempJoint.connectedBody = AttachPoint;
                         mHandState = State.HOLDING;
-                    }
+                    //disable character controller collisions while holding things
+                    characterController.detectCollisions = false;
+                }
                     break;
                 case State.HOLDING:
-                    if (mTempJoint != null && OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, Controller) < 0.5f)
+                
+                if (mTempJoint != null && OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, Controller) < 0.5f)
                     {
                         Object.DestroyImmediate(mTempJoint);
                         mTempJoint = null;
-                  //      throwObject();
+                        throwObject();
                         mHandState = State.EMPTY;
-                    }
+                    //re enable character controller collisions after letting go of things
+                    characterController.detectCollisions = true;
+                }
                     mOldVelocity = OVRInput.GetLocalControllerAngularVelocity(Controller);
-                    break;
+                
+                break;
             }
         }
 
@@ -59,7 +72,8 @@ public class Hand : MonoBehaviour
         {
             if (mHandState == State.EMPTY && OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, Controller) < 0.5f)
             {
-                GameObject temp = collider.gameObject;
+            
+            GameObject temp = collider.gameObject;
                 if (temp != null && temp.layer == LayerMask.NameToLayer("grabbable") && temp.GetComponent<Rigidbody>() != null)
                 {
                     mHeldObject = temp.GetComponent<Rigidbody>();
@@ -80,9 +94,14 @@ public class Hand : MonoBehaviour
             }
         }
 
-    //TODO Only throw object if controller velocity exceeds some threshold
-        private void throwObject()
+    private void throwObject()
+    {
+        Debug.LogError("Vector Distance: " + Vector3.Distance(OVRInput.GetLocalControllerAngularVelocity(Controller), new Vector3(1, 1, 1)));
+        
+        //Only throw object if controller velocity exceeds some threshold
+        if (Vector3.Distance(OVRInput.GetLocalControllerAngularVelocity(Controller), new Vector3(1, 1, 1)) > throwThreshold)
         {
+            mHeldObject.useGravity = true;
             mHeldObject.velocity = OVRInput.GetLocalControllerVelocity(Controller);
             if (mOldVelocity != null)
             {
@@ -90,5 +109,12 @@ public class Hand : MonoBehaviour
             }
             mHeldObject.maxAngularVelocity = mHeldObject.angularVelocity.magnitude;
         }
+        else {
+            //if you are not exceeding the threshold for throwing something, set its velocity to 0
+            mHeldObject.velocity = new Vector3(0, 0, 0);
+            mHeldObject.useGravity = false;
+        }
+    }
     }
 
+ 

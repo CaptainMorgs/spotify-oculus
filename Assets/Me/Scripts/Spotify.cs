@@ -65,7 +65,10 @@ public class Spotify : MonoBehaviour {
 
         recordPlayerScript = recordPlayer.GetComponent<RecordPlayer>();
 
-      //  StartCoroutine(featuredPlaylistTabScript.loadStuff ());
+        //  StartCoroutine(featuredPlaylistTabScript.loadStuff ());
+
+        //Ignore collisions between character controller and vinyls
+        Physics.IgnoreLayerCollision(8, 9);
 
         RestCallTest();
 
