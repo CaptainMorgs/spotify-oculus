@@ -14,7 +14,7 @@ public class Raycast : MonoBehaviour {
     private RaycastHit newPosition;
     Material material;
     public GameObject vinyl, rightHandAnchor;
-    public bool playOnClick = false;
+    public bool playOnClick = true;
     private GameObject spawnedVinyl;
 
     void Start () {
@@ -111,7 +111,7 @@ public class Raycast : MonoBehaviour {
 
                 spawnedVinyl = Instantiate(vinyl, rightHandAnchor.transform.position, Quaternion.identity);
                 spawnedVinyl.GetComponent<VinylScript>().playlistScript = playlistScript;
-                Debug.LogError("Spawning Vinyl");
+                Debug.Log("Spawning Vinyl");
             }
 
         }

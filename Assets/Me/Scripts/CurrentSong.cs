@@ -1,6 +1,7 @@
 ﻿using SpotifyAPI.Web.Models;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CurrentSong : MonoBehaviour
@@ -10,32 +11,48 @@ public class CurrentSong : MonoBehaviour
     private Spotify spotifyScript;
     private string artistID, songID;
     private MeshRenderer meshRenderer;
-    private GameObject text, audioAnalysis;
+    private GameObject text, audioAnalysis, artistNamePro, audioAnalysisPro;
     private UnityEngine.UI.Text artistNameText, audioAnalysisText;
+    private TextMeshPro artistNameProText, audioAnalysisProText;
 
-    //TODO display song name and artist name as well as image of artist
+    //TODO fix text mesh pro, returns null reference
 
     // Use this for initialization
     void Start()
     {
         spotifyManager = GameObject.Find("SpotifyManager");
         spotifyScript = spotifyManager.GetComponent<Spotify>();
+
         meshRenderer = GetComponent<MeshRenderer>();
+
         text = GameObject.Find("ArtistName");
         audioAnalysis = GameObject.Find("AudioAnalysis");
         artistNameText = text.GetComponent<UnityEngine.UI.Text>();
         audioAnalysisText = audioAnalysis.GetComponent<UnityEngine.UI.Text>();
+
+       // artistNamePro = GameObject.Find("ArtistNamePro");
+       // audioAnalysisPro = GameObject.Find("AudioAnalysisPro");
+       // artistNameProText = artistNamePro.GetComponent<TextMeshPro>();
+       // audioAnalysisProText = audioAnalysisPro.GetComponent<TextMeshPro>();
     }
 
     public void updateCurrentlyPlaying(string artistID, string artistName, AudioAnalysis audioAnalysis)
     {
         this.artistID = artistID;
         artistNameText.text = artistName;
-      //  audioAnalysis.Beats.ForEach(a => audioAnalysisText.text += ("Start: "+ a.Start) + ("Duration: " + a.Duration) + ("Confidence: " + a.Confidence));
-      //  audioAnalysisText.text += audioAnalysis.Meta.ToString();
-      //  audioAnalysis.Sections.ForEach(s => audioAnalysisText.text += s.ToString());
-        audioAnalysisText.text += (" TimeSignature: " + audioAnalysis.Track.TimeSignature + "\n") + ("Tempo: " + audioAnalysis.Track.Tempo + "\n") + ("Mode: " + audioAnalysis.Track.Mode + "\n") + ("Key: " + audioAnalysis.Track.Key + "\n") + ("Duration: " + audioAnalysis.Track.Duration + "\n");
+      
+        //  audioAnalysis.Beats.ForEach(a => audioAnalysisText.text += ("Start: "+ a.Start) + ("Duration: " + a.Duration) + ("Confidence: " + a.Confidence));
+        //  audioAnalysisText.text += audioAnalysis.Meta.ToString();
+        //  audioAnalysis.Sections.ForEach(s => audioAnalysisText.text += s.ToString());
+
+        audioAnalysisText.text = (" TimeSignature: " + audioAnalysis.Track.TimeSignature + "\n") + ("Tempo: " + audioAnalysis.Track.Tempo + "\n") + ("Mode: " + audioAnalysis.Track.Mode + "\n") + ("Key: " + audioAnalysis.Track.Key + "\n") + ("Duration: " + audioAnalysis.Track.Duration + "\n");
+      
         //audioAnalysisText.text = audioAnalysis.Meta.ToString() + "/n" + ;
+
+     //   artistNameProText.text = artistName;
+     //   audioAnalysisProText.text += (" TimeSignature: " + audioAnalysis.Track.TimeSignature + "\n") + ("Tempo: " + audioAnalysis.Track.Tempo + "\n") + ("Mode: " + audioAnalysis.Track.Mode + "\n") + ("Key: " + audioAnalysis.Track.Key + "\n") + ("Duration: " + audioAnalysis.Track.Duration + "\n");
+
+
         StartCoroutine(DisplayArtist());
     }
 

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class RecordPlayer : MonoBehaviour {
 //--------------------------------------------------------------------------------------------
@@ -16,11 +17,17 @@ public class RecordPlayer : MonoBehaviour {
     float discAngle;
     float discSpeed;
 
-//--------------------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------------------
-void Awake()
+    private List<Collider> colliderList = new List<Collider>();
+    
+    private GameObject spotifyManager;
+    private Spotify spotifyScript;
+
+    //--------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------
+    void Awake()
 {
+        //  TODO make it the vinyl that the user places on it
     disc = gameObject.transform.Find("teller").gameObject;
     arm = gameObject.transform.Find("arm").gameObject;
 }
@@ -33,7 +40,9 @@ void Start()
     armAngle = 0.0f;
     discAngle = 0.0f;
     discSpeed = 0.0f;
-}
+    spotifyManager = GameObject.Find("SpotifyManager");
+    spotifyScript = spotifyManager.GetComponent<Spotify>();
+    }
 //--------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------
@@ -101,11 +110,25 @@ void Update()
 
     void OnTriggerEnter(Collider collider) {
         if (collider.gameObject.tag == "vinyl") {
-            Debug.LogError("Collision between record player and vinyl");
+
+            Debug.Log("Vinyl entering recordplayer");
 
             StartCoroutine(Lerp(collider));
 
+            //Reference to new vinyl object so it will rotate
+         //   disc = GameObject.FindWithTag("vinyl").gameObject;
 
+           
+        }
+    }
+    //pause playback when user picks up record from record player
+    void OnTriggerExit(Collider collider)
+    {
+        if (collider.gameObject.tag == "vinyl")
+        {
+            Debug.Log("Vinyl exiting recordplayer");
+
+            spotifyScript.pausePlayback();
         }
     }
 
