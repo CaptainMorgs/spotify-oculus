@@ -31,7 +31,7 @@ public class VinylScript : MonoBehaviour {
             //play breaking sound when collision occurs
             Debug.LogError("Playing audio: " + gameObject.GetComponent<AudioSource>().clip.ToString());
             gameObject.GetComponent<AudioSource>().Play();
-            audioSource.Play();
+      //      audioSource.Play();
 
 
             //spawn fragments

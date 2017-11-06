@@ -206,6 +206,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4569945641963306}
+  - component: {fileID: 114030306128758536}
   m_Layer: 0
   m_Name: Fragments
   m_TagString: Untagged
@@ -298,7 +299,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1959506679930398}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.08141038, y: 1.0396004, z: 0.036801457}
+  m_LocalPosition: {x: 0.08141038, y: 2.735, z: 0.036801457}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4508713701922370}
@@ -960,6 +961,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114030306128758536
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1959506679930398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c36c257ff8317814aa8f39c08904d0d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &135739884373383048
 SphereCollider:
   m_ObjectHideFlags: 1

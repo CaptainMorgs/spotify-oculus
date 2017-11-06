@@ -26,6 +26,8 @@ public class Hand : MonoBehaviour
 
     //TODO Rewrite so that can grab something after letting it go and hand still colliding with the object
 
+        //TODO bug where state stays at holding after awhile 
+
         // Use this for initialization
         void Start()
         {

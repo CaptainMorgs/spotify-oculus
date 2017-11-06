@@ -56,6 +56,14 @@ public class CurrentSong : MonoBehaviour
         StartCoroutine(DisplayArtist());
     }
 
+    public void updateCurrentlyPlaying(string artistID, string artistName)
+    {
+
+        this.artistID = artistID;
+        artistNameText.text = artistName;
+        StartCoroutine(DisplayArtist());
+    }
+
     private IEnumerator DisplayArtist()
     {
         FullArtist artist = spotifyScript.GetFullArtist(artistID);

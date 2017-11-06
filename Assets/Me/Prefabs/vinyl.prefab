@@ -138,7 +138,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1431be6bc3cc7364fa8a752750258f71, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.732
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -220,3 +220,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playlistScript: {fileID: 0}
   fragments: {fileID: 1959506679930398, guid: 23b29b7f9ac6cc44a9664c2c716d068a, type: 2}
+  audioSource: {fileID: 0}
