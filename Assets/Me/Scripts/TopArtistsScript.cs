@@ -5,7 +5,7 @@ using SpotifyAPI.Web.Auth; //All Authentication-related classes
 using SpotifyAPI.Web.Enums; //Enums
 using SpotifyAPI.Web.Models; //Models for the JSON-responses
 using UnityEngine;
-using UnityEditor;
+
 
 public class TopArtistsScript : MonoBehaviour
 {
