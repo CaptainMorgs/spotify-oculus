@@ -70,8 +70,7 @@ public class Spotify : MonoBehaviour {
         //Ignore collisions between character controller and vinyls
         Physics.IgnoreLayerCollision(8, 9);
 
-        RestCallTest();
-
+        //  RestCallTest();
 
     }
 
@@ -301,7 +300,7 @@ public class Spotify : MonoBehaviour {
 			return;
 	}
 	
-	private void getContext() {
+	public void getContext() {
 		PlaybackContext context = _spotify.GetPlayback ();	
 		if (context.Item != null) {
 			Debug.Log ("Device: " + context.Device.Name); 
@@ -309,11 +308,14 @@ public class Spotify : MonoBehaviour {
 		if (context.Item != null) {
 			Debug.Log ("Context: " + context.Item.Name); 
 		} else {
-			Debug.Log ("Context null");
-		}
+			Debug.Log ("Context null with error " + context.Error.Message + " with message: " + context.Error.Message);
+
+        }
 	}
 
-	private IEnumerator loadObjectsFromSearch(SearchItem searchItem) {
+  
+
+    private IEnumerator loadObjectsFromSearch(SearchItem searchItem) {
 
         searchItem.Albums.Items.ForEach(item => Debug.Log("Album: " + item.Name));
         searchItem.Tracks.Items.ForEach(item => Debug.Log("Track: " + item.Name));

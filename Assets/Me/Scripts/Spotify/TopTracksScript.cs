@@ -32,9 +32,9 @@ public class TopTracksScript : MonoBehaviour
         //TODO subscribe to spotify manager event of authorization being complete
         yield return new WaitForSeconds(2);
         Paging<FullTrack> usersTopTracks = spotifyManagerScript.GetUsersTopTracks();
-        if (usersTopTracks == null)
+        if (usersTopTracks == null || usersTopTracks.Items.Count == null)
         {
-            Debug.LogError("usersTopTracks is null");
+            Debug.LogError("usersTopTracks is null/empty");
 
         }
         else

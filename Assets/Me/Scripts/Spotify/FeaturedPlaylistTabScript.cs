@@ -25,6 +25,8 @@ public class FeaturedPlaylistTabScript : MonoBehaviour
         spotifyManagerScript = spotifyManager.GetComponent<Spotify>();
 
         StartCoroutine(loadFeaturedPlaylists());
+
+        spotifyManagerScript.getContext();
     }
 
         public IEnumerator loadFeaturedPlaylists()
@@ -39,18 +41,21 @@ public class FeaturedPlaylistTabScript : MonoBehaviour
 
             GameObject meshRendererGameObject = meshRenderers[i].transform.gameObject;
 
-            PlaylistScript playlistScript = meshRendererGameObject.GetComponent<PlaylistScript>();
-          //  playlistScript.setPlaylistURI(featuredPlaylists.Playlists.Items[i].Uri);
+            if (meshRendererGameObject.tag != "back")
+            {
+                PlaylistScript playlistScript = meshRendererGameObject.GetComponent<PlaylistScript>();
+                //  playlistScript.setPlaylistURI(featuredPlaylists.Playlists.Items[i].Uri);
 
-            WWW imageURLWWW = new WWW(featuredPlaylistImageURL);
+                WWW imageURLWWW = new WWW(featuredPlaylistImageURL);
 
-            yield return imageURLWWW;
+                yield return imageURLWWW;
 
-            meshRenderers[i].material.mainTexture = imageURLWWW.texture;
+                meshRenderers[i].material.mainTexture = imageURLWWW.texture;
 
-            playlistScript.setPlaylistName(featuredPlaylists.Playlists.Items[i].Name);
-            playlistScript.setPlaylistURI(featuredPlaylists.Playlists.Items[i].Uri);
+                playlistScript.setPlaylistName(featuredPlaylists.Playlists.Items[i].Name);
+                playlistScript.setPlaylistURI(featuredPlaylists.Playlists.Items[i].Uri);
+            }
         }
     }
-
+   
 }
