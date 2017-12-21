@@ -50,6 +50,7 @@ public class NewAlbumReleasesScript : MonoBehaviour
 
             playlistScript.setPlaylistName(newAlbumReleases.Albums.Items[i].Name);
             playlistScript.setPlaylistURI(newAlbumReleases.Albums.Items[i].Uri);
+            playlistScript.simpleAlbum = newAlbumReleases.Albums.Items[i];
         }
     }
 

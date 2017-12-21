@@ -16,10 +16,14 @@ public class Raycast : MonoBehaviour {
     public GameObject vinyl, rightHandAnchor;
     public bool playOnClick = true;
     private GameObject spawnedVinyl;
+    public GameObject hoverUIGameObject;
+    private HoverUI hoverUI;
 
     void Start () {
 
         material = new Material(Shader.Find("Particles/Additive"));
+
+        hoverUI = hoverUIGameObject.GetComponent<HoverUI>();
 
          lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.SetColors(Color.white, Color.white);
@@ -152,10 +156,11 @@ public class Raycast : MonoBehaviour {
             lineRenderer.SetPosition(1, hit.point);
 
 
-            if (hit.transform.gameObject.tag == "song")
+            if (hit.transform.gameObject.tag == "song" || hit.transform.gameObject.tag == "playlist")
             {
                 GameObject playlistGameObject = hit.transform.gameObject;
-                Debug.Log("Pointing at a song");
+                hoverUI.updateHoverUI(playlistGameObject.GetComponent<PlaylistScript>());
+         //       Debug.Log("Pointing at a song");
             }
            // else {
             //    Debug.Log("Pointing at a gameobject with tag " + hit.transform.gameObject.tag);

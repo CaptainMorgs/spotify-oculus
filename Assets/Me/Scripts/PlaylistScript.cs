@@ -17,6 +17,11 @@ public class PlaylistScript : MonoBehaviour {
     private MeshRenderer meshRenderer;
     public GameObject spriteGameObject;
     private SpriteRenderer spriteRenderer;
+    private SimplePlaylist simplePlaylist;
+    private FullTrack fullTrack;
+    public SimpleAlbum simpleAlbum;
+
+  
 
     // Use this for initialization
     void Start () {
@@ -31,13 +36,44 @@ public class PlaylistScript : MonoBehaviour {
 	
 	public void setPlaylistURI (string playlistURI) {
 		this.playlistURI = playlistURI;
-    //    Debug.Log("playlistURI: " + playlistURI);
     }
 
-	public void setPlaylistName (string playlistName) {
+    public void setSimplePlaylist(SimplePlaylist simplePlaylist)
+    {
+        this.simplePlaylist = simplePlaylist;
+    }
+
+    public void setPlaylistName (string playlistName) {
 		this.playlistName = playlistName;
         playlistNameText.text = playlistName;
 
+    }
+
+    public void setFullTrack(FullTrack fullTrack)
+    {
+        this.fullTrack = fullTrack;
+        Debug.Log("Setting full track");
+    }
+
+    public FullTrack getFullTrack()
+    {
+        return fullTrack;
+
+    }
+
+    public SimplePlaylist getSimplePlaylist()
+    {
+        return simplePlaylist;
+
+    }
+        public string getPlaylistURI()
+        {
+            return playlistURI;
+        }
+
+        public string getPlaylistName()
+    {
+       return playlistName;
     }
 
     public void playSomething() {

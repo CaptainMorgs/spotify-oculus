@@ -56,6 +56,7 @@ public class TopTracksScript : MonoBehaviour
 
                 playlistScript.setPlaylistName(usersTopTracks.Items[i].Name);
                 playlistScript.setPlaylistURI(usersTopTracks.Items[i].Uri);
+                playlistScript.setFullTrack(usersTopTracks.Items[i]);
             }
         }
     }

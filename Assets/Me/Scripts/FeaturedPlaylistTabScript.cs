@@ -54,6 +54,7 @@ public class FeaturedPlaylistTabScript : MonoBehaviour
 
                 playlistScript.setPlaylistName(featuredPlaylists.Playlists.Items[i].Name);
                 playlistScript.setPlaylistURI(featuredPlaylists.Playlists.Items[i].Uri);
+                playlistScript.setSimplePlaylist(featuredPlaylists.Playlists.Items[i]);
             }
         }
     }
