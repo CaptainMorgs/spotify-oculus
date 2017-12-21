@@ -10,6 +10,7 @@ TagManager:
   - MovementSpace
   - vinyl
   - back
+  - playlist
   layers:
   - Default
   - TransparentFX

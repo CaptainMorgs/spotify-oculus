@@ -150,6 +150,18 @@ public class Raycast : MonoBehaviour {
         if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, raycastDistance))
         {
             lineRenderer.SetPosition(1, hit.point);
+
+
+            if (hit.transform.gameObject.tag == "song")
+            {
+                GameObject playlistGameObject = hit.transform.gameObject;
+                Debug.Log("Pointing at a song");
+            }
+           // else {
+            //    Debug.Log("Pointing at a gameobject with tag " + hit.transform.gameObject.tag);
+
+            //}
+
         }
     }
 
