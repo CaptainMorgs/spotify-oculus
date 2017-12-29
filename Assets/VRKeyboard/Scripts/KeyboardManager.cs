@@ -6,6 +6,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using TMPro;
 
 namespace VRKeyboard.Utils {
     public class KeyboardManager : MonoBehaviour {
@@ -18,15 +19,23 @@ namespace VRKeyboard.Utils {
         [Header("UI Elements")]
         public Text inputText;
 
+        public TextMeshProUGUI inputTextPro;
+
         [Header("Essentials")]
         public Transform characters;
 
         #endregion
 
         #region Private Variables
-        private string Input {
-            get { return inputText.text;  }
-            set { inputText.text = value;  }
+        //  private string Input {
+        //     get { return inputText.text;  }
+        //    set { inputText.text = value;  }
+        // }
+
+        private string Input
+        {
+            get { return inputTextPro.text;  }
+          set { inputTextPro.text = value;  }
         }
 
         private Dictionary<GameObject, Text> keysDictionary = new Dictionary<GameObject, Text>();
@@ -86,7 +95,9 @@ namespace VRKeyboard.Utils {
         }
 
         public void Search() {
-            spotifyScript.searchSpotify(inputText.text);
+            //    spotifyScript.searchSpotify(inputText.text);
+            Debug.Log("Search query: " + inputTextPro.text);
+            spotifyScript.searchSpotify(inputTextPro.text);
         }
         #endregion
 

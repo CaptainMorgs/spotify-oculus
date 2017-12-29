@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using VRKeyboard.Utils;
+using TMPro;
 
 public class Raycast : MonoBehaviour {
 
@@ -108,7 +109,11 @@ public class Raycast : MonoBehaviour {
             //TODO make better with unity event system.
             if (hit.transform.gameObject.tag == "key") {
                 Text text = hit.transform.gameObject.GetComponentInChildren<Text>();
+
+             //   TextMeshProUGUI textPro = hit.transform.gameObject.GetComponentInChildren<TextMeshProUGUI>();
+
                 keyboardManagerScript.GenerateInput(text.text);
+            //    keyboardManagerScript.GenerateInput(textPro.text);
             }
 
             if (resumePlayback != null)
@@ -123,7 +128,7 @@ public class Raycast : MonoBehaviour {
             {
                 if (playOnClick)
                 {
-                    playlistScript.playSomething();
+                    playlistScript.playSomethingAsync();
                 }
 
                 if (GameObject.FindWithTag("vinyl") != null) {
@@ -173,7 +178,7 @@ public class Raycast : MonoBehaviour {
             lineRenderer.SetPosition(1, hit.point);
 
 
-            if (hit.transform.gameObject.tag == "song" || hit.transform.gameObject.tag == "playlist")
+            if (hit.transform.gameObject.tag == "song" || hit.transform.gameObject.tag == "playlist" || hit.transform.gameObject.tag == "artist")
             {
                 GameObject playlistGameObject = hit.transform.gameObject;
                 hoverUI.updateHoverUI(playlistGameObject.GetComponent<PlaylistScript>());

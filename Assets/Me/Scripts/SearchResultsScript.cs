@@ -22,7 +22,7 @@ public class SearchResultsScript : MonoBehaviour {
 
     public IEnumerator LoadSearchResults(SearchItem searchItem)
     {
-  
+        if (searchItem.Albums.Items.Count != 0)
         {
             for (int i = 0; i < meshRenderers.Length; i++)
             {
@@ -42,6 +42,10 @@ public class SearchResultsScript : MonoBehaviour {
                 playlistScript.setPlaylistName(searchItem.Albums.Items[i].Name);
                 playlistScript.setPlaylistURI(searchItem.Albums.Items[i].Uri);
             }
+        }
+
+        else {
+            Debug.LogError("Empty results returned");
         }
     }
 }

@@ -36,7 +36,13 @@ public class VinylScript : MonoBehaviour {
 
             //spawn fragments
             Instantiate(fragments, gameObject.transform.position, Quaternion.identity);
-
+            Rigidbody[] fragmentRigidBodies = fragments.GetComponentsInChildren<Rigidbody>();
+            fragmentRigidBodies[0].AddExplosionForce(5.0f, fragmentRigidBodies[0].transform.position, 5.0f, 5.0f, ForceMode.Force);
+            //  for (int i = 0; i < fragmentRigidBodies.Length; i++)
+            //   {
+            //       fragmentRigidBodies[i].AddExplosionForce(1.0f, fragmentRigidBodies..transform.position, 2.0f, 2.0f, ForceMode.Force);
+            //
+            //  }
             //destroy this gameobject
             Destroy(gameObject);
         }

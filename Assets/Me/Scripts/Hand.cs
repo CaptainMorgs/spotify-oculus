@@ -45,7 +45,9 @@ public class Hand : MonoBehaviour
             switch (mHandState)
             {
                 case State.TOUCHING:
-                    if (mTempJoint == null && OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, Controller) >= 0.5f)
+                Debug.LogWarning(mHandState);
+
+                if (mTempJoint == null && OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, Controller) >= 0.5f)
                     {
                         mHeldObject.velocity = Vector3.zero;
                         mTempJoint = mHeldObject.gameObject.AddComponent<FixedJoint>();
@@ -56,7 +58,8 @@ public class Hand : MonoBehaviour
                 }
                     break;
                 case State.HOLDING:
-                
+                Debug.LogWarning(mHandState);
+
                 if (mTempJoint != null && OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, Controller) < 0.5f)
                     {
                         Object.DestroyImmediate(mTempJoint);

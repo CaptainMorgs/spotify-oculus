@@ -56,6 +56,7 @@ public class TopArtistsScript : MonoBehaviour
 
                 playlistScript.setPlaylistName(usersTopArtists.Items[i].Name);
                 playlistScript.setPlaylistURI(usersTopArtists.Items[i].Uri);
+                playlistScript.fullArtist = usersTopArtists.Items[i];
             }
         }
     }

@@ -5,6 +5,7 @@ using SpotifyAPI.Web; //Base Namespace
 using SpotifyAPI.Web.Auth; //All Authentication-related classes
 using SpotifyAPI.Web.Enums; //Enums
 using SpotifyAPI.Web.Models;
+using System;
 
 public class PlaylistScript : MonoBehaviour {
 
@@ -20,8 +21,8 @@ public class PlaylistScript : MonoBehaviour {
     private SimplePlaylist simplePlaylist;
     private FullTrack fullTrack;
     public SimpleAlbum simpleAlbum;
+    public FullArtist fullArtist;
 
-  
 
     // Use this for initialization
     void Start () {
@@ -76,17 +77,29 @@ public class PlaylistScript : MonoBehaviour {
        return playlistName;
     }
 
-    public void playSomething() {
+    public async System.Threading.Tasks.Task playSomethingAsync() {
         if (transform.tag == "song")
         {
             playSong();
         }
-        else {
+        else if (transform.tag == "artist") {
+          await  playArtistAsync();
+
+        }
+        else
+        {
             playPlaylist();
         }
     }
 
-	private void playPlaylist() {
+    private async System.Threading.Tasks.Task playArtistAsync()
+    {
+        //just plays the artists top song
+        SeveralTracks artistTopTracks = await script.GetArtistTopTracksAsync(fullArtist.Id);
+        script.playSongURI(artistTopTracks.Tracks[0].Uri);
+    }
+
+    private void playPlaylist() {
 		script.playURI (playlistURI);
 	//	recordPlayerScript.recordPlayerActive = true;
 	}
@@ -108,6 +121,6 @@ public class PlaylistScript : MonoBehaviour {
     }
 
     void OnMouseDown() {
-        playSomething();
+        playSomethingAsync();
     }
 }

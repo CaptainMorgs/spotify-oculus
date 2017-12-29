@@ -12,6 +12,7 @@ TagManager:
   - back
   - playlist
   - key
+  - artist
   layers:
   - Default
   - TransparentFX

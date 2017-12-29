@@ -156,6 +156,6 @@ void Update()
 
         VinylScript vinylScript = collider.gameObject.GetComponent<VinylScript>();
         PlaylistScript playlistScript = vinylScript.playlistScript;
-        playlistScript.playSomething();
+        playlistScript.playSomethingAsync();
     }
 }

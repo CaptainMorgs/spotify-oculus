@@ -35,6 +35,8 @@ public class HoverUI : MonoBehaviour {
         {
             TimeSpan t = TimeSpan.FromMilliseconds(playlistScript.getFullTrack().DurationMs);
 
+            FullTrack fullTrack = playlistScript.getFullTrack();
+
             string answer = string.Format("{0:D2}m:{1:D2}s",
                         t.Minutes,
                         t.Seconds);
@@ -42,7 +44,7 @@ public class HoverUI : MonoBehaviour {
             //   double trackDuration = (((double)playlistScript.getFullTrack().DurationMs / (double)1000)/ (double) 60);
 
             textPro.SetText(playlistScript.getPlaylistName()
-            + "\n" + "Length: " + answer
+            + "\n" + "Length: " + answer + "\n" + fullTrack.Artists[0].Name
             );
         }
         else {
