@@ -11,6 +11,7 @@ TagManager:
   - vinyl
   - back
   - playlist
+  - key
   layers:
   - Default
   - TransparentFX

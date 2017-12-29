@@ -2,6 +2,8 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using UnityEngine.UI;
+using VRKeyboard.Utils;
 
 public class Raycast : MonoBehaviour {
 
@@ -18,12 +20,17 @@ public class Raycast : MonoBehaviour {
     private GameObject spawnedVinyl;
     public GameObject hoverUIGameObject;
     private HoverUI hoverUI;
+    public GameObject keyboardGameObject;
+    private KeyboardManager keyboardManagerScript;
+
 
     void Start () {
 
         material = new Material(Shader.Find("Particles/Additive"));
 
         hoverUI = hoverUIGameObject.GetComponent<HoverUI>();
+
+        keyboardManagerScript = keyboardGameObject.GetComponent<KeyboardManager>();
 
          lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.SetColors(Color.white, Color.white);
@@ -84,15 +91,25 @@ public class Raycast : MonoBehaviour {
             lineRenderer.SetPosition(1, transform.forward * raycastDistance + transform.position);
     }
 
+    /// <summary>
+    /// Logic for when a raycast line collides with a collider and and the input button is pressed
+    /// </summary>
     void RayCastInput()
     {
         RaycastHit hit;
         if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, raycastDistance))
         {
            Debug.Log(hit.transform.name);
+
             ResumePlayback resumePlayback = hit.transform.GetComponent<ResumePlayback>();
             PausePlayback pausePlayback = hit.transform.GetComponent<PausePlayback>();
             PlaylistScript playlistScript = hit.transform.GetComponent<PlaylistScript>();
+
+            //TODO make better with unity event system.
+            if (hit.transform.gameObject.tag == "key") {
+                Text text = hit.transform.gameObject.GetComponentInChildren<Text>();
+                keyboardManagerScript.GenerateInput(text.text);
+            }
 
             if (resumePlayback != null)
             {

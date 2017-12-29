@@ -93,6 +93,26 @@ namespace VRKeyboard.Utils {
         #region Private Methods
         public void GenerateInput(string s) {
             if (Input.Length > maxInputLength) { return; }
+            //added my shitty code here
+            if (s.Equals("CapsLock")) {
+                CapsLock();
+                return;
+            }
+            if (s.Equals ("Backspace"))
+            {
+                Backspace();
+                return;
+            }
+            if (s.Equals("Clear All"))
+            {
+                Clear();
+                return;
+            }
+            if (s.Equals("Search"))
+            {
+                Search();
+                return;
+            }
             Input += s;
             Debug.Log("Keyboard being pressed!");
         }
