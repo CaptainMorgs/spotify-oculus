@@ -105,6 +105,7 @@ public class Raycast : MonoBehaviour {
             ResumePlayback resumePlayback = hit.transform.GetComponent<ResumePlayback>();
             PausePlayback pausePlayback = hit.transform.GetComponent<PausePlayback>();
             PlaylistScript playlistScript = hit.transform.GetComponent<PlaylistScript>();
+            LeftHandUI leftHandUI = hit.transform.GetComponent<LeftHandUI>();
 
             //TODO make better with unity event system.
             if (hit.transform.gameObject.tag == "key") {
@@ -120,8 +121,12 @@ public class Raycast : MonoBehaviour {
             {
                 resumePlayback.ResumePlaybackFunction();
             }           
+            else if (leftHandUI != null)
+            {
+                leftHandUI.OnRayCastHit();
+            }
             else if (pausePlayback != null)
-            {             
+            {
                 pausePlayback.PausePlaybackFunction();
             }
             else if (playlistScript != null)
