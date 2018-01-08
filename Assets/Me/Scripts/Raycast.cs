@@ -23,7 +23,13 @@ public class Raycast : MonoBehaviour {
     private HoverUI hoverUI;
     public GameObject keyboardGameObject;
     private KeyboardManager keyboardManagerScript;
-
+    public GameObject spriteGameObject;
+    private Sprite sprite;
+    public UnityEngine.UI.Image pointerImage;
+    public Vector3 pointerUIScale = new Vector3(0.001f, 0.001f, 0.001f);
+    public Vector3 pointerWorldScale = new Vector3(0.005f, 0.005f, 0.005f);
+    public Vector3 pointerWorldScaleZOffset = new Vector3(0f, 0f, 0.05f);
+    private LeftHandUI leftHandUIHit;
 
     void Start () {
 
@@ -33,7 +39,9 @@ public class Raycast : MonoBehaviour {
 
         keyboardManagerScript = keyboardGameObject.GetComponent<KeyboardManager>();
 
-         lineRenderer = GetComponent<LineRenderer>();
+        sprite = spriteGameObject.GetComponent<Sprite>();
+
+        lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.SetColors(Color.white, Color.white);
         lineRenderer.material = material;
 
@@ -59,6 +67,7 @@ public class Raycast : MonoBehaviour {
         else  {
             lineRenderer.SetColors(Color.white, Color.white);
             lineRenderer.material.color = Color.white;
+
 
             if (movementStarted && !OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
             {
@@ -176,12 +185,62 @@ public class Raycast : MonoBehaviour {
 
     void RayCast()
     {
+        
 
         RaycastHit hit;
         if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, raycastDistance))
         {
             lineRenderer.SetPosition(1, hit.point);
 
+            //spriteGameObject.transform.position = hit.point;
+            //spriteGameObject.transform.rotation = hit.collider.gameObject.transform.rotation;
+            ////5 is UI layer
+            //if (hit.collider.gameObject.layer == 5)
+            //{
+            //    spriteGameObject.transform.localScale = pointerUIScale;
+            //}
+            //else {
+            //    spriteGameObject.transform.localScale = pointerWorldScale;
+            //}
+
+            pointerImage.transform.position = hit.point;
+            pointerImage.material.renderQueue = 4000;
+
+            //TODO should not have to be called every ray cast
+            if (leftHandUIHit != null)
+            {
+                leftHandUIHit.OnHoverExit();
+            }
+            //  pointerImage.transform.rotation = hit.collider.gameObject.transform.rotation;
+
+            //11 is hand UI layer
+            if (hit.collider.gameObject.layer == 11)
+            {
+                pointerImage.transform.localScale = pointerUIScale;
+
+                LeftHandUI leftHandUI = hit.transform.GetComponent<LeftHandUI>();
+               
+
+                if (leftHandUI != null)
+                {
+                    leftHandUIHit = leftHandUI;
+                    leftHandUI.OnHover();
+                }
+                //not sure if else here will do the job
+              //  else if (leftHandUIHit != null)
+            //    {
+             //       leftHandUIHit.OnHoverExit();
+             //   }
+            }
+            //5 is UI layer
+            else if (hit.collider.gameObject.layer == 5)
+            {
+                pointerImage.transform.localScale = pointerWorldScale;
+                pointerImage.transform.position = hit.point - pointerWorldScaleZOffset;
+            }
+            else {
+                pointerImage.transform.localScale = new Vector3(0f,0f,0f);
+            }
 
             if (hit.transform.gameObject.tag == "song" || hit.transform.gameObject.tag == "playlist" || hit.transform.gameObject.tag == "artist")
             {
