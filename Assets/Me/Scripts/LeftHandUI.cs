@@ -88,7 +88,7 @@ public class LeftHandUI : MonoBehaviour {
                 {
                     color.a = 1.0f;
                     GetComponent<Image>().color = color;
-                    Debug.Log("Altering UI Transparancy");
+              //      Debug.Log("Altering UI Transparancy");
 
                 }
             }

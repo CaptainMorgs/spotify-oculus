@@ -7,15 +7,13 @@ using SpotifyAPI.Web.Models; //Models for the JSON-responses
 using UnityEngine;
 
 
-public class TopTracksScript : MonoBehaviour
+public class UserFollowedArtists : MonoBehaviour
 {
 
     private GameObject thisGameObject;
     private MeshRenderer[] meshRenderers;
     private GameObject spotifyManager;
     private Spotify spotifyManagerScript;
-    private AudioAnalysis[] audioAnalysisArray;
-    public Paging<FullTrack> usersTopTracks;
 
     // Use this for initialization
     void Start()
@@ -26,40 +24,39 @@ public class TopTracksScript : MonoBehaviour
         spotifyManager = GameObject.Find("SpotifyManager");
         spotifyManagerScript = spotifyManager.GetComponent<Spotify>();
 
-        StartCoroutine(loadTopTracks());
+        StartCoroutine(LoadUserPlaylists());
     }
 
-    public IEnumerator loadTopTracks()
+    public IEnumerator LoadUserPlaylists()
     {
         //TODO subscribe to spotify manager event of authorization being complete
         yield return new WaitForSeconds(2);
-        usersTopTracks = spotifyManagerScript.GetUsersTopTracks();
-        if (usersTopTracks == null || usersTopTracks.Items.Count == null)
+        Paging<SimplePlaylist> usersPlaylists = spotifyManagerScript.GetUsersPlayists();
+        if (usersPlaylists == null)
         {
-            Debug.LogError("usersTopTracks is null/empty");
+            Debug.LogError("usersPlaylists is null");
 
         }
         else
         {
             for (int i = 0; i < meshRenderers.Length; i++)
             {
-                string featuredPlaylistImageURL = usersTopTracks.Items[i].Album.Images[0].Url;
+                string userPlaylistImageURL = usersPlaylists.Items[i].Images[0].Url;
 
                 GameObject meshRendererGameObject = meshRenderers[i].transform.gameObject;
 
                 PlaylistScript playlistScript = meshRendererGameObject.GetComponent<PlaylistScript>();
                 //  playlistScript.setPlaylistURI(featuredPlaylists.Playlists.Items[i].Uri);
 
-                WWW imageURLWWW = new WWW(featuredPlaylistImageURL);
+                WWW imageURLWWW = new WWW(userPlaylistImageURL);
 
                 yield return imageURLWWW;
 
                 meshRenderers[i].material.mainTexture = imageURLWWW.texture;
 
-                playlistScript.setPlaylistName(usersTopTracks.Items[i].Name);
-                playlistScript.setPlaylistURI(usersTopTracks.Items[i].Uri);
-                playlistScript.setFullTrack(usersTopTracks.Items[i]);
-                playlistScript.audioAnalysis = spotifyManagerScript.GetAudioAnalysis(usersTopTracks.Items[i].Id);
+                playlistScript.setPlaylistName(usersPlaylists.Items[i].Name);
+                playlistScript.setPlaylistURI(usersPlaylists.Items[i].Uri);
+                //  playlistScript.fullArtist = usersPlaylists.Items[i];
             }
         }
     }

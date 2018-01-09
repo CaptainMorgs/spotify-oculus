@@ -14,6 +14,7 @@ public class TopArtistsScript : MonoBehaviour
     private MeshRenderer[] meshRenderers;
     private GameObject spotifyManager;
     private Spotify spotifyManagerScript;
+    public Paging<FullArtist> usersTopArtists;
 
     // Use this for initialization
     void Start()
@@ -31,11 +32,10 @@ public class TopArtistsScript : MonoBehaviour
     {
         //TODO subscribe to spotify manager event of authorization being complete
         yield return new WaitForSeconds(2);
-        Paging<FullArtist> usersTopArtists = spotifyManagerScript.GetUsersTopArtists();
+        usersTopArtists = spotifyManagerScript.GetUsersTopArtists();
         if (usersTopArtists == null)
         {
             Debug.LogError("usersTopArtists is null");
-
         }
         else
         {

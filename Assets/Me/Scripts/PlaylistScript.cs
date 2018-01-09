@@ -14,6 +14,8 @@ public class PlaylistScript : MonoBehaviour {
 	private Spotify script;
     public GameObject  playlistNameObject, recordPlayer;
 	private RecordPlayer recordPlayerScript;
+    private GameObject audioVisualizer;
+    private AudioVisualizer audioVisualizerScript;
     private UnityEngine.UI.Text playlistNameText;
     private MeshRenderer meshRenderer;
     public GameObject spriteGameObject;
@@ -22,7 +24,7 @@ public class PlaylistScript : MonoBehaviour {
     private FullTrack fullTrack;
     public SimpleAlbum simpleAlbum;
     public FullArtist fullArtist;
-
+    public AudioAnalysis audioAnalysis;
 
     // Use this for initialization
     void Start () {
@@ -32,6 +34,8 @@ public class PlaylistScript : MonoBehaviour {
         playlistNameText = playlistNameObject.GetComponent<UnityEngine.UI.Text>();
         spriteRenderer = spriteGameObject.GetComponent<SpriteRenderer>();
 		recordPlayerScript = recordPlayer.GetComponent<RecordPlayer> ();
+        audioVisualizer = GameObject.Find("AudioVisualizer");
+        audioVisualizerScript = audioVisualizer.GetComponent<AudioVisualizer>();
 
     }
 	
@@ -53,7 +57,7 @@ public class PlaylistScript : MonoBehaviour {
     public void setFullTrack(FullTrack fullTrack)
     {
         this.fullTrack = fullTrack;
-        Debug.Log("Setting full track");
+     //   Debug.Log("Setting full track");
     }
 
     public FullTrack getFullTrack()
@@ -81,6 +85,11 @@ public class PlaylistScript : MonoBehaviour {
         if (transform.tag == "song")
         {
             playSong();
+
+            if (audioAnalysis != null)
+            {
+                audioVisualizerScript.SendAnalysis(audioAnalysis);
+            }
         }
         else if (transform.tag == "artist") {
           await  playArtistAsync();
