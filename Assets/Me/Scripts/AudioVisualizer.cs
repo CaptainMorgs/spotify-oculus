@@ -174,7 +174,7 @@ public class AudioVisualizer : MonoBehaviour {
                     cubeChildren[i].transform.localScale = Vector3.Lerp(startVector, endVector, t);
                 }
                
-                Debug.LogWarning("Lerping one");
+           //     Debug.LogWarning("Lerping one");
 
                 yield return null;
             }
@@ -188,7 +188,7 @@ public class AudioVisualizer : MonoBehaviour {
                 {
                     cubeChildren[i].transform.localScale = Vector3.Lerp(endVector, startVector, t);
                 }
-                Debug.LogWarning("Lerping two");
+         //       Debug.LogWarning("Lerping two");
 
                 yield return null;
             }

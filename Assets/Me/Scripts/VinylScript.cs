@@ -20,8 +20,9 @@ public class VinylScript : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision) {
         //ignore layers grabbable, player and vinyl
-        if (collision.gameObject.layer != 8 && collision.gameObject.layer != 9 && collision.gameObject.layer != 10)
+        if (collision.gameObject.layer != 8 && collision.gameObject.layer != 9 && collision.gameObject.layer != 10 && collision.gameObject.layer != 11)
         {
+            Debug.Log("Collision with vinyl at layer" + collision.gameObject.layer + "with gameobject " + collision.gameObject);
             //set gravity of the vinyl to enabled when it hits something
             gameObject.GetComponent<Rigidbody>().useGravity = true;
 

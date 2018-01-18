@@ -51,7 +51,19 @@ public class NewAlbumReleasesScript : MonoBehaviour
             playlistScript.setPlaylistName(newAlbumReleases.Albums.Items[i].Name);
             playlistScript.setPlaylistURI(newAlbumReleases.Albums.Items[i].Uri);
             playlistScript.simpleAlbum = newAlbumReleases.Albums.Items[i];
+            playlistScript.sprite = ConvertWWWToSprite(imageURLWWW);
         }
     }
+    //TODO fix code duplication 
+    private Sprite ConvertWWWToSprite(WWW www)
+    {
 
+        Texture2D texture = new Texture2D(www.texture.width, www.texture.height, TextureFormat.DXT1, false);
+        www.LoadImageIntoTexture(texture);
+
+        Rect rec = new Rect(0, 0, texture.width, texture.height);
+        Sprite spriteToUse = Sprite.Create(texture, rec, new Vector2(0.5f, 0.5f), 100);
+
+        return spriteToUse;
+    }
 }

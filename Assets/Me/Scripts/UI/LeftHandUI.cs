@@ -20,6 +20,8 @@ public class LeftHandUI : MonoBehaviour {
         spotifyManagerScript = spotifyManager.GetComponent<Spotify>();
         raycast = RaycastGameObject.GetComponent<Raycast>();
         gameObjectName = transform.name;
+        //Ignore collisions between grabble and handUI layer, i.e. hand ui and vinyl (they can collide when holding vinyl)
+        Physics.IgnoreLayerCollision(8,11,true);
     }
 	
 	// Update is called once per frame

@@ -57,7 +57,20 @@ public class TopArtistsScript : MonoBehaviour
                 playlistScript.setPlaylistName(usersTopArtists.Items[i].Name);
                 playlistScript.setPlaylistURI(usersTopArtists.Items[i].Uri);
                 playlistScript.fullArtist = usersTopArtists.Items[i];
+                playlistScript.sprite = ConvertWWWToSprite(imageURLWWW);
             }
         }
+    }
+
+    private Sprite ConvertWWWToSprite(WWW www)
+    {
+
+        Texture2D texture = new Texture2D(www.texture.width, www.texture.height, TextureFormat.DXT1, false);
+        www.LoadImageIntoTexture(texture);
+
+        Rect rec = new Rect(0, 0, texture.width, texture.height);
+        Sprite spriteToUse = Sprite.Create(texture, rec, new Vector2(0.5f, 0.5f), 100);
+
+        return spriteToUse;
     }
 }

@@ -7,13 +7,14 @@ using SpotifyAPI.Web.Enums; //Enums
 using SpotifyAPI.Web.Models;
 using System;
 
-public class PlaylistScript : MonoBehaviour {
+public class PlaylistScript : MonoBehaviour
+{
 
-	private string playlistName, playlistURI;
-	private GameObject spotifyManager;
-	private Spotify script;
-    public GameObject  playlistNameObject, recordPlayer;
-	private RecordPlayer recordPlayerScript;
+    private string playlistName, playlistURI;
+    private GameObject spotifyManager;
+    private Spotify script;
+    public GameObject playlistNameObject, recordPlayer;
+    private RecordPlayer recordPlayerScript;
     private GameObject audioVisualizer;
     private AudioVisualizer audioVisualizerScript;
     private UnityEngine.UI.Text playlistNameText;
@@ -25,22 +26,26 @@ public class PlaylistScript : MonoBehaviour {
     public SimpleAlbum simpleAlbum;
     public FullArtist fullArtist;
     public AudioAnalysis audioAnalysis;
+    public UnityEngine.UI.Image image;
+    public Sprite sprite;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         meshRenderer = GetComponent<MeshRenderer>();
-        spotifyManager = GameObject.Find ("SpotifyManager");
-		script = spotifyManager.GetComponent<Spotify>();
+        spotifyManager = GameObject.Find("SpotifyManager");
+        script = spotifyManager.GetComponent<Spotify>();
         playlistNameText = playlistNameObject.GetComponent<UnityEngine.UI.Text>();
         spriteRenderer = spriteGameObject.GetComponent<SpriteRenderer>();
-		recordPlayerScript = recordPlayer.GetComponent<RecordPlayer> ();
+        recordPlayerScript = recordPlayer.GetComponent<RecordPlayer>();
         audioVisualizer = GameObject.Find("AudioVisualizer");
         audioVisualizerScript = audioVisualizer.GetComponent<AudioVisualizer>();
 
     }
-	
-	public void setPlaylistURI (string playlistURI) {
-		this.playlistURI = playlistURI;
+
+    public void setPlaylistURI(string playlistURI)
+    {
+        this.playlistURI = playlistURI;
     }
 
     public void setSimplePlaylist(SimplePlaylist simplePlaylist)
@@ -48,8 +53,9 @@ public class PlaylistScript : MonoBehaviour {
         this.simplePlaylist = simplePlaylist;
     }
 
-    public void setPlaylistName (string playlistName) {
-		this.playlistName = playlistName;
+    public void setPlaylistName(string playlistName)
+    {
+        this.playlistName = playlistName;
         playlistNameText.text = playlistName;
 
     }
@@ -57,7 +63,7 @@ public class PlaylistScript : MonoBehaviour {
     public void setFullTrack(FullTrack fullTrack)
     {
         this.fullTrack = fullTrack;
-     //   Debug.Log("Setting full track");
+        //   Debug.Log("Setting full track");
     }
 
     public FullTrack getFullTrack()
@@ -71,17 +77,18 @@ public class PlaylistScript : MonoBehaviour {
         return simplePlaylist;
 
     }
-        public string getPlaylistURI()
-        {
-            return playlistURI;
-        }
-
-        public string getPlaylistName()
+    public string getPlaylistURI()
     {
-       return playlistName;
+        return playlistURI;
     }
 
-    public async System.Threading.Tasks.Task playSomethingAsync() {
+    public string getPlaylistName()
+    {
+        return playlistName;
+    }
+
+    public void PlaySomething()
+    {
         if (transform.tag == "song")
         {
             playSong();
@@ -91,8 +98,9 @@ public class PlaylistScript : MonoBehaviour {
                 audioVisualizerScript.SendAnalysis(audioAnalysis);
             }
         }
-        else if (transform.tag == "artist") {
-          await  playArtistAsync();
+        else if (transform.tag == "artist")
+        {
+            playArtist();
 
         }
         else
@@ -101,35 +109,39 @@ public class PlaylistScript : MonoBehaviour {
         }
     }
 
-    private async System.Threading.Tasks.Task playArtistAsync()
+    private void playArtist()
     {
         //just plays the artists top song
-        SeveralTracks artistTopTracks = await script.GetArtistTopTracksAsync(fullArtist.Id);
+        SeveralTracks artistTopTracks = script.GetArtistsTopTracks(fullArtist.Id);
         script.playSongURI(artistTopTracks.Tracks[0].Uri);
     }
 
-    private void playPlaylist() {
-		script.playURI (playlistURI);
-	//	recordPlayerScript.recordPlayerActive = true;
-	}
+    private void playPlaylist()
+    {
+        script.playURI(playlistURI);
+        //	recordPlayerScript.recordPlayerActive = true;
+    }
 
     private void playSong()
     {
         script.playSongURI(playlistURI);
-   //     recordPlayerScript.recordPlayerActive = true;
+        //     recordPlayerScript.recordPlayerActive = true;
     }
 
-    public void TogglePlayButton() {
+    public void TogglePlayButton()
+    {
         if (spriteRenderer.enabled == true)
         {
             spriteRenderer.enabled = false;
         }
-        else {
+        else
+        {
             spriteRenderer.enabled = true;
         }
     }
 
-    void OnMouseDown() {
-        playSomethingAsync();
+    void OnMouseDown()
+    {
+        PlaySomething();
     }
 }

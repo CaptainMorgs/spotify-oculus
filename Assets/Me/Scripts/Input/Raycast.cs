@@ -17,7 +17,7 @@ public class Raycast : MonoBehaviour {
     private RaycastHit newPosition;
     Material material;
     public GameObject vinyl, rightHandAnchor;
-    public bool playOnClick = true;
+    public bool playOnClick = false;
     private GameObject spawnedVinyl;
     public GameObject hoverUIGameObject;
     private HoverUI hoverUI;
@@ -142,15 +142,16 @@ public class Raycast : MonoBehaviour {
             {
                 if (playOnClick)
                 {
-                    playlistScript.playSomethingAsync();
+                    playlistScript.PlaySomething();
                 }
 
                 if (GameObject.FindWithTag("vinyl") != null) {
                     Destroy(GameObject.FindWithTag("vinyl"));
                 }
 
-                spawnedVinyl = Instantiate(vinyl, rightHandAnchor.transform.position, Quaternion.identity);
+                spawnedVinyl = Instantiate(vinyl, rightHandAnchor.transform.position + new Vector3(-0.5f, 0, 1.0f), Quaternion.identity);
                 spawnedVinyl.GetComponent<VinylScript>().playlistScript = playlistScript;
+                spawnedVinyl.GetComponentInChildren<VinylUI>().InitializeUI(playlistScript);
                 Debug.Log("Spawning Vinyl");
             }
 
