@@ -11,6 +11,7 @@ public class VinylUI : MonoBehaviour {
     public Image uiImage;
     public GameObject panel;
     private Image panelImage;
+    private PlaylistScript playlistScript;
 
     // Use this for initialization
     void Start () {
@@ -22,7 +23,9 @@ public class VinylUI : MonoBehaviour {
 		
 	}
 
-    public void InitializeUI(PlaylistScript playlistScript) {
+    public void InitializeUI(PlaylistScript playlistScript)
+    {
+        this.playlistScript = playlistScript;
 
         if (playlistScript.gameObject.tag == "song")
         {
@@ -52,22 +55,26 @@ public class VinylUI : MonoBehaviour {
             Debug.LogError("Could not initialize Vinyl UI, tag not found");
         }
 
-        //Making the image not transparent when its loaded (avoids white image if it doesn't load)
-        if (uiImage != null) {
-            uiImage.sprite = playlistScript.sprite;
-            Color color = uiImage.GetComponent<Image>().color;
-            if (color != null)
-            {
-                StartCoroutine(FadeTo(uiImage, color, 1.0f, 0.5f));
-         
-            }
-        }
-        else
-        {
-            Debug.LogError("uiImage is null");
-        }
+      //  FadeInImage();
 
-        panelImage = GetComponent<Image>();
+      //  FadeInPanel();
+    }
+
+    //Fades a color's alpha from 0 to 1 (transparent to fully visible)
+    private IEnumerator FadeTo(Image image, Color color, float aValue, float aTime)
+    {
+        float alpha = color.a;
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / aTime)
+        {
+            Color newColor = new Color(1, 1, 1, Mathf.Lerp(alpha, aValue, t));
+            image.color = newColor;
+            yield return null;
+        }
+    }
+
+    public void FadeInPanel()
+    {
+       panelImage = GetComponent<Image>();
 
         //TODO look into Graphic.CrossFadeAlpha
         if (panelImage != null)
@@ -85,15 +92,23 @@ public class VinylUI : MonoBehaviour {
         }
     }
 
-    //Fades a color's alpha from 0 to 1 (transparent to fully visible)
-    private IEnumerator FadeTo(Image uiImage, Color color, float aValue, float aTime)
+    public void FadeInImage()
     {
-        float alpha = color.a;
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / aTime)
+        //Making the image not transparent when its loaded (avoids white image if it doesn't load)
+        if (uiImage != null)
         {
-            Color newColor = new Color(1, 1, 1, Mathf.Lerp(alpha, aValue, t));
-            uiImage.color = newColor;
-            yield return null;
+            uiImage.sprite = playlistScript.sprite;
+            Color color = uiImage.GetComponent<Image>().color;
+            if (color != null)
+            {
+                StartCoroutine(FadeTo(uiImage, color, 1.0f, 0.5f));
+
+            }
+        }
+        else
+        {
+            Debug.LogError("uiImage is null");
         }
     }
+
 }

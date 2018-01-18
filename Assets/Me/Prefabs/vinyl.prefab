@@ -785,6 +785,7 @@ MonoBehaviour:
   playlistScript: {fileID: 0}
   fragments: {fileID: 1959506679930398, guid: 23b29b7f9ac6cc44a9664c2c716d068a, type: 2}
   audioSource: {fileID: 0}
+  vinylUIGameobject: {fileID: 1397088316378324}
 --- !u!114 &114852946873411016
 MonoBehaviour:
   m_ObjectHideFlags: 1

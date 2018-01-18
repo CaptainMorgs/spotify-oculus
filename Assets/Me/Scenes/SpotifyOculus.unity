@@ -14742,7 +14742,6 @@ MonoBehaviour:
   mTempJoint: {fileID: 0}
   throwThreshold: 5
   scalingThrowSpeed: {x: 5, y: 5, z: 5}
-  playerController: {fileID: 0}
 --- !u!135 &584783944
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -24798,35 +24797,35 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114040070690212618, guid: 4ca0772e04147544eb2a1bd48b689abb,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114040070690212618, guid: 4ca0772e04147544eb2a1bd48b689abb,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114047105347485898, guid: 4ca0772e04147544eb2a1bd48b689abb,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114047105347485898, guid: 4ca0772e04147544eb2a1bd48b689abb,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 114852946873411016, guid: 4ca0772e04147544eb2a1bd48b689abb,
         type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114852946873411016, guid: 4ca0772e04147544eb2a1bd48b689abb,
         type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114047105347485898, guid: 4ca0772e04147544eb2a1bd48b689abb,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114047105347485898, guid: 4ca0772e04147544eb2a1bd48b689abb,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114040070690212618, guid: 4ca0772e04147544eb2a1bd48b689abb,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114040070690212618, guid: 4ca0772e04147544eb2a1bd48b689abb,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4ca0772e04147544eb2a1bd48b689abb, type: 2}
@@ -34443,7 +34442,6 @@ MonoBehaviour:
   mTempJoint: {fileID: 0}
   throwThreshold: 5
   scalingThrowSpeed: {x: 5, y: 5, z: 5}
-  playerController: {fileID: 0}
 --- !u!135 &1483113320
 SphereCollider:
   m_ObjectHideFlags: 0

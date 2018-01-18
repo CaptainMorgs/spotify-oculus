@@ -149,9 +149,12 @@ public class Raycast : MonoBehaviour {
                     Destroy(GameObject.FindWithTag("vinyl"));
                 }
 
-                spawnedVinyl = Instantiate(vinyl, rightHandAnchor.transform.position + new Vector3(-0.5f, 0, 1.0f), Quaternion.identity);
+             //   spawnedVinyl = Instantiate(vinyl, rightHandAnchor.transform.position + new Vector3(-0.5f, 0, 1.0f), Quaternion.identity);
+
+                spawnedVinyl = Instantiate(vinyl, hit.transform.position + new Vector3(0, 0, -0.5f), Quaternion.Euler(-90f,0,0));
                 spawnedVinyl.GetComponent<VinylScript>().playlistScript = playlistScript;
-                spawnedVinyl.GetComponentInChildren<VinylUI>().InitializeUI(playlistScript);
+                spawnedVinyl.GetComponent<VinylScript>().AnimateToPlayer(rightHandAnchor.transform.position + new Vector3(-0.5f, 0, 1.0f));
+                spawnedVinyl.GetComponent<VinylScript>().InitializeUI(playlistScript);
                 Debug.Log("Spawning Vinyl");
             }
 

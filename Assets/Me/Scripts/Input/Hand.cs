@@ -20,8 +20,6 @@ public class Hand : MonoBehaviour
     private Vector3 mOldVelocity;
     public float throwThreshold = 5f;
     public Vector3 scalingThrowSpeed = new Vector3(5, 5, 5);
-    public GameObject playerController;
-    private CharacterController characterController;
 
 
     //TODO Rewrite so that can grab something after letting it go and hand still colliding with the object
@@ -62,6 +60,12 @@ public class Hand : MonoBehaviour
                     mTempJoint.connectedBody = AttachPoint;
                     mHandState = State.HOLDING;
 
+                    //if you grab a vinyl, disable its UI
+                    if (mHeldObject.gameObject.tag == "vinyl") {
+                        VinylScript vinylScript = mHeldObject.gameObject.GetComponent<VinylScript>();
+                        vinylScript.DisableUI();
+                    }
+
                 }
                 break;
 
@@ -79,11 +83,23 @@ public class Hand : MonoBehaviour
                     Object.DestroyImmediate(mTempJoint);
                     mTempJoint = null;
 
+
                     //To stop collisions with hands when throwing an object
                     gameObject.GetComponent<SphereCollider>().enabled = false;
-                    throwObject();
+                   bool isThrown = throwObject();
+
+                    //if object isn't thrown and its a vinyl then re-enable its UI
+                    if (!isThrown) {
+                        if (mHeldObject.gameObject.tag == "vinyl")
+                        {
+                            VinylScript vinylScript = mHeldObject.gameObject.GetComponent<VinylScript>();
+                            vinylScript.EnableUI();
+                        }
+                    }
+
                     gameObject.GetComponent<SphereCollider>().enabled = true;
                     mHandState = State.EMPTY;
+
 
                 }
                 else if (mHeldObject == null) {
@@ -134,7 +150,7 @@ public class Hand : MonoBehaviour
         }
     }
 
-    private void throwObject()
+    private bool throwObject()
     {
         Debug.Log("Vector Distance: " + Vector3.Distance(OVRInput.GetLocalControllerAngularVelocity(Controller), new Vector3(1, 1, 1)));
 
@@ -155,12 +171,15 @@ public class Hand : MonoBehaviour
 
             // lock the rotation so it looks smooth
             mHeldObject.freezeRotation = true;
+
+            return true;
         }
         else
         {
             //if you are not exceeding the threshold for throwing something, set its velocity to 0
             mHeldObject.velocity = new Vector3(0, 0, 0);
             mHeldObject.useGravity = false;
+            return false;
         }
     }
 }
