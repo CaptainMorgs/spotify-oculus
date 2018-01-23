@@ -16,26 +16,26 @@ public class Spotify : MonoBehaviour
 {
 
     public static SpotifyWebAPI _spotify;
+    public GameObject playlistPrefab, recordPlayer, FeaturedPlaylistTab, CurrentSongGameObject, searchResultsTab, audioVisualizer;
     private static string clientId = "4dd553a707024f8bb4f210bb86d73ee1";
     private static string redirectUriLocal = "http://localhost";
-    public GameObject FeaturedPlaylistTab, CurrentSongGameObject;
     private FeaturedPlaylistTabScript featuredPlaylistTabScript;
     private CurrentSong currentSongScript;
-    public GameObject playlistPrefab;
-    public GameObject recordPlayer;
     private RecordPlayer recordPlayerScript;
     private bool waitingOnRestCall = false;
-    public GameObject searchResultsTab;
     private SearchResultsScript searchResultsScript;
-    public GameObject audioVisualizer;
     private AudioVisualizer audioVisualizerScript;
     private PlaybackContext context;
     private PrivateProfile privateProfile;
     private bool shuffleState;
     private RepeatState repeatState;
 
+    //TODO save users followed artists/top tracks etc between sessions
+    //TODO ADD A QUEING/UP NEXT FEATURE WHERE YOU PLACE RECORDS PHYSICALLY IN A QUEUE, may not be possible    
+    //TODO add browser that shows music videos
+    //TODO playlist are in wrong order
+    //TODO alter speakers scale to increase/decrease volume
 
-    //TODO ADD A QUEING/UP NEXT FEATURE WHERE YOU PLACE RECORDS PHYSICALLY IN A QUEUE
     // Use this for initialization
     void Start()
     {
@@ -59,18 +59,12 @@ public class Spotify : MonoBehaviour
 
         searchResultsScript = searchResultsTab.GetComponent<SearchResultsScript>();
 
-
         currentSongScript = CurrentSongGameObject.GetComponent<CurrentSong>();
 
         recordPlayerScript = recordPlayer.GetComponent<RecordPlayer>();
 
-        //  StartCoroutine(featuredPlaylistTabScript.loadStuff ());
-
         //Ignore collisions between character controller and vinyls
         Physics.IgnoreLayerCollision(8, 9);
-
-        //  RestCallTest();
-
     }
 
     // Update is called once per frame
@@ -116,15 +110,21 @@ public class Spotify : MonoBehaviour
         return playlists;
     }
 
+    public FullAlbum GetAlbum(string id)
+    {
+        FullAlbum fullAlbum = _spotify.GetAlbum(id);
+        return fullAlbum;
+    }
+
     public NewAlbumReleases GetNewAlbumReleases()
     {
-        NewAlbumReleases newAlbumReleases = _spotify.GetNewAlbumReleases();
+        NewAlbumReleases newAlbumReleases = _spotify.GetNewAlbumReleases(privateProfile.Country, 9, 0);
         return newAlbumReleases;
     }
     //TODO use editor input var for time range
     public Paging<FullTrack> GetUsersTopTracks()
     {
-        Paging<FullTrack> usersTopTracks = _spotify.GetUsersTopTracks(TimeRangeType.ShortTerm, 10, 0);
+        Paging<FullTrack> usersTopTracks = _spotify.GetUsersTopTracks(TimeRangeType.ShortTerm, 9, 0);
         return usersTopTracks;
     }
 
@@ -157,7 +157,7 @@ public class Spotify : MonoBehaviour
 
     public Paging<FullArtist> GetUsersTopArtists()
     {
-        Paging<FullArtist> usersTopArtists = _spotify.GetUsersTopArtists(TimeRangeType.ShortTerm, 10, 0);
+        Paging<FullArtist> usersTopArtists = _spotify.GetUsersTopArtists(TimeRangeType.ShortTerm, 9, 0);
         return usersTopArtists;
     }
 
@@ -169,7 +169,7 @@ public class Spotify : MonoBehaviour
 
     public SeveralTracks GetArtistsTopTracks(string artistID)
     {
-        SeveralTracks artistTopTracks =  _spotify.GetArtistsTopTracks(artistID, privateProfile.Country);
+        SeveralTracks artistTopTracks = _spotify.GetArtistsTopTracks(artistID, privateProfile.Country);
         return artistTopTracks;
     }
 
@@ -194,12 +194,12 @@ public class Spotify : MonoBehaviour
 
     public Paging<SimplePlaylist> GetUsersPlayists()
     {
-        return _spotify.GetUserPlaylists(privateProfile.Id);
+        return _spotify.GetUserPlaylists(privateProfile.Id, 9, 0);
     }
 
     public FollowedArtists GetUsersFollowedArtists()
     {
-        return _spotify.GetFollowedArtists(FollowType.Artist);
+        return _spotify.GetFollowedArtists(FollowType.Artist, 9);
     }
 
     public FullTrack GetTrack(String id)
@@ -207,55 +207,53 @@ public class Spotify : MonoBehaviour
         return _spotify.GetTrack(id);
     }
 
-    public void playURI(string playlistURI)
+    public void PlayUri(string playlistURI)
     {
-        Thread myThread;
-        myThread = new Thread(() => PlayURIThread(playlistURI));
+        Thread myThread = new Thread(() => PlayURIThread(playlistURI));
         myThread.Start();
         Debug.Log("PlayURIThread finished");
     }
 
     public void PlayURIThread(string playlistURI)
     {
-        
-            PlaybackContext context = _spotify.GetPlayback();
+
+        PlaybackContext context = _spotify.GetPlayback();
 
         //    float before = Time.realtimeSinceStartup;
-            ErrorResponse error = _spotify.ResumePlayback(context.Device.Id, playlistURI);
-       //     Debug.Log("Time taken to play URI: " + (Time.realtimeSinceStartup - before));
-            recordPlayerScript.recordPlayerActive = true;
+        ErrorResponse error = _spotify.ResumePlayback(context.Device.Id, playlistURI);
+        //     Debug.Log("Time taken to play URI: " + (Time.realtimeSinceStartup - before));
+        recordPlayerScript.recordPlayerActive = true;
 
-            if (error.Error != null)
-            {
+        if (error.Error != null)
+        {
             Debug.LogError(error.Error.Status);
             Debug.LogError(error.Error.Message);
-                Debug.LogError(playlistURI);
-            }
-            context = _spotify.GetPlayback();
-            if (context.Item != null)
-            {
-                Debug.Log("Currently playing song: " + context.Item.Name);
-                Debug.Log("Artist: " + context.Item.Artists[0].Name);
-                //    AudioAnalysis audioAnalysis = _spotify.GetAudioAnalysis(context.Item.Id);
-                //currentSongScript.updateCurrentlyPlaying(context.Item.Artists[0].Id, context.Item.Artists[0].Name, audioAnalysis);
-                currentSongScript.updateCurrentlyPlaying(context.Item.Artists[0].Id, context.Item.Artists[0].Name);
+            Debug.LogError(playlistURI);
+        }
+        context = _spotify.GetPlayback();
+        if (context.Item != null)
+        {
+            Debug.Log("Currently playing song: " + context.Item.Name);
+            Debug.Log("Artist: " + context.Item.Artists[0].Name);
+            //    AudioAnalysis audioAnalysis = _spotify.GetAudioAnalysis(context.Item.Id);
+            //currentSongScript.updateCurrentlyPlaying(context.Item.Artists[0].Id, context.Item.Artists[0].Name, audioAnalysis);
+            currentSongScript.updateCurrentlyPlaying(context.Item.Artists[0].Id, context.Item.Artists[0].Name);
 
-                //    audioVisualizerScript.SendAnalysis(audioAnalysis);
-            }
-        
+            //    audioVisualizerScript.SendAnalysis(audioAnalysis);
+        }
+
     }
 
-    public void playSongURI(string songURI)
+    public void PlaySongUri(string songURI)
     {
-        Thread myThread;
-        myThread = new Thread(() => PlaySongURIThread(songURI));
+        Thread myThread = new Thread(() => PlaySongURIThread(songURI));
         myThread.Start();
-        Debug.Log("playSongURIThread finished");
+        //    Debug.Log("playSongURIThread finished");
     }
 
     public void PlaySongURIThread(string songURI)
     {
-        PlaybackContext context = _spotify.GetPlayback();
+        //     PlaybackContext context = _spotify.GetPlayback();
 
         ErrorResponse error = _spotify.ResumePlayback(context.Device.Id, uris: new List<string> { songURI });
         recordPlayerScript.recordPlayerActive = true;
@@ -279,17 +277,16 @@ public class Spotify : MonoBehaviour
         }
     }
 
-    public void resumePlayback()
+    public void ResumePlayback()
     {
-        Thread myThread;
-        myThread = new Thread(resumePlaybackThread);
+        Thread myThread = new Thread(ResumePlaybackThread);
         myThread.Start();
-        Debug.Log("Thread finished");
+        //   Debug.Log("Thread finished");
     }
 
 
 
-    public void resumePlaybackThread()
+    public void ResumePlaybackThread()
     {
         PlaybackContext context = _spotify.GetPlayback();
 
@@ -438,15 +435,14 @@ public class Spotify : MonoBehaviour
         }
     }
 
-    public void pausePlayback()
+    public void PausePlayback()
     {
-        Thread myThread;
-        myThread = new Thread(pausePlaybackThread);
+        Thread myThread = new Thread(PausePlaybackThread);
         myThread.Start();
-        Debug.Log("Pause playback thread finished");
+        //Debug.Log("Pause playback thread finished");
     }
 
-    public void pausePlaybackThread()
+    public void PausePlaybackThread()
     {
         PlaybackContext context = _spotify.GetPlayback();
 
@@ -455,14 +451,16 @@ public class Spotify : MonoBehaviour
             ErrorResponse error = _spotify.PausePlayback(context.Device.Id);
             recordPlayerScript.recordPlayerActive = false;
             audioVisualizerScript.repeat = false;
+
             if (error.Error != null)
             {
-                Debug.Log(error.Error.Message);
+                Debug.LogError(error.Error.Status);
+                Debug.LogError(error.Error.Message);
             }
         }
     }
 
-    public void searchSpotify(string searchQuery)
+    public void SearchSpotify(string searchQuery)
     {
         SearchItem searchItem = _spotify.SearchItems(searchQuery, SearchType.All);
 
@@ -481,11 +479,13 @@ public class Spotify : MonoBehaviour
         }
     }
 
+    //TODO find out what this does
     public bool MyRemoteCertificateValidationCallback(System.Object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
     {
         return true;
     }
 
+    //Authenticates to Spotify
     async void ImplicitGrantAuth()
     {
         WebAPIFactory webApiFactory = new WebAPIFactory(
@@ -502,7 +502,7 @@ public class Spotify : MonoBehaviour
         {
             //This will open the user's browser and returns once
             //the user is authorized
-            Debug.Log("Redirect URI: " + redirectUriLocal);
+           // Debug.Log("Redirect URI: " + redirectUriLocal);
             _spotify = await webApiFactory.GetWebApi();
         }
         catch (Exception ex)
@@ -514,7 +514,7 @@ public class Spotify : MonoBehaviour
             return;
     }
 
-    public void getContext()
+    public void GetContext()
     {
         PlaybackContext context = _spotify.GetPlayback();
         if (context.Item != null)
@@ -529,114 +529,6 @@ public class Spotify : MonoBehaviour
         {
             Debug.Log("Context null with error " + context.Error.Message + " with message: " + context.Error.Message);
 
-        }
-    }
-
-
-
-    private IEnumerator loadObjectsFromSearch(SearchItem searchItem)
-    {
-
-        searchItem.Albums.Items.ForEach(item => Debug.Log("Album: " + item.Name));
-        searchItem.Tracks.Items.ForEach(item => Debug.Log("Track: " + item.Name));
-        searchItem.Playlists.Items.ForEach(item => Debug.Log("Playlist: " + item.Name));
-
-        if (searchItem != null)
-        {
-            Debug.Log(searchItem.ToString());
-        }
-        else
-        {
-            Debug.Log("Null searchItem");
-        }
-
-        int numRows = (int)(searchItem.Playlists.Items.Count / 3);
-        int k = 0;
-        for (int j = 0; j < numRows; j++)
-        {
-
-
-            for (int i = 0; i < 6; i++)
-            {
-
-                SimplePlaylist playlist = searchItem.Playlists.Items[k];
-
-                GameObject gameObject = Instantiate(playlistPrefab, new Vector3(4, (j * 1) + 0.75f, ((i * 1) - 3)), Quaternion.AngleAxis(90, Vector3.up));
-
-                string playlistImageURL = playlist.Images[0].Url;
-
-                WWW imageURLWWW = new WWW(playlistImageURL);
-
-                yield return imageURLWWW;
-
-                GameObject gameObjectQuad = gameObject.transform.GetChild(0).gameObject;
-                Renderer renderer = gameObjectQuad.GetComponent<MeshRenderer>();
-                renderer.material.mainTexture = imageURLWWW.texture;
-
-                PlaylistScript playlistScript = gameObject.GetComponent<PlaylistScript>();
-                playlistScript.setPlaylistName(playlist.Name);
-                playlistScript.setPlaylistURI(playlist.Uri);
-                Debug.Log("Setting playlist uri to : " + playlist.Uri);
-
-                //     UnityEngine.UI.Text playlistName = gameObject.GetComponentInChildren<UnityEngine.UI.Text>();
-                //      playlistName.text = playlist.Name;
-
-                //     UnityEngine.UI.Text playlistDescription = gameObject.GetComponentInChildren<UnityEngine.UI.Text>();
-                //      playlistDescription.text = playlist.SnapshotId;
-                k++;
-            }
-        }
-    }
-
-
-    private IEnumerator loadPlaylistsObjectsWithPrefab2()
-    {
-        FeaturedPlaylists playlists = _spotify.GetFeaturedPlaylists();
-
-        if (playlists != null)
-        {
-            Debug.Log(playlists.ToString());
-        }
-        else
-        {
-            Debug.Log("Null Playlists");
-        }
-
-        int numRows = (int)(playlists.Playlists.Items.Count / 3);
-        int k = 0;
-        for (int j = 0; j < numRows; j++)
-        {
-
-
-            for (int i = 0; i < 6; i++)
-            {
-
-                SimplePlaylist playlist = playlists.Playlists.Items[k];
-
-                GameObject gameObject = Instantiate(playlistPrefab, new Vector3(((i * 1) - 2), (j * 1) + 0.75f, 3), Quaternion.identity);
-
-                string playlistImageURL = playlist.Images[0].Url;
-
-                WWW imageURLWWW = new WWW(playlistImageURL);
-
-                yield return imageURLWWW;
-
-                GameObject gameObjectQuad = gameObject.transform.GetChild(0).gameObject;
-                Renderer renderer = gameObjectQuad.GetComponent<MeshRenderer>();
-                renderer.material.mainTexture = imageURLWWW.texture;
-
-                PlaylistScript playlistScript = gameObject.GetComponent<PlaylistScript>();
-                playlistScript.setPlaylistName(playlist.Name);
-                playlistScript.setPlaylistURI(playlist.Uri);
-                Debug.Log("Setting playlist uri to : " + playlist.Uri);
-
-                //     UnityEngine.UI.Text playlistName = gameObject.GetComponentInChildren<UnityEngine.UI.Text>();
-                //     playlistName.text = playlist.Name;
-
-                //     UnityEngine.UI.Text playlistDescription = gameObject.GetComponentInChildren<UnityEngine.UI.Text>();
-                //     playlistDescription.text = playlist.SnapshotId;
-                k++;
-            }
         }
     }
 }

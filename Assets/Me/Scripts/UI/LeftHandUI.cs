@@ -35,11 +35,11 @@ public class LeftHandUI : MonoBehaviour {
 
         if (gameObjectName.Equals("Play"))
         {
-            spotifyManagerScript.resumePlayback();
+            spotifyManagerScript.ResumePlayback();
         }
         else if (gameObjectName.Equals("Pause"))
         {
-            spotifyManagerScript.pausePlayback();
+            spotifyManagerScript.PausePlayback();
         }
         else if (gameObjectName.Equals("ForwardLeft"))
         {

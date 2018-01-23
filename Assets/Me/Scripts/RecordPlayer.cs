@@ -128,7 +128,7 @@ void Update()
         {
             Debug.Log("Vinyl exiting recordplayer");
 
-            spotifyScript.pausePlayback();
+            spotifyScript.PausePlayback();
         }
     }
 

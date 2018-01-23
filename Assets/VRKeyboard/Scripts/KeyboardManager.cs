@@ -97,7 +97,7 @@ namespace VRKeyboard.Utils {
         public void Search() {
             //    spotifyScript.searchSpotify(inputText.text);
             Debug.Log("Search query: " + inputTextPro.text);
-            spotifyScript.searchSpotify(inputTextPro.text);
+            spotifyScript.SearchSpotify(inputTextPro.text);
         }
         #endregion
 

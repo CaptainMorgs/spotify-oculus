@@ -28,6 +28,7 @@ public class PlaylistScript : MonoBehaviour
     public AudioAnalysis audioAnalysis;
     public UnityEngine.UI.Image image;
     public Sprite sprite;
+    public FullAlbum fullAlbum;
 
     // Use this for initialization
     void Start()
@@ -113,18 +114,18 @@ public class PlaylistScript : MonoBehaviour
     {
         //just plays the artists top song
         SeveralTracks artistTopTracks = script.GetArtistsTopTracks(fullArtist.Id);
-        script.playSongURI(artistTopTracks.Tracks[0].Uri);
+        script.PlaySongUri(artistTopTracks.Tracks[0].Uri);
     }
 
     private void playPlaylist()
     {
-        script.playURI(playlistURI);
+        script.PlayUri(playlistURI);
         //	recordPlayerScript.recordPlayerActive = true;
     }
 
     private void playSong()
     {
-        script.playSongURI(playlistURI);
+        script.PlaySongUri(playlistURI);
         //     recordPlayerScript.recordPlayerActive = true;
     }
 

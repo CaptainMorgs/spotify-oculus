@@ -13,6 +13,7 @@ TagManager:
   - playlist
   - key
   - artist
+  - popularity
   layers:
   - Default
   - TransparentFX

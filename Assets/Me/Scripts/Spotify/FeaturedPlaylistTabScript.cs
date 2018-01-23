@@ -26,7 +26,7 @@ public class FeaturedPlaylistTabScript : MonoBehaviour
 
         StartCoroutine(loadFeaturedPlaylists());
 
-        spotifyManagerScript.getContext();
+        spotifyManagerScript.GetContext();
     }
 
         public IEnumerator loadFeaturedPlaylists()

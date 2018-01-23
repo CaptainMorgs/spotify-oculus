@@ -28,7 +28,7 @@ public class TextSearch : MonoBehaviour {
         if (searchTerm != null)
         {
             Debug.Log("Search query: " + searchTerm);
-            script.searchSpotify(searchTerm);
+            script.SearchSpotify(searchTerm);
         }
         else {
             Debug.LogError("Null search term");

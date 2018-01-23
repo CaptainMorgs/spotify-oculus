@@ -16,7 +16,7 @@ public class PausePlayback : MonoBehaviour {
 	}
 
 	public void PausePlaybackFunction() {
-		script.pausePlayback();
+		script.PausePlayback();
 		recordPlayerScript.recordPlayerActive = false;
 	}
 
