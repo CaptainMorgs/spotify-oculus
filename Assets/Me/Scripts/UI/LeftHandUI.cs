@@ -29,6 +29,7 @@ public class LeftHandUI : MonoBehaviour {
 		
 	}
 
+    //TODO surely this can be cleaner....
     public void OnRayCastHit()
     {
         gameObjectName = transform.name;
@@ -57,7 +58,7 @@ public class LeftHandUI : MonoBehaviour {
         {
             spotifyManagerScript.SetRepeatMode();
         }
-        else if (gameObjectName.Equals("Toggle"))
+        else if (gameObjectName.Equals("PlayOnClick"))
         {
             UnityEngine.UI.Toggle toggle = gameObject.GetComponent<UnityEngine.UI.Toggle>();
             if (toggle.isOn)
@@ -72,6 +73,10 @@ public class LeftHandUI : MonoBehaviour {
                 Debug.Log("Play on click set to false");
             }
         }
+        else if (gameObjectName.Equals("Reload"))
+        {
+            SaveLoad.Reload();
+        }
         else {
             Debug.LogError("Cannot find UI Gameobject by name");
         }
@@ -83,7 +88,7 @@ public class LeftHandUI : MonoBehaviour {
         {
             isHovering = true;
             transform.localScale += new Vector3(0.05f, 0.05f, 0.05f);
-            if (!gameObjectName.Equals("Toggle"))
+            if (!gameObjectName.Equals("PlayOnClick"))
             {
                 Color color = GetComponent<Image>().color;
                 if (color != null)

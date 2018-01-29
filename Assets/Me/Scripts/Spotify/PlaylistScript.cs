@@ -7,10 +7,12 @@ using SpotifyAPI.Web.Enums; //Enums
 using SpotifyAPI.Web.Models;
 using System;
 
+
 public class PlaylistScript : MonoBehaviour
 {
-
-    private string playlistName, playlistURI;
+    //TODO make everything public and remove getters/setters
+    public string playlistName, playlistURI, artistName;
+    public int popularity;
     private GameObject spotifyManager;
     private Spotify script;
     public GameObject playlistNameObject, recordPlayer;
@@ -21,14 +23,15 @@ public class PlaylistScript : MonoBehaviour
     private MeshRenderer meshRenderer;
     public GameObject spriteGameObject;
     private SpriteRenderer spriteRenderer;
-    private SimplePlaylist simplePlaylist;
-    private FullTrack fullTrack;
+    public SimplePlaylist simplePlaylist;
+    public FullTrack fullTrack;
     public SimpleAlbum simpleAlbum;
     public FullArtist fullArtist;
     public AudioAnalysis audioAnalysis;
     public UnityEngine.UI.Image image;
     public Sprite sprite;
     public FullAlbum fullAlbum;
+    public WWW www;
 
     // Use this for initialization
     void Start()
@@ -44,6 +47,23 @@ public class PlaylistScript : MonoBehaviour
 
     }
 
+    public PlaylistScript(PlaylistScriptData playlistScriptData)
+    {
+        playlistName = playlistScriptData.playlistName;
+        playlistURI = playlistScriptData.playlistURI;
+        artistName = playlistScriptData.artistName;
+        popularity = playlistScriptData.popularity;
+        //  simplePlaylist = playlistScriptData.simplePlaylist;
+        //   fullTrack = playlistScriptData.fullTrack;
+        //   simpleAlbum = playlistScriptData.simpleAlbum;
+        //   fullArtist = playlistScriptData.fullArtist;
+        //  audioAnalysis = playlistScriptData.audioAnalysis;
+        //    image = playlistScriptData.image;
+        //     sprite = playlistScriptData.sprite;
+        //  fullAlbum = playlistScriptData.fullAlbum;
+        //    www = playlistScriptData.www;
+    }
+
     public void setPlaylistURI(string playlistURI)
     {
         this.playlistURI = playlistURI;
@@ -57,7 +77,7 @@ public class PlaylistScript : MonoBehaviour
     public void setPlaylistName(string playlistName)
     {
         this.playlistName = playlistName;
-        playlistNameText.text = playlistName;
+       // playlistNameText.text = playlistName;
 
     }
 

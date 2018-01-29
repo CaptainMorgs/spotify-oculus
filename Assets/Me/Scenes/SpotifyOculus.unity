@@ -408,6 +408,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 711216322}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 562335814}
@@ -1400,6 +1404,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 712084515}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 886390956}
@@ -1501,6 +1509,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 377769139}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1890729037}
@@ -1675,6 +1687,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1909131481}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 707720020}
@@ -2210,6 +2226,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1346489498}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1506481235}
@@ -2587,6 +2607,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1485624192}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1868778823}
@@ -2772,6 +2796,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1706525934}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 131996690}
@@ -3950,6 +3978,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 2106734846}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 347053209}
@@ -5044,6 +5076,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 336061732}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 201968291}
@@ -5376,6 +5412,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1834604002}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 925218100}
@@ -6866,6 +6906,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 2111076071}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 759992671}
@@ -8658,6 +8702,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 30202127}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1554970955}
@@ -9689,6 +9737,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 751460670}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 2092343660}
@@ -10228,6 +10280,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 204598320}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 149693257}
@@ -11484,6 +11540,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1176757296}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 2021618785}
@@ -12420,6 +12480,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 344316913}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1806101824}
@@ -12521,6 +12585,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1048899342}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1277887729}
@@ -13019,6 +13087,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 785839206}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 405835785}
@@ -14041,6 +14113,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1789204082}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 350082520}
@@ -14437,6 +14513,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1274483489}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1935737791}
@@ -14661,6 +14741,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1548672549}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1098510262}
@@ -15802,6 +15886,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1506877333}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1307865738}
@@ -16448,6 +16536,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 2108409059}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 780831567}
@@ -16733,6 +16825,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 274795374}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 680034040}
@@ -17926,6 +18022,131 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 751460670}
+--- !u!1 &751559666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 751559667}
+  - component: {fileID: 751559671}
+  - component: {fileID: 751559670}
+  - component: {fileID: 751559669}
+  - component: {fileID: 751559668}
+  m_Layer: 11
+  m_Name: Reload
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &751559667
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 751559666}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0007}
+  m_LocalScale: {x: 0.4013949, y: 2.1487372, z: 1}
+  m_Children:
+  - {fileID: 1003386316}
+  m_Father: {fileID: 1302835578}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -127.1, y: 84.7}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &751559668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 751559666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49bc1d43195f37143960c74b45aaf87e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RaycastGameObject: {fileID: 307864045}
+  idleTransparancy: 0.8
+--- !u!114 &751559669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 751559666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 751559670}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &751559670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 751559666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &751559671
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 751559666}
 --- !u!1 &759992671
 GameObject:
   m_ObjectHideFlags: 0
@@ -18329,6 +18550,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 726409687}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 12091254}
@@ -19529,6 +19754,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 2144445961}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1496719269}
@@ -19962,6 +20191,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1524318894}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1369934937}
@@ -20145,6 +20378,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 947485319}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1136463079}
@@ -20499,6 +20736,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 196560771}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 623036279}
@@ -20955,6 +21196,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1792752698}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 42444095}
@@ -21212,6 +21457,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1385082981}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1434518293}
@@ -21601,6 +21850,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 348627632}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 176796153}
@@ -21793,6 +22046,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1383305594}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 550896125}
@@ -22823,6 +23080,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 563456300}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 548442306}
@@ -23400,6 +23661,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1982338513}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 555156606}
@@ -23501,6 +23766,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 453684584}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 254057874}
@@ -23559,6 +23828,159 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 995923552}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1003386315
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1003386316}
+  - component: {fileID: 1003386318}
+  - component: {fileID: 1003386317}
+  m_Layer: 11
+  m_Name: 'Label '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1003386316
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1003386315}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0017}
+  m_LocalScale: {x: 2.580071, y: 0.4623129, z: 1}
+  m_Children: []
+  m_Father: {fileID: 751559667}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 407, y: -0.5}
+  m_SizeDelta: {x: 4.4700165, y: 2.7999992}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1003386317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1003386315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1453722849, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_text: Reload
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_outlineColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontSize: 27
+  m_fontSizeBase: 27
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_textAlignment: 257
+  m_isAlignmentEnumConverted: 1
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_firstOverflowCharacterIndex: -1
+  m_linkedTextComponent: {fileID: 0}
+  m_isLinkedTextComponent: 0
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_ignoreRectMaskCulling: 0
+  m_ignoreCulling: 1
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_firstVisibleCharacter: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_textInfo:
+    textComponent: {fileID: 1003386317}
+    characterCount: 6
+    spriteCount: 0
+    spaceCount: 0
+    wordCount: 1
+    linkCount: 0
+    lineCount: 1
+    pageCount: 1
+    materialCount: 1
+  m_havePropertiesChanged: 0
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+  m_isInputParsingRequired: 0
+  m_inputSource: 0
+  m_hasFontAssetChanged: 0
+  m_subTextObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1003386318
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1003386315}
 --- !u!1 &1014312606
 GameObject:
   m_ObjectHideFlags: 0
@@ -24072,6 +24494,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1210674022}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 529486689}
@@ -24173,6 +24599,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1353267384}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 468187379}
@@ -24274,6 +24704,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1339742247}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 359521727}
@@ -24820,6 +25254,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 469114099}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1823467536}
@@ -25438,6 +25876,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1475776548}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1301750632}
@@ -25602,6 +26044,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 494259899}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1555071408}
@@ -26664,6 +27110,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 285791508}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1480131880}
@@ -26765,6 +27215,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 347205937}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 330869456}
@@ -27299,6 +27753,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1555705340}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 562394490}
@@ -29784,6 +30242,7 @@ RectTransform:
   m_LocalScale: {x: 1.1780324, y: 1.1677201, z: 1}
   m_Children:
   - {fileID: 1972626503}
+  - {fileID: 751559667}
   m_Father: {fileID: 710861147}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -30938,6 +31397,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1981819744}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1545304551}
@@ -31426,11 +31889,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -32392,6 +32855,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1131220955}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 167761487}
@@ -33177,6 +33644,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1681962130}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 975234842}
@@ -33603,6 +34074,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1637485315}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 110482845}
@@ -33990,6 +34465,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 2082998022}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1906581365}
@@ -34498,6 +34977,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1685772209}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1708297355}
@@ -35445,6 +35928,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 525347093}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 612358757}
@@ -36729,6 +37216,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1948815188}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1097903312}
@@ -37572,6 +38063,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1844065891}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 316863016}
@@ -38241,6 +38736,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 579507570}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 448285407}
@@ -39924,6 +40423,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1438026833}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1578162694}
@@ -40623,6 +41126,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 32613017}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1619279970}
@@ -41755,6 +42262,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1365565584}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1697725237}
@@ -42255,6 +42766,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 488468863}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 120052186}
@@ -44346,6 +44861,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 937820183}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1726029781}
@@ -46386,6 +46905,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1837167431}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 2062047705}
@@ -46693,6 +47216,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1875707354}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 440007806}
@@ -47482,7 +48009,7 @@ GameObject:
   - component: {fileID: 1972626505}
   - component: {fileID: 1972626506}
   m_Layer: 11
-  m_Name: Toggle
+  m_Name: PlayOnClick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47621,6 +48148,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 862057800}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1513031425}
@@ -48121,6 +48652,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 416423543}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1530594788}
@@ -48635,6 +49170,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 771007457}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 924023348}
@@ -48896,6 +49435,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1818625334}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1919015688}
@@ -50561,6 +51104,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1679418054}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1507483803}
@@ -50840,6 +51387,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1419524075}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1581365437}
@@ -50969,6 +51520,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1527935586}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 977186681}
@@ -51572,6 +52127,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 257400624}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 242063213}
@@ -51885,6 +52444,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0ae79aa4f0b9e4fb493809446cb962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playlistName: 
+  playlistURI: 
+  artistName: 
+  popularity: 0
   playlistNameObject: {fileID: 1287870633}
   recordPlayer: {fileID: 1839433447}
   spriteGameObject: {fileID: 1452774445}

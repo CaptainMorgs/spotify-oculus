@@ -5,7 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class VinylUI : MonoBehaviour {
+public class VinylUI : MonoBehaviour
+{
 
     public TextMeshProUGUI artistNameProText, songNameProText, descriptionProText;
     public Image uiImage;
@@ -14,14 +15,16 @@ public class VinylUI : MonoBehaviour {
     private PlaylistScript playlistScript;
 
     // Use this for initialization
-    void Start () {
-       
+    void Start()
+    {
+
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     public void InitializeUI(PlaylistScript playlistScript)
     {
@@ -29,9 +32,9 @@ public class VinylUI : MonoBehaviour {
 
         if (playlistScript.gameObject.tag == "song")
         {
-            artistNameProText.text += playlistScript.getFullTrack().Artists[0].Name;
-            songNameProText.text += playlistScript.getFullTrack().Name;
-            descriptionProText.text += ("Popularity: " + playlistScript.getFullTrack().Popularity);
+            artistNameProText.text += playlistScript.artistName;
+            songNameProText.text += playlistScript.playlistName;
+            descriptionProText.text += ("Popularity: " + playlistScript.popularity);
         }
         else if (playlistScript.gameObject.tag == "artist")
         {
@@ -51,13 +54,14 @@ public class VinylUI : MonoBehaviour {
                 descriptionProText.text += ("Playlist Owner: " + playlistScript.getSimplePlaylist().Owner.DisplayName);
             }
         }
-        else {
+        else
+        {
             Debug.LogError("Could not initialize Vinyl UI, tag not found");
         }
 
-      //  FadeInImage();
+        //  FadeInImage();
 
-      //  FadeInPanel();
+        //  FadeInPanel();
     }
 
     //Fades a color's alpha from 0 to 1 (transparent to fully visible)
@@ -74,7 +78,7 @@ public class VinylUI : MonoBehaviour {
 
     public void FadeInPanel()
     {
-       panelImage = GetComponent<Image>();
+        panelImage = GetComponent<Image>();
 
         //TODO look into Graphic.CrossFadeAlpha
         if (panelImage != null)
@@ -87,7 +91,8 @@ public class VinylUI : MonoBehaviour {
 
             }
         }
-        else {
+        else
+        {
             Debug.LogError("panelImage is null");
         }
     }

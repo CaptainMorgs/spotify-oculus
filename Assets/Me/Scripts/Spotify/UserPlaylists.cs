@@ -58,7 +58,7 @@ public class UserPlaylists : MonoBehaviour
                 playlistScript.setPlaylistURI(usersPlaylists.Items[i].Uri);
                 //  playlistScript.fullArtist = usersPlaylists.Items[i];
                 playlistScript.sprite = ConvertWWWToSprite(imageURLWWW);
-
+         //       SaveLoad.savedPlaylists.Add(playlistScript);
             }
         }
     }
