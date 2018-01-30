@@ -13,11 +13,13 @@ public class LeftHandUI : MonoBehaviour {
     private Raycast raycast;
     private bool isHovering = false;
     public float idleTransparancy = 0.8f;
+    private SaveLoad saveLoad;
 
     // Use this for initialization
     void Start () {
         spotifyManager = GameObject.Find("SpotifyManager");
         spotifyManagerScript = spotifyManager.GetComponent<Spotify>();
+        saveLoad = spotifyManager.GetComponent<SaveLoad>();
         raycast = RaycastGameObject.GetComponent<Raycast>();
         gameObjectName = transform.name;
         //Ignore collisions between grabble and handUI layer, i.e. hand ui and vinyl (they can collide when holding vinyl)
@@ -75,7 +77,7 @@ public class LeftHandUI : MonoBehaviour {
         }
         else if (gameObjectName.Equals("Reload"))
         {
-            SaveLoad.Reload();
+            saveLoad.Reload();
         }
         else {
             Debug.LogError("Cannot find UI Gameobject by name");

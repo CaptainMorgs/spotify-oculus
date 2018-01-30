@@ -14,19 +14,23 @@ public class FeaturedPlaylistTabScript : MonoBehaviour
     private MeshRenderer[] meshRenderers;
     private GameObject spotifyManager;
     private Spotify spotifyManagerScript;
+    public SaveLoad saveLoad;
 
     // Use this for initialization
     void Start()
     {
         thisGameObject = transform.root.gameObject;
-        meshRenderers = thisGameObject.GetComponentsInChildren<MeshRenderer>();
+        meshRenderers = GetComponentsInChildren<MeshRenderer>();
 
         spotifyManager = GameObject.Find("SpotifyManager");
         spotifyManagerScript = spotifyManager.GetComponent<Spotify>();
+        saveLoad = spotifyManager.GetComponent<SaveLoad>();
 
-        StartCoroutine(loadFeaturedPlaylists());
+     //  StartCoroutine(loadFeaturedPlaylists());
 
-        spotifyManagerScript.GetContext();
+     //   LoadFeaturedPlaylistFromFile();
+
+     //   spotifyManagerScript.GetContext();
     }
 
         public IEnumerator loadFeaturedPlaylists()
@@ -56,19 +60,89 @@ public class FeaturedPlaylistTabScript : MonoBehaviour
                 playlistScript.setPlaylistURI(featuredPlaylists.Playlists.Items[i].Uri);
                 playlistScript.setSimplePlaylist(featuredPlaylists.Playlists.Items[i]);
                 playlistScript.sprite = ConvertWWWToSprite(imageURLWWW);
+                saveLoad.SaveTextureToFilePNG(ConvertWWWToTexture(imageURLWWW), "featuredPlaylist" + i + ".png");
+                saveLoad.savedFeaturedPlaylists.Add(new PlaylistScriptData(playlistScript));
+            //    saveLoad.QuickSaveSpriteToFile(playlistScript.sprite, "featuredPlaylistSprite" + i);
             }
         }
+    }
+
+    private Texture2D ConvertWWWToTexture(WWW www)
+    {
+        //TODO look at what texture format is best to use
+        Texture2D texture = new Texture2D(www.texture.width, www.texture.height, TextureFormat.RGBA32, false);
+        www.LoadImageIntoTexture(texture);
+        // Debug.Log("Texture width " + www.texture.width + ", texture height " + www.texture.height);    
+
+        return texture;
     }
 
     private Sprite ConvertWWWToSprite(WWW www)
     {
 
-        Texture2D texture = new Texture2D(www.texture.width, www.texture.height, TextureFormat.DXT1, false);
+        Texture2D texture = new Texture2D(www.texture.width, www.texture.height, TextureFormat.RGBA32, false);
         www.LoadImageIntoTexture(texture);
 
         Rect rec = new Rect(0, 0, texture.width, texture.height);
         Sprite spriteToUse = Sprite.Create(texture, rec, new Vector2(0.5f, 0.5f), 100);
 
         return spriteToUse;
+    }
+
+    private Sprite ConvertTextureToSprite(Texture2D texture)
+    {
+        Rect rec = new Rect(0, 0, texture.width, texture.height);
+        return Sprite.Create(texture, rec, new Vector2(0.5f, 0.5f), 1);
+    }
+
+    public void LoadFeaturedPlaylistFromFile()
+    {
+     //   saveLoad.Load();
+
+        for (int i = 0; i < meshRenderers.Length; i++)
+        {
+            PlaylistScriptData playlistScriptLoadedData = saveLoad.savedFeaturedPlaylists[i];
+
+            PlaylistScript playlistScriptLoaded = new PlaylistScript(playlistScriptLoadedData);
+
+            GameObject meshRendererGameObject = meshRenderers[i].transform.gameObject;
+
+            PlaylistScript playlistScript = meshRendererGameObject.GetComponent<PlaylistScript>();
+
+            Sprite sprite = saveLoad.QuickLoadSpriteFromFile("featuredPlaylistSprite" + i);
+
+            meshRenderers[i].material.mainTexture = sprite.texture;
+
+            playlistScript.setPlaylistName(playlistScriptLoaded.playlistName);
+            playlistScript.setPlaylistURI(playlistScriptLoaded.playlistURI);
+            playlistScript.artistName = playlistScriptLoaded.artistName;
+            playlistScript.sprite = saveLoad.QuickLoadSpriteFromFile("featuredPlaylistSprite" + i);
+        }
+    }
+
+    public void LoadFeaturedPlaylistFromFilePNG()
+    {
+        //TODO take this out
+        //   saveLoad.Load();
+
+        for (int i = 0; i < meshRenderers.Length; i++)
+        {
+            PlaylistScriptData playlistScriptLoadedData = saveLoad.savedFeaturedPlaylists[i];
+
+            PlaylistScript playlistScriptLoaded = new PlaylistScript(playlistScriptLoadedData);
+
+            GameObject meshRendererGameObject = meshRenderers[i].transform.gameObject;
+
+            PlaylistScript playlistScript = meshRendererGameObject.GetComponent<PlaylistScript>();
+
+            Texture2D texture = saveLoad.LoadTextureFromFilePNG("featuredPlaylist" + i + ".png");
+
+            meshRenderers[i].material.mainTexture = texture;
+
+            playlistScript.setPlaylistName(playlistScriptLoaded.playlistName);
+            playlistScript.setPlaylistURI(playlistScriptLoaded.playlistURI);
+            playlistScript.artistName = playlistScriptLoaded.artistName;
+            playlistScript.sprite = ConvertTextureToSprite(texture);
+        }
     }
 }

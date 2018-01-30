@@ -258,7 +258,7 @@ public class Spotify : MonoBehaviour
         ErrorResponse error = _spotify.ResumePlayback(context.Device.Id, uris: new List<string> { songURI });
         recordPlayerScript.recordPlayerActive = true;
 
-        if (error.Error != null)
+        if (error.HasError())
         {
             Debug.LogError(error.Error.Message);
             Debug.LogError(songURI);

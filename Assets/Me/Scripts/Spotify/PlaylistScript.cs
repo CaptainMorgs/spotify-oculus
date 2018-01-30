@@ -11,7 +11,7 @@ using System;
 public class PlaylistScript : MonoBehaviour
 {
     //TODO make everything public and remove getters/setters
-    public string playlistName, playlistURI, artistName;
+    public string playlistName, playlistURI, artistName, artistId;
     public int popularity;
     private GameObject spotifyManager;
     private Spotify script;
@@ -53,6 +53,9 @@ public class PlaylistScript : MonoBehaviour
         playlistURI = playlistScriptData.playlistURI;
         artistName = playlistScriptData.artistName;
         popularity = playlistScriptData.popularity;
+        artistId = playlistScriptData.artistId;
+
+
         //  simplePlaylist = playlistScriptData.simplePlaylist;
         //   fullTrack = playlistScriptData.fullTrack;
         //   simpleAlbum = playlistScriptData.simpleAlbum;
@@ -77,7 +80,7 @@ public class PlaylistScript : MonoBehaviour
     public void setPlaylistName(string playlistName)
     {
         this.playlistName = playlistName;
-       // playlistNameText.text = playlistName;
+        // playlistNameText.text = playlistName;
 
     }
 
@@ -133,8 +136,16 @@ public class PlaylistScript : MonoBehaviour
     private void playArtist()
     {
         //just plays the artists top song
-        SeveralTracks artistTopTracks = script.GetArtistsTopTracks(fullArtist.Id);
-        script.PlaySongUri(artistTopTracks.Tracks[0].Uri);
+        if (artistId != "")
+        {
+            script = spotifyManager.GetComponent<Spotify>();
+            SeveralTracks artistTopTracks = script.GetArtistsTopTracks(artistId);
+            script.PlaySongUri(artistTopTracks.Tracks[0].Uri);
+        }
+        else
+        {
+            Debug.LogError("artistId is empty");
+        }
     }
 
     private void playPlaylist()

@@ -23,6 +23,7 @@ public class ChartsScript : MonoBehaviour
     private ArrayList chartTracks = new ArrayList();
     public float streamsScaling = 0.00000001f;
     private const int MESHRENDERERSIZE = 10;
+    private SaveLoad saveLoad;
 
     // Use this for initialization
     void Start()
@@ -36,10 +37,10 @@ public class ChartsScript : MonoBehaviour
         spotifyManager = GameObject.Find("SpotifyManager");
         spotifyManagerScript = spotifyManager.GetComponent<Spotify>();
         csvReader = spotifyManager.GetComponent<CSVReader>();
-
+        saveLoad = spotifyManager.GetComponent<SaveLoad>();
         chartTracks = csvReader.chartTrackList;
 
-        StartCoroutine(LoadChartTracks());
+   //     StartCoroutine(LoadChartTracks());
     }
 
     private List<GameObject> GetChildGameObjectWithTag(string comparativeTag)
@@ -106,12 +107,63 @@ public class ChartsScript : MonoBehaviour
                     meshRenderers[i].material.mainTexture = imageURLWWW.texture;
 
                     playlistScript.setFullTrack(fullTrack);
+                    playlistScript.setPlaylistName(fullTrack.Name);
+                    playlistScript.setPlaylistURI(fullTrack.Uri);
+                    playlistScript.artistId = fullTrack.Artists[0].Id;
+                    playlistScript.artistName = fullTrack.Artists[0].Name;
                     playlistScript.sprite = ConvertWWWToSprite(imageURLWWW);
+
+                    saveLoad.SaveTextureToFilePNG(Converter.ConvertWWWToTexture(imageURLWWW), "chartTrack" + i + ".png");
+                    saveLoad.savedChartTracks.Add(new PlaylistScriptData(playlistScript));
 
                     Vector3 v = popCubes[i].transform.localScale;
                     popCubes[i].transform.localScale = new Vector3(v.x, float.Parse(chartTrack.streams) * streamsScaling, v.z);
                 }
             }
+            yield return new WaitForSeconds(10);
+            saveLoad.Save();
+        }
+    }
+
+    public void LoadChartTracksFromFilePNG()
+    {
+        //TODO take this out
+        spotifyManager = GameObject.Find("SpotifyManager");
+
+        saveLoad = spotifyManager.GetComponent<SaveLoad>();
+
+        quads = GetChildGameObjectWithTag("song");
+
+        meshRenderers = GetMeshRenderers(quads);
+
+        csvReader = spotifyManager.GetComponent<CSVReader>();
+
+        chartTracks = csvReader.chartTrackList;
+
+        for (int i = 0; i < meshRenderers.Length; i++)
+        {
+            ChartTrack chartTrack = (ChartTrack)chartTracks[i + 1];
+
+            PlaylistScriptData playlistScriptLoadedData = saveLoad.savedChartTracks[i];
+
+            PlaylistScript playlistScriptLoaded = new PlaylistScript(playlistScriptLoadedData);
+
+            GameObject meshRendererGameObject = meshRenderers[i].transform.gameObject;
+
+            PlaylistScript playlistScript = meshRendererGameObject.GetComponent<PlaylistScript>();
+
+            Texture2D texture = saveLoad.LoadTextureFromFilePNG("chartTrack" + i + ".png");
+
+            meshRenderers[i].material.mainTexture = texture;
+
+            playlistScript.setPlaylistName(playlistScriptLoaded.playlistName);
+            playlistScript.setPlaylistURI(playlistScriptLoaded.playlistURI);
+            playlistScript.artistName = playlistScriptLoaded.artistName;
+            playlistScript.artistId = playlistScriptLoaded.artistId;
+            playlistScript.sprite = Converter.ConvertTextureToSprite(texture);
+
+            Vector3 v = popCubes[i].transform.localScale;
+            popCubes[i].transform.localScale = new Vector3(v.x, float.Parse(chartTrack.streams) * streamsScaling, v.z);
         }
     }
 

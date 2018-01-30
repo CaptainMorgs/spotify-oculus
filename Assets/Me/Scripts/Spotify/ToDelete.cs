@@ -7,7 +7,7 @@ using SpotifyAPI.Web.Models; //Models for the JSON-responses
 using UnityEngine;
 
 
-public class UserPlaylists : MonoBehaviour
+public class ToDelete : MonoBehaviour
 {
 
     private GameObject thisGameObject;
@@ -15,7 +15,6 @@ public class UserPlaylists : MonoBehaviour
     private GameObject spotifyManager;
     private Spotify spotifyManagerScript;
     private SaveLoad saveLoad;
-
     // Use this for initialization
     void Start()
     {
@@ -26,10 +25,10 @@ public class UserPlaylists : MonoBehaviour
         spotifyManagerScript = spotifyManager.GetComponent<Spotify>();
         saveLoad = spotifyManager.GetComponent<SaveLoad>();
 
-      //  StartCoroutine(LoadUserPlaylists());
+        StartCoroutine(LoadUsersFollowedArtists());
     }
 
-    public IEnumerator LoadUserPlaylists()
+    public IEnumerator LoadUsersFollowedArtists()
     {
         //TODO subscribe to spotify manager event of authorization being complete
         yield return new WaitForSeconds(2);
@@ -60,20 +59,28 @@ public class UserPlaylists : MonoBehaviour
                 playlistScript.setPlaylistURI(usersPlaylists.Items[i].Uri);
                 //  playlistScript.fullArtist = usersPlaylists.Items[i];
                 playlistScript.sprite = ConvertWWWToSprite(imageURLWWW);
-                //       SaveLoad.savedTopTracks.Add(playlistScript);
-                saveLoad.SaveTextureToFilePNG(Converter.ConvertWWWToTexture(imageURLWWW), "userPlaylist" + i + ".png");
-                saveLoad.savedUserPlaylists.Add(new PlaylistScriptData(playlistScript));
+                saveLoad.SaveTextureToFilePNG(Converter.ConvertWWWToTexture(imageURLWWW), "userFollowedArtist" + i + ".png");
+                saveLoad.savedUserFollowedArtists.Add(new PlaylistScriptData(playlistScript));
+                Debug.Log("user followed artist running " + i);
             }
-            
         }
+
+        yield return new WaitForSeconds(10);
+        saveLoad.Save();
     }
 
-    public void LoadUserPlaylistsFromFilePNG()
+    public void LoadUserFollowedArtistsFromFilePNG()
     {
+        //TODO take this out
+        //   saveLoad.Load();
+
+        meshRenderers = GetComponentsInChildren<MeshRenderer>();
+        spotifyManager = GameObject.Find("SpotifyManager");
+        saveLoad = spotifyManager.GetComponent<SaveLoad>();
 
         for (int i = 0; i < meshRenderers.Length; i++)
         {
-            PlaylistScriptData playlistScriptLoadedData = saveLoad.savedUserPlaylists[i];
+            PlaylistScriptData playlistScriptLoadedData = saveLoad.savedUserFollowedArtists[i];
 
             PlaylistScript playlistScriptLoaded = new PlaylistScript(playlistScriptLoadedData);
 
@@ -81,10 +88,11 @@ public class UserPlaylists : MonoBehaviour
 
             PlaylistScript playlistScript = meshRendererGameObject.GetComponent<PlaylistScript>();
 
-            Texture2D texture = saveLoad.LoadTextureFromFilePNG("userPlaylist" + i + ".png");
+            Texture2D texture = saveLoad.LoadTextureFromFilePNG("userFollowedArtist" + i + ".png");
 
             meshRenderers[i].material.mainTexture = texture;
 
+            playlistScript.artistId = playlistScriptLoaded.artistId;
             playlistScript.setPlaylistName(playlistScriptLoaded.playlistName);
             playlistScript.setPlaylistURI(playlistScriptLoaded.playlistURI);
             playlistScript.artistName = playlistScriptLoaded.artistName;

@@ -411,6 +411,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 711216322}
   recordPlayer: {fileID: 1839433447}
@@ -1288,6 +1289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b5a009a417e4084d994f90de7243815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveLoad: {fileID: 0}
 --- !u!1 &67339453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1407,6 +1409,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 712084515}
   recordPlayer: {fileID: 1839433447}
@@ -1512,6 +1515,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 377769139}
   recordPlayer: {fileID: 1839433447}
@@ -1690,6 +1694,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1909131481}
   recordPlayer: {fileID: 1839433447}
@@ -2229,6 +2234,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1346489498}
   recordPlayer: {fileID: 1839433447}
@@ -2610,6 +2616,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1485624192}
   recordPlayer: {fileID: 1839433447}
@@ -2799,6 +2806,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1706525934}
   recordPlayer: {fileID: 1839433447}
@@ -3981,6 +3989,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 2106734846}
   recordPlayer: {fileID: 1839433447}
@@ -5079,6 +5088,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 336061732}
   recordPlayer: {fileID: 1839433447}
@@ -5415,6 +5425,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1834604002}
   recordPlayer: {fileID: 1839433447}
@@ -6909,6 +6920,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 2111076071}
   recordPlayer: {fileID: 1839433447}
@@ -8705,6 +8717,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 30202127}
   recordPlayer: {fileID: 1839433447}
@@ -9740,6 +9753,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 751460670}
   recordPlayer: {fileID: 1839433447}
@@ -10283,6 +10297,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 204598320}
   recordPlayer: {fileID: 1839433447}
@@ -11543,6 +11558,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1176757296}
   recordPlayer: {fileID: 1839433447}
@@ -12483,6 +12499,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 344316913}
   recordPlayer: {fileID: 1839433447}
@@ -12588,6 +12605,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1048899342}
   recordPlayer: {fileID: 1839433447}
@@ -13090,6 +13108,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 785839206}
   recordPlayer: {fileID: 1839433447}
@@ -14116,6 +14135,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1789204082}
   recordPlayer: {fileID: 1839433447}
@@ -14516,6 +14536,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1274483489}
   recordPlayer: {fileID: 1839433447}
@@ -14744,6 +14765,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1548672549}
   recordPlayer: {fileID: 1839433447}
@@ -15889,6 +15911,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1506877333}
   recordPlayer: {fileID: 1839433447}
@@ -16323,6 +16346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90228d6c3062d2f4b8502abcc2b3f208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveLoad: {fileID: 0}
 --- !u!4 &670271843
 Transform:
   m_ObjectHideFlags: 0
@@ -16539,6 +16563,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 2108409059}
   recordPlayer: {fileID: 1839433447}
@@ -16828,6 +16853,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 274795374}
   recordPlayer: {fileID: 1839433447}
@@ -18034,6 +18060,7 @@ GameObject:
   - component: {fileID: 751559670}
   - component: {fileID: 751559669}
   - component: {fileID: 751559668}
+  - component: {fileID: 751559672}
   m_Layer: 11
   m_Name: Reload
   m_TagString: Untagged
@@ -18147,6 +18174,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 751559666}
+--- !u!65 &751559672
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 751559666}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 165.76, y: -27.9, z: 0.001}
+  m_Center: {x: -0.44, y: 0.4, z: 0}
 --- !u!1 &759992671
 GameObject:
   m_ObjectHideFlags: 0
@@ -18553,6 +18592,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 726409687}
   recordPlayer: {fileID: 1839433447}
@@ -19757,6 +19797,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 2144445961}
   recordPlayer: {fileID: 1839433447}
@@ -20194,6 +20235,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1524318894}
   recordPlayer: {fileID: 1839433447}
@@ -20381,6 +20423,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 947485319}
   recordPlayer: {fileID: 1839433447}
@@ -20739,6 +20782,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 196560771}
   recordPlayer: {fileID: 1839433447}
@@ -21199,6 +21243,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1792752698}
   recordPlayer: {fileID: 1839433447}
@@ -21460,6 +21505,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1385082981}
   recordPlayer: {fileID: 1839433447}
@@ -21853,6 +21899,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 348627632}
   recordPlayer: {fileID: 1839433447}
@@ -22049,6 +22096,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1383305594}
   recordPlayer: {fileID: 1839433447}
@@ -22646,6 +22694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90228d6c3062d2f4b8502abcc2b3f208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveLoad: {fileID: 0}
 --- !u!4 &949400528
 Transform:
   m_ObjectHideFlags: 0
@@ -23083,6 +23132,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 563456300}
   recordPlayer: {fileID: 1839433447}
@@ -23664,6 +23714,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1982338513}
   recordPlayer: {fileID: 1839433447}
@@ -23769,6 +23820,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 453684584}
   recordPlayer: {fileID: 1839433447}
@@ -23957,11 +24009,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -24032,6 +24084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 986963067a103384d8cbe513c4de7fe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveLoad: {fileID: 0}
 --- !u!1 &1017336767
 GameObject:
   m_ObjectHideFlags: 0
@@ -24497,6 +24550,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1210674022}
   recordPlayer: {fileID: 1839433447}
@@ -24602,6 +24656,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1353267384}
   recordPlayer: {fileID: 1839433447}
@@ -24707,6 +24762,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1339742247}
   recordPlayer: {fileID: 1839433447}
@@ -25257,6 +25313,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 469114099}
   recordPlayer: {fileID: 1839433447}
@@ -25879,6 +25936,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1475776548}
   recordPlayer: {fileID: 1839433447}
@@ -26047,6 +26105,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 494259899}
   recordPlayer: {fileID: 1839433447}
@@ -27113,6 +27172,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 285791508}
   recordPlayer: {fileID: 1839433447}
@@ -27218,6 +27278,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 347205937}
   recordPlayer: {fileID: 1839433447}
@@ -27756,6 +27817,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1555705340}
   recordPlayer: {fileID: 1839433447}
@@ -28816,6 +28878,7 @@ GameObject:
   - component: {fileID: 1237494729}
   - component: {fileID: 1237494731}
   - component: {fileID: 1237494732}
+  - component: {fileID: 1237494733}
   m_Layer: 0
   m_Name: SpotifyManager
   m_TagString: Untagged
@@ -28875,6 +28938,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9768e71b82da3c04383bde34f727a12b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1237494733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1237494728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cc227844129ac142b451c0f39e4dc42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  topTracksGameObject: {fileID: 1014312606}
+  featuredPlaylistTabScript: {fileID: 670271842}
+  topArtistsScript: {fileID: 1616741714}
+  newAlbumReleasesScript: {fileID: 64889732}
+  userPlaylists: {fileID: 324051518}
+  usersFollowedArtistsScript: {fileID: 1938543226}
+  chartScript: {fileID: 1490358382}
+  savedTopTracks: []
+  savedFeaturedPlaylists: []
+  savedTopArtists: []
+  savedNewReleases: []
+  savedUserPlaylists: []
+  savedUserFollowedArtists: []
+  savedChartTracks: []
 --- !u!1 &1238880049
 GameObject:
   m_ObjectHideFlags: 0
@@ -31400,6 +31488,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1981819744}
   recordPlayer: {fileID: 1839433447}
@@ -31889,11 +31978,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -32858,6 +32947,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1131220955}
   recordPlayer: {fileID: 1839433447}
@@ -33647,6 +33737,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1681962130}
   recordPlayer: {fileID: 1839433447}
@@ -34077,6 +34168,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1637485315}
   recordPlayer: {fileID: 1839433447}
@@ -34468,6 +34560,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 2082998022}
   recordPlayer: {fileID: 1839433447}
@@ -34980,6 +35073,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1685772209}
   recordPlayer: {fileID: 1839433447}
@@ -35708,6 +35802,7 @@ MonoBehaviour:
   - {fileID: 1483174392}
   - {fileID: 615304157}
   streamsScaling: 0.000002
+  saveLoad: {fileID: 0}
 --- !u!4 &1490358383
 Transform:
   m_ObjectHideFlags: 0
@@ -35931,6 +36026,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 525347093}
   recordPlayer: {fileID: 1839433447}
@@ -37219,6 +37315,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1948815188}
   recordPlayer: {fileID: 1839433447}
@@ -38066,6 +38163,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1844065891}
   recordPlayer: {fileID: 1839433447}
@@ -38739,6 +38837,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 579507570}
   recordPlayer: {fileID: 1839433447}
@@ -39834,6 +39933,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72c859d2eff73846800e6eb7d8af7ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meshRenderers: []
+  saveLoad: {fileID: 0}
 --- !u!4 &1616741715
 Transform:
   m_ObjectHideFlags: 0
@@ -40426,6 +40527,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1438026833}
   recordPlayer: {fileID: 1839433447}
@@ -41129,6 +41231,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 32613017}
   recordPlayer: {fileID: 1839433447}
@@ -42265,6 +42368,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1365565584}
   recordPlayer: {fileID: 1839433447}
@@ -42769,6 +42873,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 488468863}
   recordPlayer: {fileID: 1839433447}
@@ -44864,6 +44969,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 937820183}
   recordPlayer: {fileID: 1839433447}
@@ -46908,6 +47014,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1837167431}
   recordPlayer: {fileID: 1839433447}
@@ -46992,7 +47099,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1938543225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 051a45468ede1cd49a517a186bcb247a, type: 3}
+  m_Script: {fileID: 11500000, guid: 62a4411e0dd8bc34cad00a902c86cb59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1938543227
@@ -47219,6 +47326,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1875707354}
   recordPlayer: {fileID: 1839433447}
@@ -48151,6 +48259,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 862057800}
   recordPlayer: {fileID: 1839433447}
@@ -48655,6 +48764,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 416423543}
   recordPlayer: {fileID: 1839433447}
@@ -49173,6 +49283,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 771007457}
   recordPlayer: {fileID: 1839433447}
@@ -49438,6 +49549,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1818625334}
   recordPlayer: {fileID: 1839433447}
@@ -51107,6 +51219,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1679418054}
   recordPlayer: {fileID: 1839433447}
@@ -51390,6 +51503,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1419524075}
   recordPlayer: {fileID: 1839433447}
@@ -51523,6 +51637,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1527935586}
   recordPlayer: {fileID: 1839433447}
@@ -52130,6 +52245,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 257400624}
   recordPlayer: {fileID: 1839433447}
@@ -52447,6 +52563,7 @@ MonoBehaviour:
   playlistName: 
   playlistURI: 
   artistName: 
+  artistId: 
   popularity: 0
   playlistNameObject: {fileID: 1287870633}
   recordPlayer: {fileID: 1839433447}

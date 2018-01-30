@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using SpotifyAPI.Web; //Base Namespace
 using SpotifyAPI.Web.Auth; //All Authentication-related classes
 using SpotifyAPI.Web.Enums; //Enums
 using SpotifyAPI.Web.Models; //Models for the JSON-responses
 using UnityEngine;
 
-
+//TODO make references to Converter class
 public class TopTracksScript : MonoBehaviour
 {
 
@@ -16,19 +17,21 @@ public class TopTracksScript : MonoBehaviour
     private Spotify spotifyManagerScript;
     private AudioAnalysis[] audioAnalysisArray;
     public Paging<FullTrack> usersTopTracks;
+    public SaveLoad saveLoad;
 
     // Use this for initialization
     void Start()
     {
         thisGameObject = transform.root.gameObject;
-        meshRenderers = thisGameObject.GetComponentsInChildren<MeshRenderer>();
+        meshRenderers = GetComponentsInChildren<MeshRenderer>();
 
         spotifyManager = GameObject.Find("SpotifyManager");
         spotifyManagerScript = spotifyManager.GetComponent<Spotify>();
+        saveLoad = spotifyManager.GetComponent<SaveLoad>();
 
-        //  StartCoroutine(loadTopTracks());
+         //  StartCoroutine(loadTopTracks());
 
-        LoadTopTracksFromFile();
+        //   LoadTopTracksFromFile();
     }
 
     public IEnumerator loadTopTracks()
@@ -64,33 +67,55 @@ public class TopTracksScript : MonoBehaviour
                 playlistScript.audioAnalysis = spotifyManagerScript.GetAudioAnalysis(usersTopTracks.Items[i].Id);
                 playlistScript.www = imageURLWWW;
                 playlistScript.sprite = ConvertWWWToSprite(imageURLWWW);
-                SaveLoad.savedTopTracks.Add(new PlaylistScriptData(playlistScript));
-                Debug.Log("Adding playlist " + i);
-                SaveLoad.QuickSaveSpriteToFile(playlistScript.sprite, "sprite" + i);
+
+                saveLoad.SaveTextureToFilePNG(ConvertWWWToTexture(imageURLWWW), "topTrack" + i + ".png");
+                saveLoad.savedTopTracks.Add(new PlaylistScriptData(playlistScript));
+                Debug.Log("Adding top track " + i);
+          //      saveLoad.QuickSaveSpriteToFile(playlistScript.sprite, "topTrackSprite" + i);
             }
-            SaveLoad.Save();
+            //TODO subscribe to event of everything being loaded, OR save each individually 
+            yield return new WaitForSeconds(10);
+            saveLoad.Save();
         }
     }
 
     private Sprite ConvertWWWToSprite(WWW www)
     {
-
+        //TODO look at what texture format is best to use
         Texture2D texture = new Texture2D(www.texture.width, www.texture.height, TextureFormat.RGBA32, false);
+        //          Debug.Log("Texture width " + www.texture.width + ", texture height "  + www.texture.height);
         www.LoadImageIntoTexture(texture);
 
         Rect rec = new Rect(0, 0, texture.width, texture.height);
-        Sprite spriteToUse = Sprite.Create(texture, rec, new Vector2(0.5f, 0.5f), 100);
+        Sprite spriteToUse = Sprite.Create(texture, rec, new Vector2(0.5f, 0.5f), 1);
 
         return spriteToUse;
     }
 
-    private void LoadTopTracksFromFile()
+    private Texture2D ConvertWWWToTexture(WWW www)
     {
-        SaveLoad.Load();
+        //TODO look at what texture format is best to use
+        Texture2D texture = new Texture2D(www.texture.width, www.texture.height, TextureFormat.RGBA32, false);
+        www.LoadImageIntoTexture(texture);
+        // Debug.Log("Texture width " + www.texture.width + ", texture height " + www.texture.height);    
+
+        return texture;
+    }
+
+    private Sprite ConvertTextureToSprite(Texture2D texture)
+    {
+        Rect rec = new Rect(0, 0, texture.width, texture.height);
+        return Sprite.Create(texture, rec, new Vector2(0.5f, 0.5f), 1);
+    }
+
+    public void LoadTopTracksFromFile()
+    {
+        //TODO take this out
+        //   saveLoad.Load();
 
         for (int i = 0; i < meshRenderers.Length; i++)
         {
-            PlaylistScriptData playlistScriptLoadedData = SaveLoad.savedTopTracks[i];
+            PlaylistScriptData playlistScriptLoadedData = saveLoad.savedTopTracks[i];
 
             PlaylistScript playlistScriptLoaded = new PlaylistScript(playlistScriptLoadedData);
 
@@ -98,14 +123,40 @@ public class TopTracksScript : MonoBehaviour
 
             PlaylistScript playlistScript = meshRendererGameObject.GetComponent<PlaylistScript>();
 
-            Sprite sprite = SaveLoad.QuickLoadSpriteFromFile("sprite" + i);
+            Sprite sprite = saveLoad.QuickLoadSpriteFromFile("topTrackSprite" + i);
 
             meshRenderers[i].material.mainTexture = sprite.texture;
 
             playlistScript.setPlaylistName(playlistScriptLoaded.playlistName);
             playlistScript.setPlaylistURI(playlistScriptLoaded.playlistURI);
             playlistScript.artistName = playlistScriptLoaded.artistName;
-            playlistScript.sprite = SaveLoad.QuickLoadSpriteFromFile("sprite" + i);
+            playlistScript.sprite = sprite;
+        }
+    }
+
+    public void LoadTopTracksFromFilePNG()
+    {
+        //TODO take this out
+        //   saveLoad.Load();
+
+        for (int i = 0; i < meshRenderers.Length; i++)
+        {
+            PlaylistScriptData playlistScriptLoadedData = saveLoad.savedTopTracks[i];
+
+            PlaylistScript playlistScriptLoaded = new PlaylistScript(playlistScriptLoadedData);
+
+            GameObject meshRendererGameObject = meshRenderers[i].transform.gameObject;
+
+            PlaylistScript playlistScript = meshRendererGameObject.GetComponent<PlaylistScript>();
+
+            Texture2D texture = saveLoad.LoadTextureFromFilePNG("topTrack" + i + ".png");
+
+            meshRenderers[i].material.mainTexture = texture;
+
+            playlistScript.setPlaylistName(playlistScriptLoaded.playlistName);
+            playlistScript.setPlaylistURI(playlistScriptLoaded.playlistURI);
+            playlistScript.artistName = playlistScriptLoaded.artistName;
+            playlistScript.sprite = ConvertTextureToSprite(texture);
         }
     }
 }

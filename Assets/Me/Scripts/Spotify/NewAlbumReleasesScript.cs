@@ -14,17 +14,21 @@ public class NewAlbumReleasesScript : MonoBehaviour
     private MeshRenderer[] meshRenderers;
     private GameObject spotifyManager;
     private Spotify spotifyManagerScript;
+    public SaveLoad saveLoad;
 
     // Use this for initialization
     void Start()
     {
         thisGameObject = transform.root.gameObject;
-        meshRenderers = thisGameObject.GetComponentsInChildren<MeshRenderer>();
+        meshRenderers = GetComponentsInChildren<MeshRenderer>();
 
         spotifyManager = GameObject.Find("SpotifyManager");
         spotifyManagerScript = spotifyManager.GetComponent<Spotify>();
+        saveLoad = spotifyManager.GetComponent<SaveLoad>();
 
-        StartCoroutine(loadNewAlbumReleases());
+     //   StartCoroutine(loadNewAlbumReleases());
+
+     //   LoadNewReleasesFromFile();
     }
 
     public IEnumerator loadNewAlbumReleases()
@@ -52,18 +56,88 @@ public class NewAlbumReleasesScript : MonoBehaviour
             playlistScript.setPlaylistURI(newAlbumReleases.Albums.Items[i].Uri);
             playlistScript.simpleAlbum = newAlbumReleases.Albums.Items[i];
             playlistScript.sprite = ConvertWWWToSprite(imageURLWWW);
+            saveLoad.SaveTextureToFilePNG(ConvertWWWToTexture(imageURLWWW), "newReleases" + i + ".png");
+            saveLoad.savedNewReleases.Add(new PlaylistScriptData(playlistScript));
+         //   saveLoad.QuickSaveSpriteToFile(playlistScript.sprite, "newReleasesSprite" + i);
         }
     }
     //TODO fix code duplication 
     private Sprite ConvertWWWToSprite(WWW www)
     {
 
-        Texture2D texture = new Texture2D(www.texture.width, www.texture.height, TextureFormat.DXT1, false);
+        Texture2D texture = new Texture2D(www.texture.width, www.texture.height, TextureFormat.RGBA32, false);
         www.LoadImageIntoTexture(texture);
 
         Rect rec = new Rect(0, 0, texture.width, texture.height);
         Sprite spriteToUse = Sprite.Create(texture, rec, new Vector2(0.5f, 0.5f), 100);
 
         return spriteToUse;
+    }
+
+    public void LoadNewReleasesFromFile()
+    {
+    //    saveLoad.Load();
+
+        for (int i = 0; i < meshRenderers.Length; i++)
+        {
+            PlaylistScriptData playlistScriptLoadedData = saveLoad.savedNewReleases[i];
+
+            PlaylistScript playlistScriptLoaded = new PlaylistScript(playlistScriptLoadedData);
+
+            GameObject meshRendererGameObject = meshRenderers[i].transform.gameObject;
+
+            PlaylistScript playlistScript = meshRendererGameObject.GetComponent<PlaylistScript>();
+
+            Sprite sprite = saveLoad.QuickLoadSpriteFromFile("newReleasesSprite" + i);
+
+            meshRenderers[i].material.mainTexture = sprite.texture;
+
+            playlistScript.setPlaylistName(playlistScriptLoaded.playlistName);
+            playlistScript.setPlaylistURI(playlistScriptLoaded.playlistURI);
+            playlistScript.artistName = playlistScriptLoaded.artistName;
+            playlistScript.sprite = saveLoad.QuickLoadSpriteFromFile("newReleasesSprite" + i);
+        }
+    }
+
+    private Texture2D ConvertWWWToTexture(WWW www)
+    {
+        //TODO look at what texture format is best to use
+        Texture2D texture = new Texture2D(www.texture.width, www.texture.height, TextureFormat.RGBA32, false);
+        www.LoadImageIntoTexture(texture);
+        // Debug.Log("Texture width " + www.texture.width + ", texture height " + www.texture.height);    
+
+        return texture;
+    }
+
+    private Sprite ConvertTextureToSprite(Texture2D texture)
+    {
+        Rect rec = new Rect(0, 0, texture.width, texture.height);
+        return Sprite.Create(texture, rec, new Vector2(0.5f, 0.5f), 1);
+    }
+
+    public void LoadNewReleasesFromFilePNG()
+    {
+        //TODO take this out
+        //   saveLoad.Load();
+
+        for (int i = 0; i < meshRenderers.Length; i++)
+        {
+            PlaylistScriptData playlistScriptLoadedData = saveLoad.savedNewReleases[i];
+
+            PlaylistScript playlistScriptLoaded = new PlaylistScript(playlistScriptLoadedData);
+
+            GameObject meshRendererGameObject = meshRenderers[i].transform.gameObject;
+
+            PlaylistScript playlistScript = meshRendererGameObject.GetComponent<PlaylistScript>();
+
+            Texture2D texture = saveLoad.LoadTextureFromFilePNG("newReleases" + i + ".png");
+
+            meshRenderers[i].material.mainTexture = texture;
+
+            playlistScript.setPlaylistName(playlistScriptLoaded.playlistName);
+            playlistScript.setPlaylistURI(playlistScriptLoaded.playlistURI);
+            playlistScript.artistName = playlistScriptLoaded.artistName;
+            playlistScript.sprite = ConvertTextureToSprite(texture);
+        }
     }
 }

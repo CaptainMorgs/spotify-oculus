@@ -6,14 +6,15 @@ using SpotifyAPI.Web.Enums; //Enums
 using SpotifyAPI.Web.Models; //Models for the JSON-responses
 using UnityEngine;
 
-
-public class UserFollowedArtists : MonoBehaviour
+//TODO save popularity
+public class UsersFollowedArtists : MonoBehaviour
 {
 
     private GameObject thisGameObject;
     private MeshRenderer[] meshRenderers;
     private GameObject spotifyManager;
     private Spotify spotifyManagerScript;
+    private SaveLoad saveLoad;
 
     // Use this for initialization
     void Start()
@@ -23,42 +24,82 @@ public class UserFollowedArtists : MonoBehaviour
 
         spotifyManager = GameObject.Find("SpotifyManager");
         spotifyManagerScript = spotifyManager.GetComponent<Spotify>();
+        saveLoad = spotifyManager.GetComponent<SaveLoad>();
 
-        StartCoroutine(LoadUserPlaylists());
+      //  StartCoroutine(LoadUsersFollowedArtists());
     }
 
-    public IEnumerator LoadUserPlaylists()
+    public IEnumerator LoadUsersFollowedArtists()
     {
         //TODO subscribe to spotify manager event of authorization being complete
         yield return new WaitForSeconds(2);
-        Paging<SimplePlaylist> usersPlaylists = spotifyManagerScript.GetUsersPlayists();
-        if (usersPlaylists == null)
+        FollowedArtists followedArtists = spotifyManagerScript.GetUsersFollowedArtists();
+        if (followedArtists == null)
         {
-            Debug.LogError("usersPlaylists is null");
+            Debug.LogError("followedArtists is null");
 
         }
         else
         {
             for (int i = 0; i < meshRenderers.Length; i++)
             {
-                string userPlaylistImageURL = usersPlaylists.Items[i].Images[0].Url;
+                string followedArtistsImageURL = followedArtists.Artists.Items[i].Images[0].Url;
 
                 GameObject meshRendererGameObject = meshRenderers[i].transform.gameObject;
 
                 PlaylistScript playlistScript = meshRendererGameObject.GetComponent<PlaylistScript>();
                 //  playlistScript.setPlaylistURI(featuredPlaylists.Playlists.Items[i].Uri);
 
-                WWW imageURLWWW = new WWW(userPlaylistImageURL);
+                WWW imageURLWWW = new WWW(followedArtistsImageURL);
 
                 yield return imageURLWWW;
 
                 meshRenderers[i].material.mainTexture = imageURLWWW.texture;
 
-                playlistScript.setPlaylistName(usersPlaylists.Items[i].Name);
-                playlistScript.setPlaylistURI(usersPlaylists.Items[i].Uri);
-                //  playlistScript.fullArtist = usersPlaylists.Items[i];
+                playlistScript.setPlaylistName(followedArtists.Artists.Items[i].Name);
+                playlistScript.setPlaylistURI(followedArtists.Artists.Items[i].Uri);
+                playlistScript.fullArtist = followedArtists.Artists.Items[i];
                 playlistScript.sprite = ConvertWWWToSprite(imageURLWWW);
+                playlistScript.artistId = followedArtists.Artists.Items[i].Id;
+                saveLoad.SaveTextureToFilePNG(Converter.ConvertWWWToTexture(imageURLWWW), "userFollowedArtist" + i + ".png");
+                saveLoad.savedUserFollowedArtists.Add(new PlaylistScriptData(playlistScript));
+              //  Debug.Log(" followed artist running " + i);
+
             }
+
+            yield return new WaitForSeconds(10);
+            saveLoad.Save();
+        }
+    }
+
+    public void LoadUserFollowedArtistsFromFilePNG()
+    {
+        //TODO take this out
+        //   saveLoad.Load();
+
+        meshRenderers = GetComponentsInChildren<MeshRenderer>();
+        spotifyManager = GameObject.Find("SpotifyManager");
+        saveLoad = spotifyManager.GetComponent<SaveLoad>();
+
+        for (int i = 0; i < meshRenderers.Length; i++)
+        {
+            PlaylistScriptData playlistScriptLoadedData = saveLoad.savedUserFollowedArtists[i];
+
+            PlaylistScript playlistScriptLoaded = new PlaylistScript(playlistScriptLoadedData);
+
+            GameObject meshRendererGameObject = meshRenderers[i].transform.gameObject;
+
+            PlaylistScript playlistScript = meshRendererGameObject.GetComponent<PlaylistScript>();
+
+            Texture2D texture = saveLoad.LoadTextureFromFilePNG("userFollowedArtist" + i + ".png");
+
+            meshRenderers[i].material.mainTexture = texture;
+
+            playlistScript.artistId = playlistScriptLoaded.artistId;
+            playlistScript.setPlaylistName(playlistScriptLoaded.playlistName);
+            playlistScript.setPlaylistURI(playlistScriptLoaded.playlistURI);
+            playlistScript.artistName = playlistScriptLoaded.artistName;
+            playlistScript.sprite = Converter.ConvertTextureToSprite(texture);
         }
     }
 
