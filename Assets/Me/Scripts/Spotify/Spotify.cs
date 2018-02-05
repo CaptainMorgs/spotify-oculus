@@ -35,6 +35,8 @@ public class Spotify : MonoBehaviour
     //TODO add browser that shows music videos
     //TODO playlist are in wrong order
     //TODO alter speakers scale to increase/decrease volume
+    //TODO playlist manager
+    //TODO follow/unfollow artist with physical motion
 
     // Use this for initialization
     void Start()
@@ -253,7 +255,7 @@ public class Spotify : MonoBehaviour
 
     public void PlaySongURIThread(string songURI)
     {
-        //     PlaybackContext context = _spotify.GetPlayback();
+        PlaybackContext context = _spotify.GetPlayback();
 
         ErrorResponse error = _spotify.ResumePlayback(context.Device.Id, uris: new List<string> { songURI });
         recordPlayerScript.recordPlayerActive = true;
@@ -457,6 +459,24 @@ public class Spotify : MonoBehaviour
                 Debug.LogError(error.Error.Status);
                 Debug.LogError(error.Error.Message);
             }
+        }
+    }
+
+    public void Follow(FollowType followType, string id)
+    {
+        Thread myThread = new Thread(() => FollowThread(followType, id));
+        myThread.Start();
+        //Debug.Log("Pause playback thread finished");
+    }
+
+    public void FollowThread(FollowType followType, string id)
+    {
+        ErrorResponse errorResponse = _spotify.Follow(followType, id);
+
+        if (errorResponse.HasError())
+        {
+            Debug.LogError(errorResponse.Error.Message);
+            Debug.LogError(errorResponse.Error.Status);
         }
     }
 

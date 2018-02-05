@@ -6,7 +6,7 @@ using UnityEngine;
 public class VinylScript : MonoBehaviour {
 
     public PlaylistScript playlistScript;
-    public GameObject fragments;
+    public GameObject fragments, followCube;
     public AudioSource audioSource;
     public GameObject vinylUIGameobject;
     private VinylUI vinylUI;
@@ -83,16 +83,25 @@ public class VinylScript : MonoBehaviour {
         iTween.RotateTo(gameObject, new Vector3(0,0,0), animationTime);
     }
 
-    private void AnimateOnComplete()
+    public void AnimateOnComplete()
     {
         EnableUI();
         vinylUI.FadeInImage();
         vinylUI.FadeInPanel();
+        SpawnFollowCube();
     }
 
     public void InitializeUI(PlaylistScript playlistScript1)
     {
         vinylUI = vinylUIGameobject.GetComponent<VinylUI>();
         vinylUI.InitializeUI(playlistScript1);
+    }
+
+    private void SpawnFollowCube()
+    {
+        Vector3 v = gameObject.transform.position;
+        GameObject spawnedFollowCube = Instantiate(followCube, v + new Vector3(-0.5f, 0, 0), Quaternion.identity);
+        spawnedFollowCube.GetComponent<FollowCubeScript>().playlistScript = playlistScript;
+        spawnedFollowCube.GetComponent<FollowCubeScript>().artistId = playlistScript.artistId;
     }
 }

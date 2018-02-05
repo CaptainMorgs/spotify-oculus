@@ -6,7 +6,8 @@ using UnityEngine.UI;
 using VRKeyboard.Utils;
 using TMPro;
 
-public class Raycast : MonoBehaviour {
+public class Raycast : MonoBehaviour
+{
 
     // Use this for initialization
 
@@ -16,7 +17,7 @@ public class Raycast : MonoBehaviour {
     private bool movementStarted = false;
     private RaycastHit newPosition;
     Material material;
-    public GameObject vinyl, rightHandAnchor;
+    public GameObject vinyl, rightHandAnchor, vinylContainer;
     public bool playOnClick = false;
     private GameObject spawnedVinyl;
     public GameObject hoverUIGameObject;
@@ -30,8 +31,9 @@ public class Raycast : MonoBehaviour {
     public Vector3 pointerWorldScale = new Vector3(0.005f, 0.005f, 0.005f);
     public Vector3 pointerWorldScaleZOffset = new Vector3(0f, 0f, 0.05f);
     private LeftHandUI leftHandUIHit;
-
-    void Start () {
+    public Vector3 spawnPosition;
+    void Start()
+    {
 
         material = new Material(Shader.Find("Particles/Additive"));
 
@@ -48,11 +50,12 @@ public class Raycast : MonoBehaviour {
         ovrPlayerController = GameObject.Find("OVRPlayerController");
     }
 
-   /// <summary>
-   /// If trigger is pressed, change line renderer's colour to blue if the raycast hits the floor, 
-   /// if the raycast is pointing to the floor on trigger release, teleport player to location.
-   /// </summary>
-    void Update () {
+    /// <summary>
+    /// If trigger is pressed, change line renderer's colour to blue if the raycast hits the floor, 
+    /// if the raycast is pointing to the floor on trigger release, teleport player to location.
+    /// </summary>
+    void Update()
+    {
         RayCast();
 
         if (OVRInput.GetUp(OVRInput.Button.One))
@@ -60,11 +63,13 @@ public class Raycast : MonoBehaviour {
             RayCastInput();
         }
 
-        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger)) {
-             newPosition = RayCastMovement();
+        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
+        {
+            newPosition = RayCastMovement();
         }
 
-        else  {
+        else
+        {
             lineRenderer.SetColors(Color.white, Color.white);
             lineRenderer.material.color = Color.white;
 
@@ -82,23 +87,23 @@ public class Raycast : MonoBehaviour {
             }
         }
 
-       
-        
-       
+
+
+
 
     }
 
     void FixedUpdate()
     {
-       Vector3 fwd = transform.TransformDirection(Vector3.forward);
+        Vector3 fwd = transform.TransformDirection(Vector3.forward);
 
-     // Physics.Raycast(transform.position, fwd, raycastDistance);
+        // Physics.Raycast(transform.position, fwd, raycastDistance);
         //   print("There is something in front of the object!");
 
-        
+
         lineRenderer.SetPosition(0, transform.position);
-       
-            lineRenderer.SetPosition(1, transform.forward * raycastDistance + transform.position);
+
+        lineRenderer.SetPosition(1, transform.forward * raycastDistance + transform.position);
     }
 
     /// <summary>
@@ -109,7 +114,7 @@ public class Raycast : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, raycastDistance))
         {
-           Debug.Log(hit.transform.name);
+            Debug.Log(hit.transform.name);
 
             ResumePlayback resumePlayback = hit.transform.GetComponent<ResumePlayback>();
             PausePlayback pausePlayback = hit.transform.GetComponent<PausePlayback>();
@@ -117,19 +122,20 @@ public class Raycast : MonoBehaviour {
             LeftHandUI leftHandUI = hit.transform.GetComponent<LeftHandUI>();
 
             //TODO make better with unity event system.
-            if (hit.transform.gameObject.tag == "key") {
+            if (hit.transform.gameObject.tag == "key")
+            {
                 Text text = hit.transform.gameObject.GetComponentInChildren<Text>();
 
-             //   TextMeshProUGUI textPro = hit.transform.gameObject.GetComponentInChildren<TextMeshProUGUI>();
+                //   TextMeshProUGUI textPro = hit.transform.gameObject.GetComponentInChildren<TextMeshProUGUI>();
 
                 keyboardManagerScript.GenerateInput(text.text);
-            //    keyboardManagerScript.GenerateInput(textPro.text);
+                //    keyboardManagerScript.GenerateInput(textPro.text);
             }
 
             if (resumePlayback != null)
             {
                 resumePlayback.ResumePlaybackFunction();
-            }           
+            }
             else if (leftHandUI != null)
             {
                 leftHandUI.OnRayCastHit();
@@ -145,38 +151,73 @@ public class Raycast : MonoBehaviour {
                     playlistScript.PlaySomething();
                 }
 
-                if (GameObject.FindWithTag("vinyl") != null) {
+                if (GameObject.FindWithTag("vinyl") != null)
+                {
                     Destroy(GameObject.FindWithTag("vinyl"));
                 }
 
-             //   spawnedVinyl = Instantiate(vinyl, rightHandAnchor.transform.position + new Vector3(-0.5f, 0, 1.0f), Quaternion.identity);
+                if (GameObject.FindWithTag("followCube") != null)
+                {
+                    Destroy(GameObject.FindWithTag("followCube"));
+                }
 
-                spawnedVinyl = Instantiate(vinyl, hit.transform.position + new Vector3(0, 0, -0.5f), Quaternion.Euler(-90f,0,0));
-                spawnedVinyl.GetComponent<VinylScript>().playlistScript = playlistScript;
-                spawnedVinyl.GetComponent<VinylScript>().AnimateToPlayer(rightHandAnchor.transform.position + new Vector3(-0.5f, 0, 1.0f));
-                spawnedVinyl.GetComponent<VinylScript>().InitializeUI(playlistScript);
+                //TODO take into account the players rotation when animating to player
+
+
+
+                InstansiateVinylWorking(hit, playlistScript);
+                //InstansiateVinyl(hit, playlistScript);
+
+
+                //    spawnedFollowCube.GetComponent<FollowCubeScript>().AnimateToPlayer(rightHandAnchor.transform.position + new Vector3(-0.5f, 0, 1.0f));
+
                 Debug.Log("Spawning Vinyl");
             }
 
         }
     }
 
+    private void InstansiateVinylWorking(RaycastHit hit, PlaylistScript playlistScript)
+    {
+        spawnedVinyl = Instantiate(vinyl, hit.transform.position + new Vector3(0, 0, -0.5f), Quaternion.Euler(-90f, 0, 0));
+
+
+        spawnedVinyl.GetComponent<VinylScript>().playlistScript = playlistScript;
+        spawnedVinyl.GetComponent<VinylScript>().AnimateToPlayer(rightHandAnchor.transform.position + new Vector3(-0.5f, 0, 1.0f));
+        spawnedVinyl.GetComponent<VinylScript>().InitializeUI(playlistScript);
+    }
+
+    private void InstansiateVinyl(RaycastHit hit, PlaylistScript playlistScript)
+    {
+        Debug.Log("Instansiating at " + hit.transform.position + " plus " + spawnPosition);
+        GameObject spawnedVinylContatainer = Instantiate(vinylContainer, hit.transform.position + new Vector3(0, 0, -0.5f), Quaternion.Euler(-90f, 0, 0));
+        spawnedVinyl = spawnedVinylContatainer.transform.Find("vinyl").gameObject;
+        GameObject spawnedFollowCube = spawnedVinylContatainer.transform.Find("Follow Cube").gameObject;
+        spawnedFollowCube.GetComponent<FollowCubeScript>().playlistScript = playlistScript;
+
+        spawnedVinyl.GetComponent<VinylScript>().playlistScript = playlistScript;
+        //  spawnedVinyl.GetComponent<VinylScript>().AnimateToPlayer(rightHandAnchor.transform.position + new Vector3(-0.5f, 0, 1.0f));
+        spawnedVinylContatainer.GetComponent<VinylContainerScript>().AnimateToPlayer(rightHandAnchor.transform.position + new Vector3(-0.5f, 0, 1.0f));
+        spawnedVinyl.GetComponent<VinylScript>().InitializeUI(playlistScript);
+    }
+
     RaycastHit RayCastMovement()
     {
         //  Debug.LogError("Moving!");
-        
-          RaycastHit hit;
+
+        RaycastHit hit;
 
         if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, raycastDistance) && hit.transform.tag == "Floor")
         {
-       
+
             lineRenderer.SetColors(Color.blue, Color.blue);
             lineRenderer.material.color = Color.blue;
 
             movementStarted = true;
-           
+
         }
-        else {
+        else
+        {
             lineRenderer.material.color = Color.white;
             lineRenderer.SetColors(Color.white, Color.white);
             movementStarted = false;
@@ -184,12 +225,12 @@ public class Raycast : MonoBehaviour {
 
 
         return hit;
-        
+
     }
 
     void RayCast()
     {
-        
+
 
         RaycastHit hit;
         if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, raycastDistance))
@@ -223,7 +264,7 @@ public class Raycast : MonoBehaviour {
                 pointerImage.transform.localScale = pointerUIScale;
 
                 LeftHandUI leftHandUI = hit.transform.GetComponent<LeftHandUI>();
-               
+
 
                 if (leftHandUI != null)
                 {
@@ -231,10 +272,10 @@ public class Raycast : MonoBehaviour {
                     leftHandUI.OnHover();
                 }
                 //not sure if else here will do the job
-              //  else if (leftHandUIHit != null)
-            //    {
-             //       leftHandUIHit.OnHoverExit();
-             //   }
+                //  else if (leftHandUIHit != null)
+                //    {
+                //       leftHandUIHit.OnHoverExit();
+                //   }
             }
             //5 is UI layer
             else if (hit.collider.gameObject.layer == 5)
@@ -242,17 +283,18 @@ public class Raycast : MonoBehaviour {
                 pointerImage.transform.localScale = pointerWorldScale;
                 pointerImage.transform.position = hit.point - pointerWorldScaleZOffset;
             }
-            else {
-                pointerImage.transform.localScale = new Vector3(0f,0f,0f);
+            else
+            {
+                pointerImage.transform.localScale = new Vector3(0f, 0f, 0f);
             }
 
             if (hit.transform.gameObject.tag == "song" || hit.transform.gameObject.tag == "playlist" || hit.transform.gameObject.tag == "artist")
             {
                 GameObject playlistGameObject = hit.transform.gameObject;
-                hoverUI.updateHoverUI(playlistGameObject.GetComponent<PlaylistScript>());
-         //       Debug.Log("Pointing at a song");
+         //       hoverUI.updateHoverUI(playlistGameObject.GetComponent<PlaylistScript>());
+                //       Debug.Log("Pointing at a song");
             }
-           // else {
+            // else {
             //    Debug.Log("Pointing at a gameobject with tag " + hit.transform.gameObject.tag);
 
             //}

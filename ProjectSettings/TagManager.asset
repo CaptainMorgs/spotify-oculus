@@ -14,6 +14,7 @@ TagManager:
   - key
   - artist
   - popularity
+  - followCube
   layers:
   - Default
   - TransparentFX

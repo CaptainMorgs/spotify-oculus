@@ -67,8 +67,7 @@ public class UsersFollowedArtists : MonoBehaviour
 
             }
 
-            yield return new WaitForSeconds(10);
-            saveLoad.Save();
+            
         }
     }
 
