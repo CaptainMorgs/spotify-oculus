@@ -59,7 +59,6 @@ public class FollowCubeScript : MonoBehaviour
     {
         if(playlistScript.trackType == PlaylistScript.TrackType.artist){
             spotifyManagerScript.Follow(FollowType.Artist, playlistScript.artistId);
-            Debug.Log("Followed artist " + playlistScript.playlistName + " with id " + playlistScript.artistId);
 
             GameObject spawnedUIConfirmation = Instantiate(uiConfirmation,
                 gameObject.transform.position + new Vector3(0, 0.3f, 0), Quaternion.identity);
@@ -70,7 +69,37 @@ public class FollowCubeScript : MonoBehaviour
 
         else if (playlistScript.trackType == PlaylistScript.TrackType.track)
         {
+            spotifyManagerScript.SaveTrack(playlistScript.getPlaylistURI());
 
+            GameObject spawnedUIConfirmation = Instantiate(uiConfirmation,
+                gameObject.transform.position + new Vector3(0, 0.3f, 0), Quaternion.identity);
+
+            spawnedUIConfirmation.transform.Find("Follow Confirmation Text").GetComponent<TextMeshProUGUI>().text =
+                "Saved " + playlistScript.getPlaylistName() + "!";
+        }
+
+        else if (playlistScript.trackType == PlaylistScript.TrackType.playlist)
+        {
+            spotifyManagerScript.FollowPlaylist(playlistScript.ownerId, playlistScript.playlistId);
+            Debug.Log("Followed playlist " + playlistScript.playlistName + " with uri " + playlistScript.getPlaylistURI());
+
+            GameObject spawnedUIConfirmation = Instantiate(uiConfirmation,
+                gameObject.transform.position + new Vector3(0, 0.3f, 0), Quaternion.identity);
+
+            spawnedUIConfirmation.transform.Find("Follow Confirmation Text").GetComponent<TextMeshProUGUI>().text =
+                "Followed  " + playlistScript.getPlaylistName() + "!";
+        }
+
+        else if (playlistScript.trackType == PlaylistScript.TrackType.album)
+        {
+            spotifyManagerScript.SaveAlbum(playlistScript.albumId);
+            Debug.Log("Saved album " + playlistScript.playlistName + " with uri " + playlistScript.getPlaylistURI());
+
+            GameObject spawnedUIConfirmation = Instantiate(uiConfirmation,
+                gameObject.transform.position + new Vector3(0, 0.3f, 0), Quaternion.identity);
+
+            spawnedUIConfirmation.transform.Find("Follow Confirmation Text").GetComponent<TextMeshProUGUI>().text =
+                "Saved " + playlistScript.getPlaylistName() + "!";
         }
 
         Destroy(vinylGameObject);

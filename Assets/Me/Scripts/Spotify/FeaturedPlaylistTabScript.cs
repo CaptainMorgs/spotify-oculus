@@ -55,11 +55,13 @@ public class FeaturedPlaylistTabScript : MonoBehaviour
                 yield return imageURLWWW;
 
                 meshRenderers[i].material.mainTexture = imageURLWWW.texture;
-
+                
                 playlistScript.setPlaylistName(featuredPlaylists.Playlists.Items[i].Name);
                 playlistScript.setPlaylistURI(featuredPlaylists.Playlists.Items[i].Uri);
                 playlistScript.setSimplePlaylist(featuredPlaylists.Playlists.Items[i]);
                 playlistScript.sprite = ConvertWWWToSprite(imageURLWWW);
+                playlistScript.ownerId = featuredPlaylists.Playlists.Items[i].Owner.Id;
+                playlistScript.playlistId = featuredPlaylists.Playlists.Items[i].Id;
                 saveLoad.SaveTextureToFilePNG(ConvertWWWToTexture(imageURLWWW), "featuredPlaylist" + i + ".png");
                 saveLoad.savedFeaturedPlaylists.Add(new PlaylistScriptData(playlistScript));
             //    saveLoad.QuickSaveSpriteToFile(playlistScript.sprite, "featuredPlaylistSprite" + i);

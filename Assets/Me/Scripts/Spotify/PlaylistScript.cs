@@ -11,7 +11,7 @@ using System;
 public class PlaylistScript : MonoBehaviour
 {
     //TODO make everything public and remove getters/setters
-    public string playlistName, playlistURI, artistName, artistId;
+    public string playlistName, playlistURI, artistName, artistId, ownerId, playlistId, albumId;
     public int popularity;
     private GameObject spotifyManager;
     private Spotify script;
@@ -36,7 +36,7 @@ public class PlaylistScript : MonoBehaviour
 
     public enum TrackType
     {
-        playlist, artist, track, album, newRelease, searchResult
+        playlist, artist, track, album, searchResult
     }
 
     // Use this for initialization

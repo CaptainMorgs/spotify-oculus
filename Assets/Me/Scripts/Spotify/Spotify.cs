@@ -462,6 +462,48 @@ public class Spotify : MonoBehaviour
         }
     }
 
+    public void SaveAlbum(string id)
+    {
+        Thread myThread = new Thread(() => SaveAlbum(id));
+        myThread.Start();
+    }
+
+    public void SaveAlbumThread(string id)
+    {
+        ErrorResponse errorResponse = _spotify.SaveAlbum(id);
+
+        if (errorResponse.HasError())
+        {
+            Debug.LogError(errorResponse.Error.Message);
+            Debug.LogError(errorResponse.Error.Status);
+        }
+        else
+        {
+            Debug.Log("Saved album " + id);
+        }
+    }
+
+    public void FollowPlaylist(string ownerId, string playlistId)
+    {
+        Thread myThread = new Thread(() => FollowPlaylist(ownerId, playlistId));
+        myThread.Start();
+    }
+
+    public void FollowPlaylistThread(string ownerId, string playlistId)
+    {
+        ErrorResponse errorResponse = _spotify.FollowPlaylist(ownerId, playlistId);
+
+        if (errorResponse.HasError())
+        {
+            Debug.LogError(errorResponse.Error.Message);
+            Debug.LogError(errorResponse.Error.Status);
+        }
+        else
+        {
+            Debug.Log("Saved track " + playlistId);
+        }
+    }
+
     public void SaveTrack(string id)
     {
         Thread myThread = new Thread(() => SaveTrack(id));
@@ -477,13 +519,16 @@ public class Spotify : MonoBehaviour
             Debug.LogError(errorResponse.Error.Message);
             Debug.LogError(errorResponse.Error.Status);
         }
+        else
+        {
+            Debug.Log("Saved track " + id);
+        }
     }
 
     public void Follow(FollowType followType, string id)
     {
         Thread myThread = new Thread(() => FollowThread(followType, id));
         myThread.Start();
-        //Debug.Log("Pause playback thread finished");
     }
 
     public void FollowThread(FollowType followType, string id)
@@ -494,6 +539,10 @@ public class Spotify : MonoBehaviour
         {
             Debug.LogError(errorResponse.Error.Message);
             Debug.LogError(errorResponse.Error.Status);
+        }
+        else
+        {
+            Debug.Log("Followed artist " + id);
         }
     }
 

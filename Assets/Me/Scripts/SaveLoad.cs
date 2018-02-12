@@ -219,7 +219,7 @@ public class SaveLoad : MonoBehaviour
 
     public Texture2D LoadTextureFromFilePNG(string fileName)
     {
-        Debug.Log("Loading PNG from file " + fileName);
+    //    Debug.Log("Loading PNG from file " + fileName);
         FileStream file = File.Open(Application.persistentDataPath + "/" + fileName, FileMode.Open);
         MemoryStream ms = new MemoryStream();
         file.CopyTo(ms);

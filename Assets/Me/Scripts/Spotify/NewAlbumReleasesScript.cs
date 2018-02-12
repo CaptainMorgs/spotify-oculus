@@ -54,6 +54,7 @@ public class NewAlbumReleasesScript : MonoBehaviour
 
             playlistScript.setPlaylistName(newAlbumReleases.Albums.Items[i].Name);
             playlistScript.setPlaylistURI(newAlbumReleases.Albums.Items[i].Uri);
+            playlistScript.albumId = newAlbumReleases.Albums.Items[i].Id;
             playlistScript.simpleAlbum = newAlbumReleases.Albums.Items[i];
             playlistScript.sprite = ConvertWWWToSprite(imageURLWWW);
             saveLoad.SaveTextureToFilePNG(ConvertWWWToTexture(imageURLWWW), "newReleases" + i + ".png");
