@@ -784,7 +784,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playlistScript: {fileID: 0}
   fragments: {fileID: 1959506679930398, guid: 23b29b7f9ac6cc44a9664c2c716d068a, type: 2}
-  followCube: {fileID: 1725746382139126, guid: 6e8c5bc13e76d2a4aa817870c7d5771d, type: 2}
+  followCube: {fileID: 1955644070992650, guid: ee775e44039946a40b62b2f3ecb1ba69, type: 2}
   audioSource: {fileID: 0}
   vinylUIGameobject: {fileID: 1397088316378324}
   animationTime: 1.5
@@ -1095,7 +1095,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1836341032671582}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3.7193203}
+  m_LocalPosition: {x: 0, y: 0, z: -2.126}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224029630727755222}
@@ -1104,6 +1104,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.363936, y: 1.102}
+  m_AnchoredPosition: {x: -1.715, y: 1.499}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}

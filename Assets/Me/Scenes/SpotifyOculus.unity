@@ -86,7 +86,7 @@ LightmapSettings:
     m_PVRFilteringAtrousColorSigma: 1
     m_PVRFilteringAtrousNormalSigma: 1
     m_PVRFilteringAtrousPositionSigma: 1
-  m_LightingDataAsset: {fileID: 112000134, guid: fb2c4d7d2ff16874e971bdf6e667430d,
+  m_LightingDataAsset: {fileID: 112000236, guid: fb2c4d7d2ff16874e971bdf6e667430d,
     type: 2}
   m_UseShadowmask: 1
 --- !u!196 &5
@@ -418,6 +418,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 562335814}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 4
 --- !u!23 &25174638
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1416,6 +1417,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 886390956}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 2
 --- !u!23 &67979631
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1522,6 +1524,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1890729037}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 1
 --- !u!23 &71541012
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1701,6 +1704,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 707720020}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 1
 --- !u!23 &83860977
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2241,6 +2245,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1506481235}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 0
 --- !u!23 &96263032
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2623,6 +2628,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1868778823}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 2
 --- !u!23 &105218745
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2813,6 +2819,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 131996690}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 0
 --- !u!23 &109618840
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3190,6 +3197,58 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!1001 &122738283
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4764363979748394, guid: ee775e44039946a40b62b2f3ecb1ba69, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4764363979748394, guid: ee775e44039946a40b62b2f3ecb1ba69, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 4764363979748394, guid: ee775e44039946a40b62b2f3ecb1ba69, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -2.154
+      objectReference: {fileID: 0}
+    - target: {fileID: 4764363979748394, guid: ee775e44039946a40b62b2f3ecb1ba69, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4764363979748394, guid: ee775e44039946a40b62b2f3ecb1ba69, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4764363979748394, guid: ee775e44039946a40b62b2f3ecb1ba69, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4764363979748394, guid: ee775e44039946a40b62b2f3ecb1ba69, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4764363979748394, guid: ee775e44039946a40b62b2f3ecb1ba69, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114251450276098678, guid: ee775e44039946a40b62b2f3ecb1ba69,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114251450276098678, guid: ee775e44039946a40b62b2f3ecb1ba69,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: ee775e44039946a40b62b2f3ecb1ba69, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &131996690
 GameObject:
   m_ObjectHideFlags: 0
@@ -3996,6 +4055,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 347053209}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 5
 --- !u!23 &183965845
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5095,6 +5155,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 201968291}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 4
 --- !u!23 &204097273
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5432,6 +5493,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 925218100}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 2
 --- !u!23 &219609579
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5843,8 +5905,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 248086853}
   m_LocalRotation: {x: -0.0000020862778, y: -0.7071037, z: -0.7071099, w: -0.00000208626}
-  m_LocalPosition: {x: -1.11, y: 6.4, z: -1}
-  m_LocalScale: {x: 22.21842, y: 16.15098, z: 3.38159}
+  m_LocalPosition: {x: -1.11, y: 6.4, z: -5.49}
+  m_LocalScale: {x: 40.17721, y: 31.728123, z: 6.1148763}
   m_Children: []
   m_Father: {fileID: 1303504439}
   m_RootOrder: 3
@@ -6927,6 +6989,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 759992671}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 0
 --- !u!23 &287788582
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8729,6 +8792,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1554970955}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 4
 --- !u!23 &345337880
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9765,6 +9829,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 2092343660}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 0
 --- !u!23 &371078868
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10309,6 +10374,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 149693257}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 0
 --- !u!23 &405628760
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11570,6 +11636,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 2021618785}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 0
 --- !u!23 &461187463
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12511,6 +12578,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1806101824}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 0
 --- !u!23 &504322047
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12617,6 +12685,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1277887729}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 0
 --- !u!23 &507857858
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13120,6 +13189,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 405835785}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 1
 --- !u!23 &527990828
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13507,7 +13577,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 533367099}
   m_LocalRotation: {x: 0.4999993, y: 0.4999993, z: 0.5000007, w: 0.5000007}
-  m_LocalPosition: {x: 0, y: 2.49, z: -8.14}
+  m_LocalPosition: {x: 25.62, y: 2.49, z: -8.14}
   m_LocalScale: {x: 0.49629158, y: 1.9647912, z: 1.1931696}
   m_Children: []
   m_Father: {fileID: 0}
@@ -14147,6 +14217,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 350082520}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 1
 --- !u!23 &552429940
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14548,6 +14619,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1935737791}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 1
 --- !u!23 &563425051
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14777,6 +14849,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1098510262}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 0
 --- !u!23 &578041663
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15923,6 +15996,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1307865738}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 4
 --- !u!23 &634075432
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16575,6 +16649,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 780831567}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 5
 --- !u!23 &681665446
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16865,6 +16940,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 680034040}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 0
 --- !u!23 &704680599
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18604,6 +18680,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 12091254}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 1
 --- !u!23 &771196405
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19809,6 +19886,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1496719269}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 0
 --- !u!23 &841507631
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20247,6 +20325,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1369934937}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 1
 --- !u!23 &866637980
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20435,6 +20514,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1136463079}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 2
 --- !u!23 &872475771
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20794,6 +20874,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 623036279}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 2
 --- !u!23 &892666248
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21410,6 +21491,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 42444095}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 0
 --- !u!23 &918078815
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21672,6 +21754,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1434518293}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 4
 --- !u!23 &924503652
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22066,6 +22149,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 176796153}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 0
 --- !u!23 &935426908
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22263,6 +22347,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 550896125}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 0
 --- !u!23 &941524214
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23299,6 +23384,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 548442306}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 1
 --- !u!23 &975193376
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23881,6 +23967,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 555156606}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 5
 --- !u!23 &993154157
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23987,6 +24074,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 254057874}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 0
 --- !u!23 &995923555
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24717,6 +24805,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 529486689}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 0
 --- !u!23 &1035693904
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24823,6 +24912,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 468187379}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 1
 --- !u!23 &1036627752
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24929,6 +25019,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 359521727}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 1
 --- !u!23 &1046624472
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25480,6 +25571,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1823467536}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 2
 --- !u!23 &1071765949
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25973,6 +26065,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1301750632}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 2
 --- !u!23 &1098621504
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26086,6 +26179,11 @@ Prefab:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114738356974157872, guid: 8dc69dff7a5ff004baa2499c09e4bbcf,
+        type: 2}
+      propertyPath: trackType
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8dc69dff7a5ff004baa2499c09e4bbcf, type: 2}
   m_IsPrefabParent: 0
@@ -26142,6 +26240,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1555071408}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 1
 --- !u!23 &1106793047
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27209,6 +27308,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1480131880}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 4
 --- !u!23 &1151971745
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27262,48 +27362,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1151971742}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &1152430805
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4044216495546684, guid: 6e8c5bc13e76d2a4aa817870c7d5771d, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -2.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4044216495546684, guid: 6e8c5bc13e76d2a4aa817870c7d5771d, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1.069
-      objectReference: {fileID: 0}
-    - target: {fileID: 4044216495546684, guid: 6e8c5bc13e76d2a4aa817870c7d5771d, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -3.5760174
-      objectReference: {fileID: 0}
-    - target: {fileID: 4044216495546684, guid: 6e8c5bc13e76d2a4aa817870c7d5771d, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4044216495546684, guid: 6e8c5bc13e76d2a4aa817870c7d5771d, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4044216495546684, guid: 6e8c5bc13e76d2a4aa817870c7d5771d, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4044216495546684, guid: 6e8c5bc13e76d2a4aa817870c7d5771d, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4044216495546684, guid: 6e8c5bc13e76d2a4aa817870c7d5771d, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 6e8c5bc13e76d2a4aa817870c7d5771d, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1155815722
 GameObject:
   m_ObjectHideFlags: 0
@@ -27357,6 +27415,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 330869456}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 0
 --- !u!23 &1155815725
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27896,6 +27955,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 562394490}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 5
 --- !u!23 &1183596157
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28594,7 +28654,7 @@ Prefab:
     - target: {fileID: 224822047862748094, guid: 4ca0772e04147544eb2a1bd48b689abb,
         type: 2}
       propertyPath: m_LocalPosition.z
-      value: -3.7193203
+      value: -2.126
       objectReference: {fileID: 0}
     - target: {fileID: 224822047862748094, guid: 4ca0772e04147544eb2a1bd48b689abb,
         type: 2}
@@ -28624,12 +28684,12 @@ Prefab:
     - target: {fileID: 224822047862748094, guid: 4ca0772e04147544eb2a1bd48b689abb,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -1.363936
+      value: -1.715
       objectReference: {fileID: 0}
     - target: {fileID: 224822047862748094, guid: 4ca0772e04147544eb2a1bd48b689abb,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 1.102
+      value: 1.499
       objectReference: {fileID: 0}
     - target: {fileID: 224822047862748094, guid: 4ca0772e04147544eb2a1bd48b689abb,
         type: 2}
@@ -28671,12 +28731,36 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114775376348641834, guid: 4ca0772e04147544eb2a1bd48b689abb,
+    - target: {fileID: 114040070690212618, guid: 4ca0772e04147544eb2a1bd48b689abb,
         type: 2}
-      propertyPath: followCube
-      value: 
-      objectReference: {fileID: 1725746382139126, guid: 6e8c5bc13e76d2a4aa817870c7d5771d,
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114040070690212618, guid: 4ca0772e04147544eb2a1bd48b689abb,
         type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114047105347485898, guid: 4ca0772e04147544eb2a1bd48b689abb,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114047105347485898, guid: 4ca0772e04147544eb2a1bd48b689abb,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114852946873411016, guid: 4ca0772e04147544eb2a1bd48b689abb,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114852946873411016, guid: 4ca0772e04147544eb2a1bd48b689abb,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4ca0772e04147544eb2a1bd48b689abb, type: 2}
   m_IsPrefabParent: 0
@@ -31258,8 +31342,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1338839057}
   m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
-  m_LocalPosition: {x: -0.13, y: 6.39, z: -5}
-  m_LocalScale: {x: 1.5327027, y: 3.0404532, z: 2.6384156}
+  m_LocalPosition: {x: -0.89, y: 6.39, z: -5.49}
+  m_LocalScale: {x: 0.9589122, y: 1.9762949, z: 1.0495692}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 16
@@ -31673,6 +31757,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1545304551}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 1
 --- !u!23 &1349473752
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -33132,6 +33217,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 167761487}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 0
 --- !u!23 &1403430027
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -33922,6 +34008,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 975234842}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 0
 --- !u!23 &1422707577
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34353,6 +34440,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 110482845}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 0
 --- !u!23 &1439290438
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34745,6 +34833,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1906581365}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 5
 --- !u!23 &1461484222
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -35258,6 +35347,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1708297355}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 1
 --- !u!23 &1475289428
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36133,11 +36223,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -36210,6 +36300,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 612358757}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 1
 --- !u!23 &1491026573
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -37499,6 +37590,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1097903312}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 5
 --- !u!23 &1522189381
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -38347,6 +38439,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 316863016}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 1
 --- !u!23 &1547774693
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39021,6 +39114,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 448285407}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 1
 --- !u!23 &1560305830
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -40711,6 +40805,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1578162694}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 0
 --- !u!23 &1626833188
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -41415,6 +41510,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1619279970}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 0
 --- !u!23 &1667289561
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42552,6 +42648,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1697725237}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 4
 --- !u!23 &1739793798
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -43057,6 +43154,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 120052186}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 2
 --- !u!23 &1787965307
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -45153,6 +45251,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1726029781}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 0
 --- !u!23 &1850664724
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -47198,6 +47297,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 2062047705}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 5
 --- !u!23 &1937335740
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -47510,6 +47610,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 440007806}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 4
 --- !u!23 &1945074317
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -48443,6 +48544,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1513031425}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 0
 --- !u!23 &1977913336
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -48948,6 +49050,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1530594788}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 0
 --- !u!23 &1997018913
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -49472,6 +49575,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 924023348}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 1
 --- !u!23 &2025704604
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -49738,6 +49842,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1919015688}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 0
 --- !u!23 &2031993822
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -51408,6 +51513,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1507483803}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 0
 --- !u!23 &2100256777
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -51692,6 +51798,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1581365437}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 1
 --- !u!23 &2108058339
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -51826,6 +51933,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 977186681}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 5
 --- !u!23 &2108395817
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -52434,6 +52542,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 242063213}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 5
 --- !u!23 &2138069112
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -52752,6 +52861,7 @@ MonoBehaviour:
   spriteGameObject: {fileID: 1452774445}
   image: {fileID: 0}
   sprite: {fileID: 0}
+  trackType: 2
 --- !u!23 &2142358999
 MeshRenderer:
   m_ObjectHideFlags: 0

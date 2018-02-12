@@ -11,6 +11,8 @@ public class VinylScript : MonoBehaviour {
     public GameObject vinylUIGameobject;
     private VinylUI vinylUI;
     public float animationTime = 1.5f;
+    public GameObject spawnedFollowCube;
+    public List<GameObject> list;
 
     // Use this for initialization
     void Start () {
@@ -23,14 +25,31 @@ public class VinylScript : MonoBehaviour {
 	}
 
     void OnCollisionEnter(Collision collision) {
-        //ignore layers grabbable, player and vinyl
-        if (collision.gameObject.layer != 8 && collision.gameObject.layer != 9 && collision.gameObject.layer != 10 && collision.gameObject.layer != 11)
+        //ignore layers grabbable, player, transparent and vinyl
+        if (collision.gameObject.layer != 8 && collision.gameObject.layer != 9 && collision.gameObject.layer != 10 && collision.gameObject.layer != 11 && collision.gameObject.layer != 12)
         {
             HandleThowCollision(collision);
+        }       
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.tag == "followCube")
+        {
+            list.Add(collider.gameObject);
         }
     }
 
-        private void HandleThowCollision(Collision collision) {
+    void OnTriggerExit(Collider collider)
+    {
+        if (collider.gameObject.tag == "followCube")
+        {
+            list.Remove(collider.gameObject);
+        }
+    }
+
+
+    private void HandleThowCollision(Collision collision) {
         Debug.Log("Collision with vinyl at layer" + collision.gameObject.layer + "with gameobject " + collision.gameObject);
         //set gravity of the vinyl to enabled when it hits something
         gameObject.GetComponent<Rigidbody>().useGravity = true;
@@ -100,8 +119,17 @@ public class VinylScript : MonoBehaviour {
     private void SpawnFollowCube()
     {
         Vector3 v = gameObject.transform.position;
-        GameObject spawnedFollowCube = Instantiate(followCube, v + new Vector3(-0.5f, 0, 0), Quaternion.identity);
+        spawnedFollowCube = Instantiate(followCube, v + new Vector3(-0.5f, 0, 0), Quaternion.identity);
         spawnedFollowCube.GetComponent<FollowCubeScript>().playlistScript = playlistScript;
         spawnedFollowCube.GetComponent<FollowCubeScript>().artistId = playlistScript.artistId;
+        spawnedFollowCube.SetActive(false);
+    }
+
+    public void FollowArtist()
+    {
+        if (list.Count > 0 && list[0].gameObject.tag == "followCube")
+        {
+            list[0].gameObject.GetComponent<FollowCubeScript>().HandleCollisionWithVinyl2(gameObject);
+        }
     }
 }

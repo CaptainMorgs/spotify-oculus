@@ -60,10 +60,11 @@ public class Hand : MonoBehaviour
                     mTempJoint.connectedBody = AttachPoint;
                     mHandState = State.HOLDING;
 
-                    //if you grab a vinyl, disable its UI
+                    //if you grab a vinyl, disable its UI, enable follow cube
                     if (mHeldObject.gameObject.tag == "vinyl") {
                         VinylScript vinylScript = mHeldObject.gameObject.GetComponent<VinylScript>();
                         vinylScript.DisableUI();
+                        vinylScript.spawnedFollowCube.SetActive(true);
                     }
 
                 }
@@ -94,6 +95,7 @@ public class Hand : MonoBehaviour
                         {
                             VinylScript vinylScript = mHeldObject.gameObject.GetComponent<VinylScript>();
                             vinylScript.EnableUI();
+                            vinylScript.FollowArtist();
                         }
                     }
 

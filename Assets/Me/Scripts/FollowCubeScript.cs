@@ -17,9 +17,9 @@ public class FollowCubeScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-      //  spotifyManager = GameObject.Find("SpotifyManager");
-      //  spotifyManagerScript = spotifyManager.GetComponent<Spotify>();
-      //  playlistScript = vinylScript.playlistScript;
+        //  spotifyManager = GameObject.Find("SpotifyManager");
+        //  spotifyManagerScript = spotifyManager.GetComponent<Spotify>();
+        //  playlistScript = vinylScript.playlistScript;
     }
 
     void Awake()
@@ -32,7 +32,7 @@ public class FollowCubeScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "vinyl")
         {
-            HandleCollisionWithVinyl(collision);
+       //     HandleCollisionWithVinyl(collision);
         }
     }
 
@@ -42,14 +42,38 @@ public class FollowCubeScript : MonoBehaviour
         Rigidbody[] fragmentRigidBodies = fragments.GetComponentsInChildren<Rigidbody>();
         fragmentRigidBodies[0].AddExplosionForce(5.0f, fragmentRigidBodies[0].transform.position, 5.0f, 5.0f, ForceMode.Force);
 
-       // spotifyManager = GameObject.Find("SpotifyManager");
-       // spotifyManagerScript = spotifyManager.GetComponent<Spotify>();
+        // spotifyManager = GameObject.Find("SpotifyManager");
+        // spotifyManagerScript = spotifyManager.GetComponent<Spotify>();
+
+
         spotifyManagerScript.Follow(FollowType.Artist, playlistScript.artistId);
         Debug.Log("Followed artist " + playlistScript.playlistName + " with id " + playlistScript.artistId);
 
         GameObject spawnedUIConfirmation = Instantiate(uiConfirmation, gameObject.transform.position + new Vector3(0, 0.3f, 0), Quaternion.identity);
 
         spawnedUIConfirmation.transform.Find("Follow Confirmation Text").GetComponent<TextMeshProUGUI>().text = "Followed " + playlistScript.playlistName + "!";
+        Destroy(gameObject);
+    }
+
+    public void HandleCollisionWithVinyl2(GameObject vinylGameObject)
+    {
+        if(playlistScript.trackType == PlaylistScript.TrackType.artist){
+            spotifyManagerScript.Follow(FollowType.Artist, playlistScript.artistId);
+            Debug.Log("Followed artist " + playlistScript.playlistName + " with id " + playlistScript.artistId);
+
+            GameObject spawnedUIConfirmation = Instantiate(uiConfirmation,
+                gameObject.transform.position + new Vector3(0, 0.3f, 0), Quaternion.identity);
+
+            spawnedUIConfirmation.transform.Find("Follow Confirmation Text").GetComponent<TextMeshProUGUI>().text =
+                "Followed " + playlistScript.playlistName + "!";
+        }
+
+        else if (playlistScript.trackType == PlaylistScript.TrackType.track)
+        {
+
+        }
+
+        Destroy(vinylGameObject);
         Destroy(gameObject);
     }
 

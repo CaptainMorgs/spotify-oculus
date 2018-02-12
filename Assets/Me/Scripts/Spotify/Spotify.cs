@@ -462,6 +462,23 @@ public class Spotify : MonoBehaviour
         }
     }
 
+    public void SaveTrack(string id)
+    {
+        Thread myThread = new Thread(() => SaveTrack(id));
+        myThread.Start();
+    }
+
+    public void SaveTrackThread(string id)
+    {
+        ErrorResponse errorResponse = _spotify.SaveTrack(id);
+
+        if (errorResponse.HasError())
+        {
+            Debug.LogError(errorResponse.Error.Message);
+            Debug.LogError(errorResponse.Error.Status);
+        }
+    }
+
     public void Follow(FollowType followType, string id)
     {
         Thread myThread = new Thread(() => FollowThread(followType, id));

@@ -32,6 +32,12 @@ public class PlaylistScript : MonoBehaviour
     public Sprite sprite;
     public FullAlbum fullAlbum;
     public WWW www;
+    public TrackType trackType;
+
+    public enum TrackType
+    {
+        playlist, artist, track, album, newRelease, searchResult
+    }
 
     // Use this for initialization
     void Start()
