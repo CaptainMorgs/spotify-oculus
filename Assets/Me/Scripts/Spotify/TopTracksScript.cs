@@ -18,6 +18,7 @@ public class TopTracksScript : MonoBehaviour
     private AudioAnalysis[] audioAnalysisArray;
     public Paging<FullTrack> usersTopTracks;
     public SaveLoad saveLoad;
+    public List<PlaylistScriptData> savedTopTracks;
 
     // Use this for initialization
     void Start()
@@ -67,6 +68,7 @@ public class TopTracksScript : MonoBehaviour
                 playlistScript.audioAnalysis = spotifyManagerScript.GetAudioAnalysis(usersTopTracks.Items[i].Id);
                 playlistScript.www = imageURLWWW;
                 playlistScript.sprite = ConvertWWWToSprite(imageURLWWW);
+                playlistScript.trackId = usersTopTracks.Items[i].Id;
 
                 saveLoad.SaveTextureToFilePNG(ConvertWWWToTexture(imageURLWWW), "topTrack" + i + ".png");
                 saveLoad.savedTopTracks.Add(new PlaylistScriptData(playlistScript));
@@ -112,6 +114,7 @@ public class TopTracksScript : MonoBehaviour
     {
         //TODO take this out
         //   saveLoad.Load();
+        savedTopTracks = saveLoad.savedTopTracks;
 
         for (int i = 0; i < meshRenderers.Length; i++)
         {
@@ -131,6 +134,7 @@ public class TopTracksScript : MonoBehaviour
             playlistScript.setPlaylistURI(playlistScriptLoaded.playlistURI);
             playlistScript.artistName = playlistScriptLoaded.artistName;
             playlistScript.sprite = sprite;
+            //playlistScript.trackId = 
         }
     }
 

@@ -25,8 +25,8 @@ public class VinylScript : MonoBehaviour {
 	}
 
     void OnCollisionEnter(Collision collision) {
-        //ignore layers grabbable, player, transparent and vinyl
-        if (collision.gameObject.layer != 8 && collision.gameObject.layer != 9 && collision.gameObject.layer != 10 && collision.gameObject.layer != 11 && collision.gameObject.layer != 12)
+        //ignore layers grabbable, player, transparent, default and vinyl
+        if (collision.gameObject.layer != 8 && collision.gameObject.layer != 9 && collision.gameObject.layer != 10 && collision.gameObject.layer != 11 && collision.gameObject.layer != 12 && collision.gameObject.layer != 0)
         {
             HandleThowCollision(collision);
         }       
@@ -130,6 +130,10 @@ public class VinylScript : MonoBehaviour {
         if (list.Count > 0 && list[0].gameObject.tag == "followCube")
         {
             list[0].gameObject.GetComponent<FollowCubeScript>().HandleCollisionWithVinyl2(gameObject);
+        }
+        else {
+            Destroy(spawnedFollowCube);
+            SpawnFollowCube();
         }
     }
 }

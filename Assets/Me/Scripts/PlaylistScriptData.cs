@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class PlaylistScriptData  {
 
-    public string playlistName, playlistURI, artistName, artistId, ownerId, playlistId, albumId;
+    public string playlistName, playlistURI, artistName, artistId, ownerId, playlistId, albumId, trackId;
 
     public int popularity;
    // public SimplePlaylist simplePlaylist;

@@ -26,6 +26,14 @@ public class VinylUI : MonoBehaviour
 
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name != "controller_right" && collision.gameObject.name != "controller_left")
+        {
+            Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
+        }
+    }
+
     public void InitializeUI(PlaylistScript playlistScript)
     {
         this.playlistScript = playlistScript;

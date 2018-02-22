@@ -11,7 +11,7 @@ using System;
 public class PlaylistScript : MonoBehaviour
 {
     //TODO make everything public and remove getters/setters
-    public string playlistName, playlistURI, artistName, artistId, ownerId, playlistId, albumId;
+    public string playlistName, playlistURI, artistName, artistId, ownerId, playlistId, albumId, trackId;
     public int popularity;
     private GameObject spotifyManager;
     private Spotify script;
@@ -60,6 +60,7 @@ public class PlaylistScript : MonoBehaviour
         artistName = playlistScriptData.artistName;
         popularity = playlistScriptData.popularity;
         artistId = playlistScriptData.artistId;
+       
 
 
         //  simplePlaylist = playlistScriptData.simplePlaylist;

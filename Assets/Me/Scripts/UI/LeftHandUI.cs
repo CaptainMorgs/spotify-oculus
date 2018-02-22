@@ -9,7 +9,8 @@ public class LeftHandUI : MonoBehaviour {
     private GameObject spotifyManager;
     private Spotify spotifyManagerScript;
     private string gameObjectName;
-    public GameObject RaycastGameObject;
+    public GameObject RaycastGameObject, recommendationDeck;
+    private RecommenderDeck recommenderDeckScript;
     private Raycast raycast;
     private bool isHovering = false;
     public float idleTransparancy = 0.8f;
@@ -20,6 +21,8 @@ public class LeftHandUI : MonoBehaviour {
         spotifyManager = GameObject.Find("SpotifyManager");
         spotifyManagerScript = spotifyManager.GetComponent<Spotify>();
         saveLoad = spotifyManager.GetComponent<SaveLoad>();
+        recommendationDeck = GameObject.Find("RecommenderDeck");
+        recommenderDeckScript = recommendationDeck.GetComponent<RecommenderDeck>();
         raycast = RaycastGameObject.GetComponent<Raycast>();
         gameObjectName = transform.name;
         //Ignore collisions between grabble and handUI layer, i.e. hand ui and vinyl (they can collide when holding vinyl)
@@ -34,6 +37,7 @@ public class LeftHandUI : MonoBehaviour {
     //TODO surely this can be cleaner....
     public void OnRayCastHit()
     {
+        Debug.Log(transform.name);
         gameObjectName = transform.name;
 
         if (gameObjectName.Equals("Play"))
@@ -78,6 +82,11 @@ public class LeftHandUI : MonoBehaviour {
         else if (gameObjectName.Equals("Reload"))
         {
             saveLoad.Reload();
+        }
+        else if (gameObjectName.Equals("GetRecommendations"))
+        {
+            Debug.Log("Calling GetRecommendations from lefthandui");
+            recommenderDeckScript.GetRecommendations();
         }
         else {
             Debug.LogError("Cannot find UI Gameobject by name");

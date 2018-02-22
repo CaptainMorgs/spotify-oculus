@@ -153,7 +153,7 @@ public class Raycast : MonoBehaviour
 
                 if (GameObject.FindWithTag("vinyl") != null)
                 {
-                    Destroy(GameObject.FindWithTag("vinyl"));
+                   // Destroy(GameObject.FindWithTag("vinyl"));
                 }
 
                 if (GameObject.FindWithTag("followCube") != null)

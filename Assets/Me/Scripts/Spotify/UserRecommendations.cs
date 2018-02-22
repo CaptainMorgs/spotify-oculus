@@ -19,6 +19,7 @@ public class UserRecommendations : MonoBehaviour
     private TopArtistsScript topArtistsScript;
     private Paging<FullTrack> usersTopTracks;
     private Paging<FullArtist> usersTopArtists;
+    private List<PlaylistScriptData> savedTopTracks;
 
     // Use this for initialization
     void Start()
@@ -33,26 +34,33 @@ public class UserRecommendations : MonoBehaviour
 
         topArtistsScript = topArtistsGameObject.GetComponent<TopArtistsScript>();
 
-        StartCoroutine(LoadUserRecommendations());
+     //   StartCoroutine(LoadUserRecommendations());
     }
 
-    public IEnumerator LoadUserRecommendations()
+    public IEnumerator LoadUserRecommendations(List<string> ids)
     {
         //TODO subscribe to spotify manager event of authorization being complete and top tracks being complete
-        yield return new WaitForSeconds(10);
+        //  yield return new WaitForSeconds(10);
 
-        usersTopTracks = topTracksScript.usersTopTracks;
-        usersTopArtists = topArtistsScript.usersTopArtists;
+        //    usersTopTracks = topTracksScript.usersTopTracks;
+        //    usersTopArtists = topArtistsScript.usersTopArtists;
 
-        Recommendations recommendations = spotifyManagerScript.GetUserRecommendations(usersTopTracks, usersTopArtists);
-        if (recommendations.HasError())
-        {
-            Debug.LogError(recommendations.Error.Status + " " + recommendations.Error.Message);
+        //    savedTopTracks = topTracksScript.savedTopTracks;
 
-        }
-        else
-        {
-            for (int i = 0; i < meshRenderers.Length; i++)
+        //   Recommendations recommendations = spotifyManagerScript.GetUserRecommendations(usersTopTracks, usersTopArtists);
+
+        //   Recommendations recommendations = spotifyManagerScript.GetUserRecommendations(ids[0]);
+
+        Recommendations recommendations = spotifyManagerScript.GetUserRecommendations(ids);
+
+        // if (recommendations.HasError())
+        // {
+        //     Debug.LogError(recommendations.Error.Status + " " + recommendations.Error.Message);
+
+        // }
+        // else
+        // {
+        for (int i = 0; i < meshRenderers.Length; i++)
             {
                 FullTrack fullTrack = spotifyManagerScript.GetTrack(recommendations.Tracks[i].Id);
 
@@ -71,7 +79,7 @@ public class UserRecommendations : MonoBehaviour
 
                 playlistScript.setPlaylistName(fullTrack.Name);
                 playlistScript.setPlaylistURI(fullTrack.Uri);
-            }
+      //      }
         }
     }
 }

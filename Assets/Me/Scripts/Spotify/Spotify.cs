@@ -157,6 +157,51 @@ public class Spotify : MonoBehaviour
         return usersRecommendations;
     }
 
+    public Recommendations GetUserRecommendations(string artistId)
+    {
+        List<String> trackIds = new List<String>();
+
+        List<String> artistIds = new List<String>();
+
+        List<String> genres = new List<String>();
+
+        artistIds.Add(artistId);
+
+        //TODO what if the user doesn't have 5 top tracks, artists (possible?)
+        for (int i = 0; i < 5; i++)
+        {
+      //      trackIds.Add(savedTopTracks[i].);
+            //    artistIds.Add(usersTopTracks.Items[i].Artists[0].Id);
+            //    genres.Add(usersTopArtists.Items[i].Genres[0]);
+        }
+
+        Recommendations usersRecommendations = _spotify.GetRecommendations(artistIds);
+
+        if (usersRecommendations.HasError())
+        {
+            Debug.LogError(usersRecommendations.Error.Message);
+            Debug.LogError(usersRecommendations.Error.Status);
+
+        }
+
+        return usersRecommendations;
+    }
+
+    public Recommendations GetUserRecommendations(List<string> artistIds)
+    {
+              
+        Recommendations usersRecommendations = _spotify.GetRecommendations(artistIds);
+
+        if (usersRecommendations.HasError())
+        {
+            Debug.LogError(usersRecommendations.Error.Message);
+            Debug.LogError(usersRecommendations.Error.Status);
+
+        }
+
+        return usersRecommendations;
+    }
+
     public Paging<FullArtist> GetUsersTopArtists()
     {
         Paging<FullArtist> usersTopArtists = _spotify.GetUsersTopArtists(TimeRangeType.ShortTerm, 9, 0);
@@ -471,7 +516,7 @@ public class Spotify : MonoBehaviour
     public void SaveAlbumThread(string id)
     {
         ErrorResponse errorResponse = _spotify.SaveAlbum(id);
-
+        
         if (errorResponse.HasError())
         {
             Debug.LogError(errorResponse.Error.Message);
