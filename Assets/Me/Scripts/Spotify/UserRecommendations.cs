@@ -51,7 +51,7 @@ public class UserRecommendations : MonoBehaviour
 
         //   Recommendations recommendations = spotifyManagerScript.GetUserRecommendations(ids[0]);
 
-        Recommendations recommendations = spotifyManagerScript.GetUserRecommendations(ids);
+        Recommendations recommendations = spotifyManagerScript.GetRecommendations(ids);
 
         // if (recommendations.HasError())
         // {

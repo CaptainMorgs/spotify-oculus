@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using SpotifyAPI.Web.Models;
 
 public class RecommenderDeck : MonoBehaviour
 {
@@ -12,17 +13,23 @@ public class RecommenderDeck : MonoBehaviour
 
     public UserRecommendations userRecommendations;
 
-    public TextMeshProUGUI seed1Text, seed2Text;
+    private GameObject spotifyManager;
 
-	// Use this for initialization
-	void Start () {
+    private Spotify spotifyManagerScript;
+
+
+    // Use this for initialization
+    void Start()
+    {
+        spotifyManager = GameObject.Find("SpotifyManager");
+        spotifyManagerScript = spotifyManager.GetComponent<Spotify>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
 
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public void GetRecommendations()
     {
@@ -39,18 +46,27 @@ public class RecommenderDeck : MonoBehaviour
                 {
                     seedIds.Add(playlistScript.artistId);
                 }
+                //TODO more elegent solution than using the top track of each playlist? Use genre maybe?
+                else if (playlistScript.trackType == PlaylistScript.TrackType.playlist)
+                {
+
+                    FullPlaylist fullPlaylist = spotifyManagerScript.GetPlaylist(playlistScript.ownerId, playlistScript.playlistId);
+                    seedIds.Add(fullPlaylist.Tracks.Items[0].Track.Artists[0].Id);
+
+                }              
                 else
                 {
-                    Debug.LogError("only supports artisTI");
+                    Debug.LogError("only supports artists and playlists right now");
                 }
 
 
             }
             if (seedIds.Count != 0)
             {
-               StartCoroutine(userRecommendations.LoadUserRecommendations(seedIds));
+                StartCoroutine(userRecommendations.LoadUserRecommendations(seedIds));
             }
-            else {
+            else
+            {
                 Debug.LogError("Seed Id list is empty");
             }
         }

@@ -98,12 +98,12 @@ public class SaveLoad : MonoBehaviour
             savedTopTracks = (List<PlaylistScriptData>)bf.Deserialize(file);
             file.Close();
         }
-        if (File.Exists(Application.persistentDataPath + "/savedFeaturedPlaylists.gd"))
-        {
-            FileStream file = File.Open(Application.persistentDataPath + "/savedFeaturedPlaylists.gd", FileMode.Open);
-            savedFeaturedPlaylists = (List<PlaylistScriptData>)bf.Deserialize(file);
-            file.Close();
-        }
+        //if (File.Exists(Application.persistentDataPath + "/savedFeaturedPlaylists.gd"))
+        //{
+        //    FileStream file = File.Open(Application.persistentDataPath + "/savedFeaturedPlaylists.gd", FileMode.Open);
+        //    savedFeaturedPlaylists = (List<PlaylistScriptData>)bf.Deserialize(file);
+        //    file.Close();
+        //}
         if (File.Exists(Application.persistentDataPath + "/savedTopArtists.gd"))
         {
             FileStream file = File.Open(Application.persistentDataPath + "/savedTopArtists.gd", FileMode.Open);
@@ -116,12 +116,12 @@ public class SaveLoad : MonoBehaviour
             savedNewReleases = (List<PlaylistScriptData>)bf.Deserialize(file);
             file.Close();
         }
-        if (File.Exists(Application.persistentDataPath + "/savedUserPlaylists.gd"))
-        {
-            FileStream file = File.Open(Application.persistentDataPath + "/savedUserPlaylists.gd", FileMode.Open);
-            savedUserPlaylists = (List<PlaylistScriptData>)bf.Deserialize(file);
-            file.Close();
-        }
+        //if (File.Exists(Application.persistentDataPath + "/savedUserPlaylists.gd"))
+        //{
+        //    FileStream file = File.Open(Application.persistentDataPath + "/savedUserPlaylists.gd", FileMode.Open);
+        //    savedUserPlaylists = (List<PlaylistScriptData>)bf.Deserialize(file);
+        //    file.Close();
+        //}
         if (File.Exists(Application.persistentDataPath + "/savedUserFollowedArtists.gd"))
         {
             FileStream file = File.Open(Application.persistentDataPath + "/savedUserFollowedArtists.gd", FileMode.Open);

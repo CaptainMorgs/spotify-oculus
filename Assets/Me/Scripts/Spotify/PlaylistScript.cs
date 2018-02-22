@@ -60,6 +60,8 @@ public class PlaylistScript : MonoBehaviour
         artistName = playlistScriptData.artistName;
         popularity = playlistScriptData.popularity;
         artistId = playlistScriptData.artistId;
+        playlistId = playlistScriptData.playlistId;
+        ownerId = playlistScriptData.ownerId;
        
 
 

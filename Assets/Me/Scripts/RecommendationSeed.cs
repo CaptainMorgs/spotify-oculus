@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class RecommendationSeed : MonoBehaviour
 {
     public GameObject recommenderDeck;
+
+    public TextMeshProUGUI seedText;
 
     private RecommenderDeck recommenderDeckScript;
 
@@ -26,6 +29,10 @@ public class RecommendationSeed : MonoBehaviour
             StartCoroutine(Lerp(collider));
            
             recommenderDeckScript.activeSeeds.Add(collider.gameObject);
+
+            PlaylistScript playlistScript = collider.gameObject.GetComponent<VinylScript>().playlistScript;
+
+            seedText.text = playlistScript.playlistName;
         }
     }
 
@@ -38,6 +45,8 @@ public class RecommendationSeed : MonoBehaviour
             Debug.Log("Vinyl exiting recommenderSeed");
 
             recommenderDeckScript.activeSeeds.Remove(collider.gameObject);
+
+            seedText.text = "Add seed";
         }
     }
 

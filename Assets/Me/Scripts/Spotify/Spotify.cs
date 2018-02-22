@@ -187,20 +187,21 @@ public class Spotify : MonoBehaviour
         return usersRecommendations;
     }
 
-    public Recommendations GetUserRecommendations(List<string> artistIds)
+    public Recommendations GetRecommendations(List<string> idList)
     {
               
-        Recommendations usersRecommendations = _spotify.GetRecommendations(artistIds);
+        Recommendations usersRecommendations = _spotify.GetRecommendations(idList);
 
         if (usersRecommendations.HasError())
         {
             Debug.LogError(usersRecommendations.Error.Message);
-            Debug.LogError(usersRecommendations.Error.Status);
-
+            Debug.LogError(usersRecommendations.Error.Status);         
         }
 
         return usersRecommendations;
     }
+
+
 
     public Paging<FullArtist> GetUsersTopArtists()
     {
@@ -219,6 +220,20 @@ public class Spotify : MonoBehaviour
         SeveralTracks artistTopTracks = _spotify.GetArtistsTopTracks(artistID, privateProfile.Country);
         return artistTopTracks;
     }
+
+    //TODO implement threading
+    public FullPlaylist GetPlaylist(string userId, string playlistId) {
+
+        FullPlaylist fullPlaylist = _spotify.GetPlaylist(userId, playlistId);
+
+        if (fullPlaylist.HasError()) {
+            Debug.LogError(fullPlaylist.Error.Message);
+            Debug.LogError(fullPlaylist.Error.Status);
+        }
+
+        return fullPlaylist;
+    }
+
 
     public void playSong(string songID)
     {

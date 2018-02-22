@@ -26,7 +26,7 @@ public class UserPlaylists : MonoBehaviour
         spotifyManagerScript = spotifyManager.GetComponent<Spotify>();
         saveLoad = spotifyManager.GetComponent<SaveLoad>();
 
-      //  StartCoroutine(LoadUserPlaylists());
+        StartCoroutine(LoadUserPlaylists());
     }
 
     public IEnumerator LoadUserPlaylists()
@@ -61,6 +61,8 @@ public class UserPlaylists : MonoBehaviour
                 //  playlistScript.fullArtist = usersPlaylists.Items[i];
                 playlistScript.sprite = ConvertWWWToSprite(imageURLWWW);
                 //       SaveLoad.savedTopTracks.Add(playlistScript);
+                playlistScript.ownerId = usersPlaylists.Items[i].Owner.Id;
+                playlistScript.playlistId = usersPlaylists.Items[i].Id;
                 saveLoad.SaveTextureToFilePNG(Converter.ConvertWWWToTexture(imageURLWWW), "userPlaylist" + i + ".png");
                 saveLoad.savedUserPlaylists.Add(new PlaylistScriptData(playlistScript));
             }
@@ -89,6 +91,8 @@ public class UserPlaylists : MonoBehaviour
             playlistScript.setPlaylistURI(playlistScriptLoaded.playlistURI);
             playlistScript.artistName = playlistScriptLoaded.artistName;
             playlistScript.sprite = Converter.ConvertTextureToSprite(texture);
+            playlistScript.playlistId = playlistScriptLoaded.playlistId;
+            playlistScript.ownerId = playlistScriptLoaded.ownerId;
         }
     }
 
