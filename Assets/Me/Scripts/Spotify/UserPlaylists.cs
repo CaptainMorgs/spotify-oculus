@@ -26,7 +26,7 @@ public class UserPlaylists : MonoBehaviour
         spotifyManagerScript = spotifyManager.GetComponent<Spotify>();
         saveLoad = spotifyManager.GetComponent<SaveLoad>();
 
-        StartCoroutine(LoadUserPlaylists());
+      //  StartCoroutine(LoadUserPlaylists());
     }
 
     public IEnumerator LoadUserPlaylists()

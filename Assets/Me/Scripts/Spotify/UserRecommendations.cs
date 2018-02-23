@@ -37,29 +37,11 @@ public class UserRecommendations : MonoBehaviour
      //   StartCoroutine(LoadUserRecommendations());
     }
 
-    public IEnumerator LoadUserRecommendations(List<string> ids)
+    public IEnumerator LoadUserRecommendationsWithArtist(List<string> ids)
     {
-        //TODO subscribe to spotify manager event of authorization being complete and top tracks being complete
-        //  yield return new WaitForSeconds(10);
-
-        //    usersTopTracks = topTracksScript.usersTopTracks;
-        //    usersTopArtists = topArtistsScript.usersTopArtists;
-
-        //    savedTopTracks = topTracksScript.savedTopTracks;
-
-        //   Recommendations recommendations = spotifyManagerScript.GetUserRecommendations(usersTopTracks, usersTopArtists);
-
-        //   Recommendations recommendations = spotifyManagerScript.GetUserRecommendations(ids[0]);
-
+        
         Recommendations recommendations = spotifyManagerScript.GetRecommendations(ids);
-
-        // if (recommendations.HasError())
-        // {
-        //     Debug.LogError(recommendations.Error.Status + " " + recommendations.Error.Message);
-
-        // }
-        // else
-        // {
+       
         for (int i = 0; i < meshRenderers.Length; i++)
             {
                 FullTrack fullTrack = spotifyManagerScript.GetTrack(recommendations.Tracks[i].Id);
@@ -79,7 +61,33 @@ public class UserRecommendations : MonoBehaviour
 
                 playlistScript.setPlaylistName(fullTrack.Name);
                 playlistScript.setPlaylistURI(fullTrack.Uri);
-      //      }
+        }
+    }
+
+    public IEnumerator LoadUserRecommendationsWithTrack(List<string> ids)
+    {
+
+        Recommendations recommendations = spotifyManagerScript.GetRecommendationsWithTrack(ids);
+
+        for (int i = 0; i < meshRenderers.Length; i++)
+        {
+            FullTrack fullTrack = spotifyManagerScript.GetTrack(recommendations.Tracks[i].Id);
+
+            string recommendationsImageURL = fullTrack.Album.Images[0].Url;
+
+            GameObject meshRendererGameObject = meshRenderers[i].transform.gameObject;
+
+            PlaylistScript playlistScript = meshRendererGameObject.GetComponent<PlaylistScript>();
+            //  playlistScript.setPlaylistURI(featuredPlaylists.Playlists.Items[i].Uri);
+
+            WWW imageURLWWW = new WWW(recommendationsImageURL);
+
+            yield return imageURLWWW;
+
+            meshRenderers[i].material.mainTexture = imageURLWWW.texture;
+
+            playlistScript.setPlaylistName(fullTrack.Name);
+            playlistScript.setPlaylistURI(fullTrack.Uri);
         }
     }
 }

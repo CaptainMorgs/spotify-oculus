@@ -37,33 +37,46 @@ public class RecommenderDeck : MonoBehaviour
         if (activeSeeds.Count > 0)
         {
 
-            List<string> seedIds = new List<string>();
+            List<string> artistIds = new List<string>();
+            List<string> trackIds = new List<string>();
 
             foreach (var seed in activeSeeds)
             {
                 PlaylistScript playlistScript = seed.GetComponent<VinylScript>().playlistScript;
                 if (playlistScript.trackType == PlaylistScript.TrackType.artist)
                 {
-                    seedIds.Add(playlistScript.artistId);
+                    artistIds.Add(playlistScript.artistId);
                 }
                 //TODO more elegent solution than using the top track of each playlist? Use genre maybe?
                 else if (playlistScript.trackType == PlaylistScript.TrackType.playlist)
                 {
 
                     FullPlaylist fullPlaylist = spotifyManagerScript.GetPlaylist(playlistScript.ownerId, playlistScript.playlistId);
-                    seedIds.Add(fullPlaylist.Tracks.Items[0].Track.Artists[0].Id);
+                    artistIds.Add(fullPlaylist.Tracks.Items[0].Track.Artists[0].Id);
 
-                }              
+                }
+                else if (playlistScript.trackType == PlaylistScript.TrackType.track)
+                {
+                    trackIds.Add(playlistScript.trackId);
+                }
+                else if (playlistScript.trackType == PlaylistScript.TrackType.album)
+                {
+                    FullAlbum fullAlbum = spotifyManagerScript.GetAlbum(playlistScript.albumId);
+                    artistIds.Add(fullAlbum.Artists[0].Id);
+                }
                 else
                 {
-                    Debug.LogError("only supports artists and playlists right now");
+                    Debug.LogError("Unsupported track type");
                 }
-
-
             }
-            if (seedIds.Count != 0)
+
+            if (artistIds.Count != 0)
             {
-                StartCoroutine(userRecommendations.LoadUserRecommendations(seedIds));
+                StartCoroutine(userRecommendations.LoadUserRecommendationsWithArtist(artistIds));
+            }
+            else if (trackIds.Count != 0)
+            {
+                StartCoroutine(userRecommendations.LoadUserRecommendationsWithTrack(trackIds));
             }
             else
             {

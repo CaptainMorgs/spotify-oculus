@@ -62,18 +62,8 @@ public class PlaylistScript : MonoBehaviour
         artistId = playlistScriptData.artistId;
         playlistId = playlistScriptData.playlistId;
         ownerId = playlistScriptData.ownerId;
-       
-
-
-        //  simplePlaylist = playlistScriptData.simplePlaylist;
-        //   fullTrack = playlistScriptData.fullTrack;
-        //   simpleAlbum = playlistScriptData.simpleAlbum;
-        //   fullArtist = playlistScriptData.fullArtist;
-        //  audioAnalysis = playlistScriptData.audioAnalysis;
-        //    image = playlistScriptData.image;
-        //     sprite = playlistScriptData.sprite;
-        //  fullAlbum = playlistScriptData.fullAlbum;
-        //    www = playlistScriptData.www;
+        trackId = playlistScriptData.trackId;
+        albumId = playlistScriptData.albumId;
     }
 
     public void setPlaylistURI(string playlistURI)

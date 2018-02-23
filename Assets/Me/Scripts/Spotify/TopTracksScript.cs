@@ -30,7 +30,7 @@ public class TopTracksScript : MonoBehaviour
         spotifyManagerScript = spotifyManager.GetComponent<Spotify>();
         saveLoad = spotifyManager.GetComponent<SaveLoad>();
 
-         //  StartCoroutine(loadTopTracks());
+         // StartCoroutine(loadTopTracks());
 
         //   LoadTopTracksFromFile();
     }
@@ -110,6 +110,7 @@ public class TopTracksScript : MonoBehaviour
         return Sprite.Create(texture, rec, new Vector2(0.5f, 0.5f), 1);
     }
 
+    //TODO not used maybe take it out?
     public void LoadTopTracksFromFile()
     {
         //TODO take this out
@@ -134,6 +135,7 @@ public class TopTracksScript : MonoBehaviour
             playlistScript.setPlaylistURI(playlistScriptLoaded.playlistURI);
             playlistScript.artistName = playlistScriptLoaded.artistName;
             playlistScript.sprite = sprite;
+            playlistScript.trackId = playlistScriptLoaded.trackId;
             //playlistScript.trackId = 
         }
     }
@@ -161,6 +163,7 @@ public class TopTracksScript : MonoBehaviour
             playlistScript.setPlaylistURI(playlistScriptLoaded.playlistURI);
             playlistScript.artistName = playlistScriptLoaded.artistName;
             playlistScript.sprite = ConvertTextureToSprite(texture);
+            playlistScript.trackId = playlistScriptLoaded.trackId;
         }
     }
 }

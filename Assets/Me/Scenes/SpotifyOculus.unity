@@ -754,7 +754,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Whenever you need someone
+  m_Text: 
 --- !u!222 &32613020
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8434,7 +8434,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 6}
+  m_AnchoredPosition: {x: 0, y: 4}
   m_SizeDelta: {x: 32.2, y: 5.08}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &335594500
@@ -9323,7 +9323,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Whenever you need someone
+  m_Text: 
 --- !u!222 &347205940
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11843,7 +11843,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Whenever you need someone
+  m_Text: 
 --- !u!222 &453684587
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -26080,7 +26080,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Whenever you need someone
+  m_Text: 
 --- !u!222 &1048899345
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -27003,7 +27003,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000000021704237, y: 6}
+  m_AnchoredPosition: {x: -0.000000021704237, y: 3.999999}
   m_SizeDelta: {x: 32.2, y: 5.08}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!65 &1104113952
@@ -27824,7 +27824,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Whenever you need someone
+  m_Text: 
 --- !u!222 &1131220958
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -32278,7 +32278,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1338839057}
   m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
-  m_LocalPosition: {x: -0.89, y: 6.39, z: -5.49}
+  m_LocalPosition: {x: -0.89, y: 6.36, z: -5.49}
   m_LocalScale: {x: 0.9589122, y: 1.9762949, z: 1.0495692}
   m_Children: []
   m_Father: {fileID: 0}
@@ -35429,7 +35429,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Whenever you need someone
+  m_Text: 
 --- !u!222 &1438026836
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -42219,7 +42219,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Whenever you need someone
+  m_Text: 
 --- !u!222 &1637485318
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -42721,7 +42721,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Whenever you need someone
+  m_Text: 
 --- !u!222 &1679418057
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -53273,7 +53273,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Whenever you need someone
+  m_Text: 
 --- !u!222 &2111076074
 CanvasRenderer:
   m_ObjectHideFlags: 0

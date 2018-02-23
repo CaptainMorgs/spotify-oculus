@@ -26,7 +26,7 @@ public class FeaturedPlaylistTabScript : MonoBehaviour
         spotifyManagerScript = spotifyManager.GetComponent<Spotify>();
         saveLoad = spotifyManager.GetComponent<SaveLoad>();
 
-       StartCoroutine(loadFeaturedPlaylists());
+     //  StartCoroutine(loadFeaturedPlaylists());
 
      //   LoadFeaturedPlaylistFromFile();
 
@@ -147,6 +147,8 @@ public class FeaturedPlaylistTabScript : MonoBehaviour
             playlistScript.setPlaylistURI(playlistScriptLoaded.playlistURI);
             playlistScript.artistName = playlistScriptLoaded.artistName;
             playlistScript.sprite = ConvertTextureToSprite(texture);
+            playlistScript.playlistId = playlistScriptLoaded.playlistId;
+            playlistScript.ownerId = playlistScriptLoaded.ownerId;
         }
     }
 }

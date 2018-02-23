@@ -54,12 +54,15 @@ public class NewAlbumReleasesScript : MonoBehaviour
 
             playlistScript.setPlaylistName(newAlbumReleases.Albums.Items[i].Name);
             playlistScript.setPlaylistURI(newAlbumReleases.Albums.Items[i].Uri);
-            playlistScript.albumId = newAlbumReleases.Albums.Items[i].Id;
+            playlistScript.albumId = newAlbumReleases.Albums.Items[i].Id;          
             playlistScript.simpleAlbum = newAlbumReleases.Albums.Items[i];
             playlistScript.sprite = ConvertWWWToSprite(imageURLWWW);
             saveLoad.SaveTextureToFilePNG(ConvertWWWToTexture(imageURLWWW), "newReleases" + i + ".png");
             saveLoad.savedNewReleases.Add(new PlaylistScriptData(playlistScript));
-         //   saveLoad.QuickSaveSpriteToFile(playlistScript.sprite, "newReleasesSprite" + i);
+            //   saveLoad.QuickSaveSpriteToFile(playlistScript.sprite, "newReleasesSprite" + i);
+
+            yield return new WaitForSeconds(10);
+            saveLoad.Save();
         }
     }
     //TODO fix code duplication 
@@ -97,6 +100,8 @@ public class NewAlbumReleasesScript : MonoBehaviour
             playlistScript.setPlaylistURI(playlistScriptLoaded.playlistURI);
             playlistScript.artistName = playlistScriptLoaded.artistName;
             playlistScript.sprite = saveLoad.QuickLoadSpriteFromFile("newReleasesSprite" + i);
+            playlistScript.albumId = playlistScriptLoaded.albumId;
+
         }
     }
 
@@ -139,6 +144,7 @@ public class NewAlbumReleasesScript : MonoBehaviour
             playlistScript.setPlaylistURI(playlistScriptLoaded.playlistURI);
             playlistScript.artistName = playlistScriptLoaded.artistName;
             playlistScript.sprite = ConvertTextureToSprite(texture);
+            playlistScript.albumId = playlistScriptLoaded.albumId;
         }
     }
 }

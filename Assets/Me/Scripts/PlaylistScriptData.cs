@@ -4,20 +4,12 @@ using SpotifyAPI.Web.Models;
 using UnityEngine;
 
 [System.Serializable]
-public class PlaylistScriptData  {
+public class PlaylistScriptData
+{
 
     public string playlistName, playlistURI, artistName, artistId, ownerId, playlistId, albumId, trackId;
 
     public int popularity;
-   // public SimplePlaylist simplePlaylist;
-   // public FullTrack fullTrack;
-   // public SimpleAlbum simpleAlbum;
-   // public FullArtist fullArtist;
-   // public AudioAnalysis audioAnalysis;
- //   public UnityEngine.UI.Image image;
- //   public Sprite sprite;
- //   public FullAlbum fullAlbum;
- //   public WWW www;
 
     public PlaylistScriptData(PlaylistScript playlistScript)
     {
@@ -28,18 +20,7 @@ public class PlaylistScriptData  {
         ownerId = playlistScript.ownerId;
         playlistId = playlistScript.playlistId;
         albumId = playlistScript.albumId;
-        if (playlistScript.artistId != null)
-        {
-            artistId = playlistScript.artistId;
-        }
-        //   simplePlaylist = playlistScript.simplePlaylist;
-        //   fullTrack = playlistScript.fullTrack;
-        //   simpleAlbum = playlistScript.simpleAlbum;
-        //   fullArtist = playlistScript.fullArtist;
-        //   audioAnalysis = playlistScript.audioAnalysis;
-        //    image = playlistScript.image;
-        //     sprite = playlistScript.sprite;
-        //     fullAlbum = playlistScript.fullAlbum;
-        //     www = playlistScript.www;
+        trackId = playlistScript.trackId;
+        artistId = playlistScript.artistId;
     }
 }

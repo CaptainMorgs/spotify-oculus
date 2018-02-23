@@ -201,6 +201,20 @@ public class Spotify : MonoBehaviour
         return usersRecommendations;
     }
 
+    public Recommendations GetRecommendationsWithTrack(List<string> trackIdList)
+    {
+
+        Recommendations usersRecommendations = _spotify.GetRecommendations(null, null, trackIdList);
+
+        if (usersRecommendations.HasError())
+        {
+            Debug.LogError(usersRecommendations.Error.Message);
+            Debug.LogError(usersRecommendations.Error.Status);
+        }
+
+        return usersRecommendations;
+    }
+
 
 
     public Paging<FullArtist> GetUsersTopArtists()

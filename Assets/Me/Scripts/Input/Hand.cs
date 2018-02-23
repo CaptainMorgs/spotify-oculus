@@ -88,15 +88,21 @@ public class Hand : MonoBehaviour
                     //To stop collisions with hands when throwing an object
                     gameObject.GetComponent<SphereCollider>().enabled = false;
                    bool isThrown = throwObject();
+                    VinylScript vinylScript = mHeldObject.gameObject.GetComponent<VinylScript>();
 
                     //if object isn't thrown and its a vinyl then re-enable its UI
-                    if (!isThrown) {
+                    if (!isThrown)
+                    {
                         if (mHeldObject.gameObject.tag == "vinyl")
                         {
-                            VinylScript vinylScript = mHeldObject.gameObject.GetComponent<VinylScript>();
                             vinylScript.EnableUI();
                             vinylScript.FollowArtist();
                         }
+                    }
+                    else {
+                        //if vinyl is thrown then despawn followcube
+                        Destroy(vinylScript.spawnedFollowCube);
+                      //  vinylScript.spawnedFollowCube.SetActive(false);
                     }
 
                     gameObject.GetComponent<SphereCollider>().enabled = true;
