@@ -8,14 +8,16 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
 
-namespace VRKeyboard.Utils {
-    public class KeyboardManager : MonoBehaviour {
+namespace VRKeyboard.Utils
+{
+    public class KeyboardManager : MonoBehaviour
+    {
         #region Public Variables
         [Header("User defined")]
         [Tooltip("If the character is uppercase at the initialization")]
         public bool isUppercase = false;
         public int maxInputLength;
-        
+
         [Header("UI Elements")]
         public Text inputText;
 
@@ -34,8 +36,8 @@ namespace VRKeyboard.Utils {
 
         private string Input
         {
-            get { return inputTextPro.text;  }
-          set { inputTextPro.text = value;  }
+            get { return inputTextPro.text; }
+            set { inputTextPro.text = value; }
         }
 
         private Dictionary<GameObject, Text> keysDictionary = new Dictionary<GameObject, Text>();
@@ -48,14 +50,17 @@ namespace VRKeyboard.Utils {
         #endregion
 
         #region Monobehaviour Callbacks
-        private void Awake() {
-            
-            for (int i = 0; i < characters.childCount; i++) {
+        private void Awake()
+        {
+
+            for (int i = 0; i < characters.childCount; i++)
+            {
                 GameObject key = characters.GetChild(i).gameObject;
                 Text _text = key.GetComponentInChildren<Text>();
                 keysDictionary.Add(key, _text);
 
-                key.GetComponent<Button>().onClick.AddListener(() => {
+                key.GetComponent<Button>().onClick.AddListener(() =>
+                {
                     GenerateInput(_text.text);
                 });
             }
@@ -69,32 +74,44 @@ namespace VRKeyboard.Utils {
         #endregion
 
         #region Public Methods
-        public void Backspace() {
-            if (Input.Length > 0) {
+        public void Backspace()
+        {
+            if (Input.Length > 0)
+            {
                 Input = Input.Remove(Input.Length - 1);
-            } else {
+            }
+            else
+            {
                 return;
             }
         }
 
-        public void Clear() {
+        public void Clear()
+        {
             Input = "";
         }
 
-        public void CapsLock() {
-            if (capslockFlag) {
-                foreach (var pair in keysDictionary) {
+        public void CapsLock()
+        {
+            if (capslockFlag)
+            {
+                foreach (var pair in keysDictionary)
+                {
                     pair.Value.text = ToUpperCase(pair.Value.text);
                 }
-            } else {
-                foreach (var pair in keysDictionary) {
+            }
+            else
+            {
+                foreach (var pair in keysDictionary)
+                {
                     pair.Value.text = ToLowerCase(pair.Value.text);
                 }
             }
             capslockFlag = !capslockFlag;
         }
 
-        public void Search() {
+        public void Search()
+        {
             //    spotifyScript.searchSpotify(inputText.text);
             Debug.Log("Search query: " + inputTextPro.text);
             spotifyScript.SearchSpotify(inputTextPro.text);
@@ -102,14 +119,16 @@ namespace VRKeyboard.Utils {
         #endregion
 
         #region Private Methods
-        public void GenerateInput(string s) {
+        public void GenerateInput(string s)
+        {
             if (Input.Length > maxInputLength) { return; }
             //added my shitty code here
-            if (s.Equals("CapsLock")) {
+            if (s.Equals("Caps Lock"))
+            {
                 CapsLock();
                 return;
             }
-            if (s.Equals ("Backspace"))
+            if (s.Equals("Backspace"))
             {
                 Backspace();
                 return;
@@ -124,15 +143,19 @@ namespace VRKeyboard.Utils {
                 Search();
                 return;
             }
+
             Input += s;
+
             Debug.Log("Keyboard being pressed!");
         }
 
-        private string ToLowerCase(string s) {
+        private string ToLowerCase(string s)
+        {
             return s.ToLower();
         }
 
-        private string ToUpperCase(string s) {
+        private string ToUpperCase(string s)
+        {
             return s.ToUpper();
         }
         #endregion

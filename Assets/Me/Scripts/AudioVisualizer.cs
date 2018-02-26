@@ -155,9 +155,10 @@ public class AudioVisualizer : MonoBehaviour {
 
         Debug.LogWarning("In VisualizeBPS");
 
+        float f = (float)((1 / beatsPerSecond) * bpsSmoothing);
+
         while (repeat) {
             //TODO take these calculations out of while loop, will be constant once good values decided
-            float f = (float)((1 / beatsPerSecond) * bpsSmoothing );
 
             Vector3 startVector = cubeLoudness.transform.localScale;
             Vector3 endVector = new Vector3(bpsPulseAmount, bpsPulseAmount, bpsPulseAmount) + startVector;

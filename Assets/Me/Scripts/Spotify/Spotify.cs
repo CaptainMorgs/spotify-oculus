@@ -25,10 +25,15 @@ public class Spotify : MonoBehaviour
     private bool waitingOnRestCall = false;
     private SearchResultsScript searchResultsScript;
     private AudioVisualizer audioVisualizerScript;
+    public ParticleVisualizer particleVisualizer;
     private PlaybackContext context;
     private PrivateProfile privateProfile;
-    private bool shuffleState;
+    private bool shuffleState, threadRunning;
     private RepeatState repeatState;
+    private AudioAnalysis audioAnalysis;
+    public delegate void ClickAction();
+    public static event ClickAction OnClicked;
+
 
     //TODO save users followed artists/top tracks etc between sessions
     //TODO ADD A QUEING/UP NEXT FEATURE WHERE YOU PLACE RECORDS PHYSICALLY IN A QUEUE, may not be possible    
@@ -67,6 +72,8 @@ public class Spotify : MonoBehaviour
 
         //Ignore collisions between character controller and vinyls
         Physics.IgnoreLayerCollision(8, 9);
+
+        OnClicked += SendAudioAnaylisToParticleVisualizer;
     }
 
     // Update is called once per frame
@@ -322,13 +329,36 @@ public class Spotify : MonoBehaviour
 
     public void PlaySongUri(string songURI)
     {
-        Thread myThread = new Thread(() => PlaySongURIThread(songURI));
+        ThreadStart starter = new ThreadStart(() => PlaySongURIThread(songURI));
+
+        //use callback to send audio analysis to particle visualizer
+        starter += () =>
+        {
+           // OnClicked();
+           // particleVisualizer.SendAnalysis(audioAnalysis);
+        };
+
+        Thread myThread = new Thread(starter);
+
         myThread.Start();
+        threadRunning = true;
+
+        while (threadRunning)
+        {
+            //TODO this can be better
+        }
+
+        SendAudioAnaylisToParticleVisualizer();
+
+        //    Thread myThread = new Thread(() => PlaySongURIThread(songURI));
+
+        //    myThread.Start();
         //    Debug.Log("playSongURIThread finished");
     }
 
     public void PlaySongURIThread(string songURI)
     {
+       
         PlaybackContext context = _spotify.GetPlayback();
 
         ErrorResponse error = _spotify.ResumePlayback(context.Device.Id, uris: new List<string> { songURI });
@@ -345,11 +375,21 @@ public class Spotify : MonoBehaviour
             //TODO currently playing song is the previous song that was played
             Debug.Log("Currently playing song: " + context.Item.Name);
             Debug.Log("Artist: " + context.Item.Artists[0].Name);
-            //AudioAnalysis audioAnalysis = _spotify.GetAudioAnalysis(context.Item.Id);
+            audioAnalysis = _spotify.GetAudioAnalysis(context.Item.Id);
             //currentSongScript.updateCurrentlyPlaying(context.Item.Artists[0].Id, context.Item.Artists[0].Name, audioAnalysis);
-            currentSongScript.updateCurrentlyPlaying(context.Item.Artists[0].Id, context.Item.Artists[0].Name);
+            //currentSongScript.updateCurrentlyPlaying(context.Item.Artists[0].Id, context.Item.Artists[0].Name);
 
             //audioVisualizerScript.SendAnalysis(audioAnalysis);
+           
+        }
+        threadRunning = false;
+    }
+
+    private void SendAudioAnaylisToParticleVisualizer()
+    {
+        if (audioAnalysis != null)
+        {
+            particleVisualizer.SendAnalysis(audioAnalysis);
         }
     }
 
