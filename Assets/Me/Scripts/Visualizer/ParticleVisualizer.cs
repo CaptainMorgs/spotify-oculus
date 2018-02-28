@@ -7,6 +7,7 @@ public class ParticleVisualizer : MonoBehaviour
 {
 
     private AudioAnalysis audioAnalysis;
+    public Material sparkMaterial, lightningMaterial;
     private GameObject spotifyManager;
     private ParticleSystem particleSystem;
     private Spotify spotifyManagerScript;
@@ -14,13 +15,15 @@ public class ParticleVisualizer : MonoBehaviour
     private bool isVisualizing = false;
     public int timeSignature, key;
     private string keyString;
+    private Color color;
     private List<string> keys = new List<string> { "C", "CSharp", "D", "DSharp", "E", "F", "FSharp", "G", "Gsharp", "A", "ASharp", "B" };
+    private List<Color> colors = new List<Color> { Color.blue, Color.cyan, Color.gray, Color.green, Color.magenta, Color.red, Color.white, Color.yellow, Color.blue, Color.cyan, Color.gray, Color.green};
     public bool repeat = true;
     public float pitchSmoothing = 0.1f, emissionSmoothing, velocitySmoothing;
     private float x, y, z;
     public float bpsSmoothing = 1f;
     public float bpsPulseAmount = 1f;
-
+    public int selected = 0;
     // Use this for initialization
     void Start()
     {
@@ -41,6 +44,23 @@ public class ParticleVisualizer : MonoBehaviour
 
     }
 
+    public void ChangeMaterial(int selected)
+    {
+        Debug.Log("Changing Material");
+        switch (selected)
+        {
+            case 0:
+                particleSystem.GetComponent<ParticleSystemRenderer>().trailMaterial = sparkMaterial;
+                break;
+            case 1:
+                particleSystem.GetComponent<ParticleSystemRenderer>().trailMaterial = lightningMaterial;
+                break;
+            default:
+                Debug.LogError("Change Material Unkown Option " + selected);
+                break;
+        }
+    }
+
     public void SendAnalysis(AudioAnalysis audioAnalysis)
     {
         if (audioAnalysis != null)
@@ -52,7 +72,7 @@ public class ParticleVisualizer : MonoBehaviour
             {
 
                 StartCoroutine(VisualizePitch());
-                StartCoroutine(VisualizeBPS());
+             //   StartCoroutine(VisualizeBPS());
                 //    StartCoroutine(VisualizeColour());
             }
             else
@@ -105,7 +125,7 @@ public class ParticleVisualizer : MonoBehaviour
 
                     //  Debug.Log("elapsed time: " + totalTime);
 
-                    gameObject.transform.localScale = Vector3.Lerp(startVector, endVector, t);
+                //    gameObject.transform.localScale = Vector3.Lerp(startVector, endVector, t);
                     emission.rateOverTime = Mathf.Lerp(startVector.x * emissionSmoothing, endVector.x * emissionSmoothing, t);
 
                     int positiveOrNegative = Random.Range(0, 2) * 2 - 1;
@@ -166,7 +186,12 @@ public class ParticleVisualizer : MonoBehaviour
         tempo = audioAnalysis.Track.Tempo;
         beatsPerSecond = tempo / (double)60;
         key = audioAnalysis.Track.Key;
+        Debug.Log("key " + key);
         keyString = keys[key];
+        color = colors[key];
+        var colorOverLifetime = particleSystem.colorOverLifetime;
+        Debug.Log("Setting particle color to " + color.ToString());
+        colorOverLifetime.color = color;
 
     }
 
