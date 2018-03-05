@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
 using SpotifyAPI.Web; //Base Namespace
@@ -14,7 +13,7 @@ using System.Threading;
 
 public class Spotify : MonoBehaviour
 {
-
+    #region Variables
     public static SpotifyWebAPI _spotify;
     public GameObject playlistPrefab, recordPlayer, FeaturedPlaylistTab, CurrentSongGameObject, searchResultsTab, audioVisualizer;
     private static string clientId = "4dd553a707024f8bb4f210bb86d73ee1";
@@ -33,15 +32,14 @@ public class Spotify : MonoBehaviour
     private AudioAnalysis audioAnalysis;
     public delegate void ClickAction();
     public static event ClickAction OnClicked;
+    #endregion
 
 
-    //TODO save users followed artists/top tracks etc between sessions
-    //TODO ADD A QUEING/UP NEXT FEATURE WHERE YOU PLACE RECORDS PHYSICALLY IN A QUEUE, may not be possible    
     //TODO add browser that shows music videos
     //TODO playlist are in wrong order
     //TODO alter speakers scale to increase/decrease volume
     //TODO playlist manager
-    //TODO follow/unfollow artist with physical motion
+    //TODO unfollow artist with physical motion
 
     // Use this for initialization
     void Start()
@@ -74,11 +72,6 @@ public class Spotify : MonoBehaviour
         Physics.IgnoreLayerCollision(8, 9);
 
         OnClicked += SendAudioAnaylisToParticleVisualizer;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     public void RestCallTest()
@@ -177,7 +170,7 @@ public class Spotify : MonoBehaviour
         //TODO what if the user doesn't have 5 top tracks, artists (possible?)
         for (int i = 0; i < 5; i++)
         {
-      //      trackIds.Add(savedTopTracks[i].);
+            //      trackIds.Add(savedTopTracks[i].);
             //    artistIds.Add(usersTopTracks.Items[i].Artists[0].Id);
             //    genres.Add(usersTopArtists.Items[i].Genres[0]);
         }
@@ -196,13 +189,13 @@ public class Spotify : MonoBehaviour
 
     public Recommendations GetRecommendations(List<string> idList)
     {
-              
+
         Recommendations usersRecommendations = _spotify.GetRecommendations(idList);
 
         if (usersRecommendations.HasError())
         {
             Debug.LogError(usersRecommendations.Error.Message);
-            Debug.LogError(usersRecommendations.Error.Status);         
+            Debug.LogError(usersRecommendations.Error.Status);
         }
 
         return usersRecommendations;
@@ -243,11 +236,13 @@ public class Spotify : MonoBehaviour
     }
 
     //TODO implement threading
-    public FullPlaylist GetPlaylist(string userId, string playlistId) {
+    public FullPlaylist GetPlaylist(string userId, string playlistId)
+    {
 
         FullPlaylist fullPlaylist = _spotify.GetPlaylist(userId, playlistId);
 
-        if (fullPlaylist.HasError()) {
+        if (fullPlaylist.HasError())
+        {
             Debug.LogError(fullPlaylist.Error.Message);
             Debug.LogError(fullPlaylist.Error.Status);
         }
@@ -334,8 +329,8 @@ public class Spotify : MonoBehaviour
         //use callback to send audio analysis to particle visualizer
         starter += () =>
         {
-           // OnClicked();
-           // particleVisualizer.SendAnalysis(audioAnalysis);
+            // OnClicked();
+            // particleVisualizer.SendAnalysis(audioAnalysis);
         };
 
         Thread myThread = new Thread(starter);
@@ -358,7 +353,7 @@ public class Spotify : MonoBehaviour
 
     public void PlaySongURIThread(string songURI)
     {
-       
+
         PlaybackContext context = _spotify.GetPlayback();
 
         ErrorResponse error = _spotify.ResumePlayback(context.Device.Id, uris: new List<string> { songURI });
@@ -380,7 +375,7 @@ public class Spotify : MonoBehaviour
             //currentSongScript.updateCurrentlyPlaying(context.Item.Artists[0].Id, context.Item.Artists[0].Name);
 
             //audioVisualizerScript.SendAnalysis(audioAnalysis);
-           
+
         }
         threadRunning = false;
     }
@@ -585,7 +580,7 @@ public class Spotify : MonoBehaviour
     public void SaveAlbumThread(string id)
     {
         ErrorResponse errorResponse = _spotify.SaveAlbum(id);
-        
+
         if (errorResponse.HasError())
         {
             Debug.LogError(errorResponse.Error.Message);
@@ -702,7 +697,7 @@ public class Spotify : MonoBehaviour
         {
             //This will open the user's browser and returns once
             //the user is authorized
-           // Debug.Log("Redirect URI: " + redirectUriLocal);
+            // Debug.Log("Redirect URI: " + redirectUriLocal);
             _spotify = await webApiFactory.GetWebApi();
         }
         catch (Exception ex)

@@ -187,17 +187,18 @@ public class SaveLoad : MonoBehaviour
     {
         Debug.Log("Reload called");
         ClearData();
-     //   Load();
+
+        //   Load();
         StartCoroutine(topTracksScript.loadTopTracks());
         StartCoroutine(topArtistsScript.loadTopArtists());
         StartCoroutine(featuredPlaylistTabScript.loadFeaturedPlaylists());
         StartCoroutine(newAlbumReleasesScript.loadNewAlbumReleases());
         StartCoroutine(userPlaylists.LoadUserPlaylists());
         StartCoroutine(usersFollowedArtistsScript.LoadUsersFollowedArtists());
-        StartCoroutine(chartScript.loadTopTracks());
+         StartCoroutine(chartScript.LoadChartTracks());
     }
 
-    private void ClearData()
+    public void ClearData()
     {
         savedTopTracks.Clear();
         savedFeaturedPlaylists.Clear();

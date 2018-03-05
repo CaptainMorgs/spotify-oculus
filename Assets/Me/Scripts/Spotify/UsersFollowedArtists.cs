@@ -34,37 +34,52 @@ public class UsersFollowedArtists : MonoBehaviour
         //TODO subscribe to spotify manager event of authorization being complete
         yield return new WaitForSeconds(2);
         FollowedArtists followedArtists = spotifyManagerScript.GetUsersFollowedArtists();
-        if (followedArtists == null)
+        if (followedArtists == null || followedArtists.Artists.Items.Count == 0)
         {
-            Debug.LogError("followedArtists is null");
+            Debug.LogError("followedArtists is null/empty");
 
         }
         else
         {
             for (int i = 0; i < meshRenderers.Length; i++)
             {
-                string followedArtistsImageURL = followedArtists.Artists.Items[i].Images[0].Url;
+
+                string followedArtistsImageURL = null;
+                //TODO add this check in the others or combine into one MEGA script
+                if (followedArtists.Artists.Items[i].Images.Count > 0)
+                {
+                     followedArtistsImageURL = followedArtists.Artists.Items[i].Images[0].Url;
+                }
 
                 GameObject meshRendererGameObject = meshRenderers[i].transform.gameObject;
 
                 PlaylistScript playlistScript = meshRendererGameObject.GetComponent<PlaylistScript>();
                 //  playlistScript.setPlaylistURI(featuredPlaylists.Playlists.Items[i].Uri);
 
-                WWW imageURLWWW = new WWW(followedArtistsImageURL);
+                WWW imageURLWWW = null;
 
-                yield return imageURLWWW;
+                if (followedArtistsImageURL != null)
+                {
+                    imageURLWWW = new WWW(followedArtistsImageURL);
 
-                meshRenderers[i].material.mainTexture = imageURLWWW.texture;
+                    yield return imageURLWWW;
+
+                    meshRenderers[i].material.mainTexture = imageURLWWW.texture;
+
+                }
 
                 playlistScript.setPlaylistName(followedArtists.Artists.Items[i].Name);
                 playlistScript.setPlaylistURI(followedArtists.Artists.Items[i].Uri);
                 playlistScript.fullArtist = followedArtists.Artists.Items[i];
-                playlistScript.sprite = ConvertWWWToSprite(imageURLWWW);
+                if (imageURLWWW != null)
+                {
+                    playlistScript.sprite = ConvertWWWToSprite(imageURLWWW);
+                    saveLoad.SaveTextureToFilePNG(Converter.ConvertWWWToTexture(imageURLWWW), "userFollowedArtist" + i + ".png");
+                }
                 playlistScript.artistId = followedArtists.Artists.Items[i].Id;
-                saveLoad.SaveTextureToFilePNG(Converter.ConvertWWWToTexture(imageURLWWW), "userFollowedArtist" + i + ".png");
                 saveLoad.savedUserFollowedArtists.Add(new PlaylistScriptData(playlistScript));
-              //  Debug.Log(" followed artist running " + i);
-
+                //  Debug.Log(" followed artist running " + i);
+        
             }
 
             

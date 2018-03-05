@@ -1,15 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using SpotifyAPI.Web; //Base Namespace
-using SpotifyAPI.Web.Auth; //All Authentication-related classes
-using SpotifyAPI.Web.Enums; //Enums
+﻿using UnityEngine;
 using SpotifyAPI.Web.Models;
-using System;
 
 
 public class PlaylistScript : MonoBehaviour
 {
+    #region Variables
     //TODO make everything public and remove getters/setters
     public string playlistName, playlistURI, artistName, artistId, ownerId, playlistId, albumId, trackId;
     public int popularity;
@@ -38,6 +33,8 @@ public class PlaylistScript : MonoBehaviour
     {
         playlist, artist, track, album, searchResult
     }
+    #endregion 
+
 
     // Use this for initialization
     void Start()

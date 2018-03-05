@@ -71,7 +71,7 @@ public class ChartsScript : MonoBehaviour
         return meshRenderers;
     }
 
-    private IEnumerator LoadChartTracks()
+    public IEnumerator LoadChartTracks()
     {
         yield return new WaitForSeconds(2);
 
